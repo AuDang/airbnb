@@ -1,6 +1,8 @@
-from app.models.db import db 
 
-class Spot(db.Mdodel):
+from app.models.db import db 
+from datetime import datetime
+
+class Spot(db.Model):
    __tablename__ = 'spots'
 
    id = db.Column(db.Integer, primary_key=True)
@@ -10,17 +12,20 @@ class Spot(db.Mdodel):
    state = db.Column(db.String, nullable=False)
    country = db.Column(db.String, nullable=False)
    name = db.Column(db.String, nullable=False)
-   price = db.Column(db.BitInteger, nullable=False)
-   imageUrl1 = db.Column(db.String, nullable=True)
-   imageUrl2 = db.Column(db.String, nullable=True)
-   imageUrl3 = db.Column(db.String, nullable=True)
-   imageUrl4 = db.Column(db.String, nullable=True)
+   price = db.Column(db.Integer, nullable=False)
+   # imageUrl1 = db.Column(db.String, nullable=True)
+   # imageUrl2 = db.Column(db.String, nullable=True)
+   # imageUrl3 = db.Column(db.String, nullable=True)
+   # imageUrl4 = db.Column(db.String, nullable=True)
    description = db.Column(db.String, nullable=False)
-   guest = db.Column(db.BigInteger, nullable=False)
-   bathroom = db.Column(db.BigInteger, nullable=False)
-   bedroom = db.Column(db.BigInteger, nullable=False)
-   created_at = db.Column(db.DateTime, nullable=False, server_default=db.func.now())
-   updated_at = db.Column(db.DateTime, nullable=False, server_default=db.func.now())
+   guest = db.Column(db.Integer, nullable=False)
+   bathroom = db.Column(db.Integer, nullable=False)
+   bedroom = db.Column(db.Integer, nullable=False)
+   # created_at = db.Column(db.DateTime, nullable=False)
+   # updated_at = db.Column(db.DateTime, nullable=False)
+
+   user = db.relationship("User", back_populates='spot')
+   reviews = db.relationship("Review", back_populates='spot')
 
    def to_dict(self):
       return {
