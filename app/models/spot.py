@@ -22,11 +22,13 @@ class Spot(db.Model):
    user = db.relationship("User", back_populates='spot')
    reviews = db.relationship("Review", back_populates='spot')
    images = db.relationship("Image", back_populates='spot')
+   host = db.relationship("Host", back_populates='spots')
 
    def to_dict(self):
       return {
          'id': self.id,
-         'user_id': self.user_id,
+         'user_id': self.user.id,
+         'host_id':self.user_id,
          'address': self.address,
          'city': self.city,
          'state': self.state,
@@ -38,5 +40,7 @@ class Spot(db.Model):
          'bathroom': self.bathroom,
          'bedroom': self.bedroom,
          'reviews': [{'id': review.id, 'rating': review.rating} for review in self.reviews],
-         'images': [{'id': image.id, 'image':image.image} for image in self.images]
+         'images': [{'id': image.id, 'image':image.image} for image in self.images],
+         'firstname': self.host.first_name,
+         'lastname': self.host.last_name,
       }

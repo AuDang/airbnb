@@ -5,8 +5,9 @@
 }
 .all-spots-image {
    display:flex;
+   flex-wrap:wrap;
+   flex-direction: row;
    justify-content: center;
-   max-width:500vw;
    width:400px;
    height:400px;
    padding:50px;

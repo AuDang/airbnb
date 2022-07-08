@@ -22,7 +22,7 @@ const SpotsPage = () => {
          <div key={spot.id}>
             <div className='all-spots-image'> 
                <NavLink exact to={`/spots/${spot.id}`}>
-                  <img className='single-spot-image'src={spot.images[0].image}/>
+                  <img className='single-spot-image' alt='image' src={spot.images[0].image}/>
                </NavLink>
             </div>
             <div className='all-spots-info'>
