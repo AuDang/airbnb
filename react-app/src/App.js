@@ -4,10 +4,8 @@ import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginFormModal/LoginForm';
 import SignUpForm from './components/auth/SignUpFormModal/SignUpForm';
 import NavBar from './components/Navigation/NavBar';
-import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
 import { authenticate } from './store/session';
+import SpotsPage from './components/Spots/SpotsPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -40,8 +38,8 @@ function App() {
         {/* <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute> */}
-        <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
+        <Route path='/spots' exact={true} >
+          <SpotsPage/>
         </Route>
       </Switch>
     </BrowserRouter>

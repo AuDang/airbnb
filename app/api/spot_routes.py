@@ -31,7 +31,7 @@ def get_spot(id):
    return spot.to_dict()
 
 
-@spot_routes.route("", methods=["POST"])
+@spot_routes.route("/", methods=["POST"])
 @login_required
 def upload_image():
     if "image" not in request.files:
@@ -97,7 +97,8 @@ def edit_spot(id):
       form.populate_obj(spot)
       db.session.commit()
       return spot.to_dict()
-@spot_routes.route('</int:id>', methods=['DELETE'])
+
+@spot_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_spot(id):
    delete_spot = Spot.query.get(id)
