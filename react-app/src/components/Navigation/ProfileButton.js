@@ -17,18 +17,6 @@ function ProfileButton() {
       // if(showMenu) return;
       setShowMenu(!showMenu);
    };
-
-   // useEffect(() => {
-   //    if(!showMenu) return;
-
-   //    const closeMenu = () => {
-   //       setShowMenu(false);
-   //    };
-
-   //    document.addEventListener('click', closeMenu);
-   //    return () => document.removeEventListener("click", closeMenu);
-
-   // }, [showMenu]);
    
       const logout = (e) => {
       e.preventDefault();

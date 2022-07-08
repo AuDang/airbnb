@@ -1,0 +1,10 @@
+.fas.fa-user-circle {
+font-size: 20px;
+display:flex;
+align-self: center;
+}
+
+.navbar-container {
+   display:flex;
+   justify-content: space-between;
+}

@@ -6,6 +6,7 @@ import SignUpForm from './components/auth/SignUpFormModal/SignUpForm';
 import NavBar from './components/Navigation/NavBar';
 import { authenticate } from './store/session';
 import SpotsPage from './components/Spots/SpotsPage';
+import SpotDetails from './components/SpotDetails/SpotDetails';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -26,19 +27,10 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm />
+        <Route exact path='/spots/:id'>
+          <SpotDetails />
         </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
-        {/* <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute> */}
-        {/* <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute> */}
-        <Route path='/spots' exact={true} >
+        <Route path='/' exact={true} >
           <SpotsPage/>
         </Route>
       </Switch>

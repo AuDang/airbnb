@@ -1,0 +1,18 @@
+.spots-page-container {
+   display: flex;
+   justify-content: center;
+   max-width:100vw
+}
+.all-spots-image {
+   display:flex;
+   justify-content: center;
+   max-width:500vw;
+   width:400px;
+   height:400px;
+   padding:50px;
+}
+.single-spot-image {
+   display: flex;
+   height:400px;
+   width:400px;
+}

@@ -14,23 +14,14 @@ const NavBar = () => {
   
 
   return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </li>
+    <div className='navbar-container'>
+      <div className='navbar-app-name'>
+        <p>
+          luxbnb
+        </p>
+      </div>
         <ProfileButton />
-        {/* <LoginFormModal />
-        <SignUpFormModal /> */}
-      </ul>
-    </nav>
+    </div>
   );
 }
 
