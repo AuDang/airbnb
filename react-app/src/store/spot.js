@@ -1,6 +1,6 @@
 const LOAD_SPOTS = '/spots/LOAD_SPOTS'
 const ADD_SPOT = '/spots/ADD_SPOT'
-const ALL_SPOTS = 'spots/ALL_SPOTS'
+// const ALL_SPOTS = 'spots/ALL_SPOTS'
 const DELETE_SPOT ='spots/DELETE_SPOT'
 
 const loadSpots = spots => {

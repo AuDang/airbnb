@@ -13,10 +13,6 @@ class Spot(db.Model):
    country = db.Column(db.String, nullable=False)
    name = db.Column(db.String, nullable=False)
    price = db.Column(db.Integer, nullable=False)
-   # imageUrl1 = db.Column(db.String, nullable=True)
-   # imageUrl2 = db.Column(db.String, nullable=True)
-   # imageUrl3 = db.Column(db.String, nullable=True)
-   # imageUrl4 = db.Column(db.String, nullable=True)
    description = db.Column(db.String, nullable=False)
    guest = db.Column(db.Integer, nullable=False)
    bathroom = db.Column(db.Integer, nullable=False)
@@ -26,6 +22,7 @@ class Spot(db.Model):
 
    user = db.relationship("User", back_populates='spot')
    reviews = db.relationship("Review", back_populates='spot')
+   images = db.relationship("Image", back_populates='spot')
 
    def to_dict(self):
       return {
@@ -42,4 +39,5 @@ class Spot(db.Model):
          'bathroom': self.bathroom,
          'bedroom': self.bedroom,
          'reviews': [{'id': review.id, 'rating': review.rating} for review in self.reviews],
+         'images': [{'id': image.id, 'image':image.image} for image in self.images]
       }
