@@ -2,7 +2,7 @@ from app.models import db, Spot
 
 def seed_spots():
    spot1 = Spot(
-      host_id=3,
+      user_id=3,
       address='2287 Montauk Hwy',
       city='Bridgehampton',
       state='New York',
@@ -15,7 +15,7 @@ def seed_spots():
       bedroom=7
    )
    spot2 = Spot(
-      host_id=3,
+      user_id=3,
       address='2244 Noyack Road',
       city='Sag Harbor',
       state='New York',
@@ -28,7 +28,7 @@ def seed_spots():
       bedroom=6
       )
    spot3 = Spot(
-      host_id=2,
+      user_id=2,
       address='2040 Sutter St #402',
       city='San Francisco',
       state='California',
@@ -41,7 +41,7 @@ def seed_spots():
       bedroom=5
       )
    spot4 = Spot(
-      host_id=1,
+      user_id=1,
       address='1019 NE 87th St',
       city='Miami',
       state='Florida',
@@ -54,7 +54,7 @@ def seed_spots():
       bedroom=6
       )
    spot5 = Spot(
-      host_id=1,
+      user_id=1,
       address='8001 Biscayne Blvd',
       city='Miami',
       state='Florida',

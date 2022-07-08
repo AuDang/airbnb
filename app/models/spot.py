@@ -1,6 +1,5 @@
-
 from app.models.db import db 
-from datetime import datetime
+import datetime
 
 class Spot(db.Model):
    __tablename__ = 'spots'
@@ -17,8 +16,8 @@ class Spot(db.Model):
    guest = db.Column(db.Integer, nullable=False)
    bathroom = db.Column(db.Integer, nullable=False)
    bedroom = db.Column(db.Integer, nullable=False)
-   # created_at = db.Column(db.DateTime, nullable=False)
-   # updated_at = db.Column(db.DateTime, nullable=False)
+   created_at = db.Column(db.DateTime, default=datetime.datetime.now())
+   updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
    user = db.relationship("User", back_populates='spot')
    reviews = db.relationship("Review", back_populates='spot')
@@ -27,7 +26,7 @@ class Spot(db.Model):
    def to_dict(self):
       return {
          'id': self.id,
-         'user_id': self.host.user.id,
+         'user_id': self.user_id,
          'address': self.address,
          'city': self.city,
          'state': self.state,
