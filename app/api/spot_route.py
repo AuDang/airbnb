@@ -24,10 +24,6 @@ def get_spots():
    spots = Spot.query.all()
    return jsonify([spot.to_dict() for spot in spots])
 
-@spot_routes.route('/')
-def getr_spots():
-   spot = Spot.query.get(id)
-   return spot.to_dict()
 
 @spot_routes.route('/<int:id>')
 def get_spot(id):
