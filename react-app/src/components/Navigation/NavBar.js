@@ -1,12 +1,9 @@
 
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
-import LoginFormModal from '../auth/LoginFormModal';
-import SignUpFormModal from '../auth/SignUpFormModal';
+import { NavLink,} from 'react-router-dom';
 import ProfileButton from './ProfileButton';
 import { useSelector } from 'react-redux';
-import LoginForm from '../auth/LoginFormModal/LoginForm';
+
 
 const NavBar = () => {
   const sessionUser = useSelector(state =>state.session.user)
@@ -16,11 +13,18 @@ const NavBar = () => {
   return (
     <div className='navbar-container'>
       <div className='navbar-app-name'>
-        <p>
+        <NavLink exact to={`/`}>
           luxbnb
-        </p>
+        </NavLink>
       </div>
+      <div className='nav-right'>
+        <div className='host-spot-container'>
+          <NavLink exact to='spots/new'>
+            <button type='submit'> Host a Spot</button>
+          </NavLink>
+        </div>
         <ProfileButton />
+      </div>
     </div>
   );
 }

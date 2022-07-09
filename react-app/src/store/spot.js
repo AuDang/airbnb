@@ -36,13 +36,13 @@ export const getSpot = (id) => async dispatch => {
    if (res.ok) {
       const spots = await res.json()
       dispatch(loadSpot(spots))
-      return spots 
+      return spots
    }
    return res
 }
 
 export const addSpot = (payload) => async dispatch => {
-   const res = await fetch(`api/spots/${payload.id}`, 
+   const res = await fetch('/api/spots/', 
    {
       method:'POST',
       headers: {"Content-Type": "application/json"},
@@ -54,7 +54,7 @@ export const addSpot = (payload) => async dispatch => {
       return spot
    } else if (res.status < 500) {
       const data = await res.json()
-      if (data) {
+      if (data.errors) {
          return data
       }
    }

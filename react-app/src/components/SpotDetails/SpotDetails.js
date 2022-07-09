@@ -8,7 +8,6 @@ import './SpotDetails.css'
 const SpotDetails = () => {
    const {id} = useParams()
    const sessionUser = useSelector(state =>state.session.user)
-   console.log('user',sessionUser)
    const spot = useSelector(state => state?.spotReducer[id])
    console.log('spot', spot)
    const history = useHistory()
@@ -33,6 +32,12 @@ const SpotDetails = () => {
             ))}
          </div>
          <div className='spot-detail-host'>
+            <h1>Hosted by: {spot?.firstname} {spot?.lastname}</h1>
+            <p>{spot?.guest} Guests {spot?.bedroom} Bedrooms {spot?.bathroom} Bathrooms</p>
+         </div>
+         <div className='spot-detail-description-container'>
+            <h1>Description</h1>
+            <p>{spot?.description}</p>
          </div>
       </div>
    )

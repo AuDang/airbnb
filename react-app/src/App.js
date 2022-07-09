@@ -7,6 +7,7 @@ import NavBar from './components/Navigation/NavBar';
 import { authenticate } from './store/session';
 import SpotsPage from './components/Spots/SpotsPage';
 import SpotDetails from './components/SpotDetails/SpotDetails';
+import CreateSpotForm from './components/CreateSpot/CreateSpotForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -27,12 +28,16 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route exact path='/spots/:id'>
-          <SpotDetails />
-        </Route>
         <Route path='/' exact={true} >
           <SpotsPage/>
         </Route>
+        <Route path='/spots/new' exact={true}>
+          <CreateSpotForm />
+        </Route>
+        <Route path='/spots/:id' exact={true}>
+          <SpotDetails />
+        </Route>
+        
       </Switch>
     </BrowserRouter>
   );
