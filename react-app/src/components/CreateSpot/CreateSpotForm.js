@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 import { addSpot } from "../../store/spot"
 import { useLocations } from "../../context/Location"
 
 const CreateSpotForm = () => {
-   // const {countries, states} =useLocations()
+   const {id} = useParams()
+   const sessionUser = useSelector(state => state.session.user)
    const dispatch = useDispatch()
    const history = useHistory()
    const [address, setAddress] = useState("")
@@ -20,11 +21,13 @@ const CreateSpotForm = () => {
    const [bedroom,setBedroom] =useState("")
    const [errors, setErrors] =useState([])
    const [images, setImages] =useState([])
+   console.log(sessionUser, '1111')
+
 
    const handleSubmit = async (e) => {
       e.preventDefault()
       const spot = await dispatch(addSpot({
-         name,
+         user_Id: sessionUser?.id,
          address,
          city,
          state,
@@ -35,25 +38,20 @@ const CreateSpotForm = () => {
          guest,
          bathroom,
          bedroom,
-         images,
 
       }))
-      if (spot?.errors) {
-         setErrors(spot?.errors)
-         return
-        }
    }
    return (
       <div className='create-spot-page-container'>
          <div>
             <h1>Host a spot on LuxBnB</h1>
          </div>
-         <form className='spot-form-container' onClick={handleSubmit}>
+         <form className='spot-form-container' onSubmit={handleSubmit}>
             <div>
                <label>Name</label>
                <input
                   type='text'
-                  label='name'
+                  label='Name'
                   placeholder='Name'
                   name='name'
                   onChange={(e) =>setName(e.target.value)}
@@ -63,7 +61,7 @@ const CreateSpotForm = () => {
                <div>
                   <label>Address</label>
                   <input 
-                     label='address'
+                     label='Address'
                      placeholder='Address'
                      name='address'
                      onChange={(e) =>setAddress(e.target.value)}
@@ -73,7 +71,7 @@ const CreateSpotForm = () => {
                <div>
                   <label>City</label>
                   <input 
-                     label='city'
+                     label='City'
                      placeholder='City'
                      name='address'
                      onChange={(e) =>setCity(e.target.value)}
@@ -154,7 +152,7 @@ const CreateSpotForm = () => {
                   <label>Price</label>
                   <input 
                      type='number'
-                     label='price'
+                     label='Price'
                      placeholder='Price per night'
                      name='price'
                      onChange={(e) =>setPrice(e.target.value)}
@@ -165,7 +163,7 @@ const CreateSpotForm = () => {
                   <label>Guests</label>
                   <input 
                      type='number'
-                     label='guest'
+                     label='Guest'
                      placeholder='Guests'
                      name='guest'
                      onChange={(e) =>setGuest(e.target.value)}
@@ -176,7 +174,7 @@ const CreateSpotForm = () => {
                   <label>Bedrooms</label>
                   <input 
                      type='number'
-                     label='bedroom'
+                     label='Bedroom'
                      placeholder='Bedrooms'
                      name='bedroom'
                      onChange={(e) =>setBedroom(e.target.value)}

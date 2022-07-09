@@ -31,7 +31,7 @@ def get_spot(id):
    return spot.to_dict()
 
 
-@spot_routes.route("/", methods=["POST"])
+@spot_routes.route("/images", methods=["POST"])
 @login_required
 def upload_image():
     if "image" not in request.files:

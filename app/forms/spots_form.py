@@ -12,6 +12,7 @@ class SpotForm(FlaskForm):
                       DataRequired("City: Please enter a city")])
    state = StringField('State', validators=[
                        DataRequired("State:Please enter a state")])
+   country = StringField('country', validators=[DataRequired("Country: Please enter a country")])
    description = StringField('Description', validators=[DataRequired("Description: Please provide a description"), Length(
        min=25, max=10000, message='Description name must be at least than 25 characters and no more than 10000 characters')])
    price = IntegerField('Price', validators=[DataRequired("Price: Please enter a price per night"), NumberRange(

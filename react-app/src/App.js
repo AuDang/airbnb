@@ -28,13 +28,13 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path='/' exact={true} >
+        <Route exact path='/' >
           <SpotsPage/>
         </Route>
-        <Route path='/spots/new' exact={true}>
+        <Route exact path='/spots/new'>
           <CreateSpotForm />
         </Route>
-        <Route path='/spots/:id' exact={true}>
+        <Route exact path='/spots/:id'>
           <SpotDetails />
         </Route>
         
