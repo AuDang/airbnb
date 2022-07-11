@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
-import { addSpot } from "../../store/spot"
+import { addSpot, uploadImage } from "../../store/spot"
+import { getSpot } from "../../store/spot"
 
 
 const CreateSpotForm = () => {
@@ -20,8 +21,23 @@ const CreateSpotForm = () => {
    const [bathroom, setBathroom] = useState("")
    const [bedroom,setBedroom] =useState("")
    const [errors, setErrors] =useState([])
+   const [imageUrl, setImageUrl] =useState(false)
+   const [imagePreview, setImagePreview] =useState(false)
    console.log(sessionUser, '1111')
 
+   const updateImage = async (e) => {
+   const file = e.target.files[0];
+   if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function (e) {
+         setImagePreview(reader.result);
+      };
+      setImageUrl(file);
+    } else {
+      setImagePreview(false);
+    }
+  };
 
    const handleSubmit = async (e) => {
       e.preventDefault()
@@ -40,6 +56,9 @@ const CreateSpotForm = () => {
 
       }))
 
+      if (spot.id) {
+         const upload= await dispatch(uploadImage(imageUrl, spot.id))
+      }
       if (spot.errors) {
          setErrors(spot?.errors)
          return 
@@ -47,11 +66,25 @@ const CreateSpotForm = () => {
          history.push(`/spots/${spot.id}`)
       }
    }
+
+
    return (
       <div className='create-spot-page-container'>
          <div>
             <h1>Host a spot on LuxBnB</h1>
          </div>
+         <div className="labelInputContainerImage">
+            <label>Image</label>
+               <input
+               type="file"
+               name="image_url"
+               accept=".jpg, .jpeg, .png"
+               onChange={updateImage}
+               required
+               ></input>
+        </div>
+         {imagePreview && <img src={imagePreview} />}
+
          <form className='spot-form-container' onSubmit={handleSubmit}>
             <div>
                <label>Name</label>
@@ -79,7 +112,7 @@ const CreateSpotForm = () => {
                   <input 
                      label='City'
                      placeholder='City'
-                     name='address'
+                     name='city'
                      onChange={(e) =>setCity(e.target.value)}
                      value={city}
                   />
@@ -90,7 +123,7 @@ const CreateSpotForm = () => {
                      type="select"
                      onChange={(e) => setState(e.target.value)}
                   >
-                     <option value="none" selected disabled hidden >Select a State</option>
+                     <option  selected disabled hidden >Select a State</option>
                      <option value="Alabama">Alabama</option>
                      <option value="Alaska">Alaska</option>
                      <option value="Arizona">Arizona</option>
@@ -206,10 +239,10 @@ const CreateSpotForm = () => {
                      value = {description}
                   />
                </div>
+
                <div className="spot-form-submit">
-                  <button className="spot-form-button" type="submit">
-                        Add Spot
-                  </button >
+                  {/* <button type='button' onClick={addImage}>Add Image</button> */}
+                  <button className="spot-form-button" type="submit">Add Spot</button >
                </div>
          </form>
       </div>

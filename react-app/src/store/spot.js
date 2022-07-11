@@ -90,6 +90,41 @@ export const removeSpot = (id) => async dispatch =>{
       return spot 
    }
 }
+export const uploadImage = (image_url, spot_id) => async (dispatch) => {
+
+  const form = new FormData();
+  form.append("image_url", image_url);
+
+  const res = await fetch(`/api/images/spots/${spot_id}`, {
+    method: "POST",
+    body: form,
+  });
+
+  if (res.ok) {
+    const data = await res.json();
+    return data
+  } else {
+    return {'errors': ["Filetype not supported"]};
+  }
+};
+
+export const removeImage = (imageId) => async (dispatch) => {
+  const res = await fetch(`/api/spots/images/${imageId}/delete`, {
+    method: "DELETE"
+  })
+  if (res.ok) {
+    const data = await res.json();
+    return data;
+  } else if (res.status < 500) {
+    const data = await res.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ["An error occurred. Please try again."];
+  }
+}
+
 
 const spotReducer = (state = {}, action) => {
    let newState;

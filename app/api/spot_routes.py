@@ -31,34 +31,33 @@ def get_spot(id):
     return spot.to_dict()
 
 
-@spot_routes.route("/images", methods=["POST"])
+@spot_routes.route("/images/<int:spot_id>", methods=["POST"])
 @login_required
 def upload_image():
-    if "image" not in request.files:
-        return {"errors": "Image required"}, 400
+    if "image_url" in request.files:
 
-    image = request.files["image"]
-    spot_id = request.form["spot_id"]
+        image = request.files["image"]
 
-    if not allowed_file(image.filename):
-        return {"errors": "File type not supported"}, 400
+        if not allowed_file(image.filename):
+            return {"errors": "File type not supported"}, 400
 
-    image.filename = get_unique_filename(image.filename)
+        image.filename = get_unique_filename(image.filename)
 
-    upload = upload_file_to_s3(image)
+        upload = upload_file_to_s3(image)
 
-    if "url" not in upload:
-        # if the dictionary doesn't have a url key
-        # it means that there was an error when we tried to upload
-        # so we send back that error message
-        return upload, 400
+        if "url" not in upload:
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when we tried to upload
+            # so we send back that error message
+            return upload, 400
 
-    url = upload["url"]
-    # flask_login allows us to get the current user from the request
-    new_image = Image(spot_id=spot_id, image=url)
-    db.session.add(new_image)
-    db.session.commit()
-    return {"url": url}
+        url = upload["url"]
+        # flask_login allows us to get the current user from the request
+        new_image = Image(spot_id=spot_id, image=url)
+        db.session.add(new_image)
+        db.session.commit()
+        return {"url": url}
+    return {'errors': 'Image upload failed'}
 
 
 @spot_routes.route('/images/<int:id>', methods=["DELETE"])
@@ -107,12 +106,25 @@ def add_spot():
 def edit_spot(id):
     form = SpotForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    spot = Spot.query.get(id)
+    # print(form)
 
     if form.validate_on_submit():
-        spot = Spot.query.get(id)
-        form.populate_obj(spot)
+        spot.address=form.data['address'],
+        spot.city=form.data['city'],
+        spot.state=form.data['state'],
+        spot.country=form.data['country'],
+        spot.name=form.data['name'],
+        spot.price=form.data['price'],
+        spot.description=form.data['description'],
+        spot.guest=form.data['guest'],
+        spot.bedroom=form.data['bedroom'],
+        spot.bathroom=form.data['bathroom'],
+
+        db.session.add(spot)
         db.session.commit()
         return spot.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @spot_routes.route('/<int:id>', methods=['DELETE'])
 @login_required

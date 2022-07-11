@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { getSpot } from '../../store/spot';
+import EditSpotModal from '../EditSpot';
+import DeleteSpot from '../DeleteSpot/DeleteSpot';
 import './SpotDetails.css'
 
 const SpotDetails = () => {
@@ -13,6 +15,7 @@ const SpotDetails = () => {
    const history = useHistory()
    const dispatch = useDispatch()
 
+
    useEffect( async () => {
      await dispatch(getSpot(id))
    },[dispatch])
@@ -20,6 +23,8 @@ const SpotDetails = () => {
 
    return (
       <div className='spot-details-container'>
+         <DeleteSpot/>
+         <EditSpotModal />
          <div className='spot-detail-name'>
             <h1>{spot?.name}</h1>
          </div>
