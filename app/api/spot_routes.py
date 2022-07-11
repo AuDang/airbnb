@@ -31,10 +31,10 @@ def get_spot(id):
     return spot.to_dict()
 
 
-@spot_routes.route("/images/<int:spot_id>", methods=["POST"])
+@spot_routes.route("/images", methods=["POST"])
 @login_required
-def upload_image():
-    if "image_url" in request.files:
+def upload_image(spot_id):
+    if "image" in request.files:
 
         image = request.files["image"]
 
@@ -42,7 +42,6 @@ def upload_image():
             return {"errors": "File type not supported"}, 400
 
         image.filename = get_unique_filename(image.filename)
-
         upload = upload_file_to_s3(image)
 
         if "url" not in upload:
@@ -52,11 +51,13 @@ def upload_image():
             return upload, 400
 
         url = upload["url"]
+
         # flask_login allows us to get the current user from the request
         new_image = Image(spot_id=spot_id, image=url)
         db.session.add(new_image)
         db.session.commit()
         return {"url": url}
+
     return {'errors': 'Image upload failed'}
 
 
