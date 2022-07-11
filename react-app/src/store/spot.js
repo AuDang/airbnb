@@ -90,12 +90,12 @@ export const removeSpot = (id) => async dispatch =>{
       return spot 
    }
 }
-export const uploadImage = (image_url, id) => async (dispatch) => {
+export const uploadImage = (image, spotId) => async dispatch => {
 
   const form = new FormData();
-  form.append("image_url", image_url);
+  form.append("image", image);
 
-  const res = await fetch(`/api/spots/images`, {
+  const res = await fetch(`/api/spots/images/${spotId}`, {
     method: "POST",
     body: form,
   });

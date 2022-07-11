@@ -24,7 +24,8 @@ const CreateSpotForm = () => {
    const [imageUrl, setImageUrl] =useState(false)
    const [imagePreview, setImagePreview] =useState(false)
    console.log(sessionUser, '1111')
-
+   console.log(imageUrl)
+   
    const updateImage = async (e) => {
    const file = e.target.files[0];
    if (file) {
@@ -56,14 +57,14 @@ const CreateSpotForm = () => {
 
       }))
 
-      if (spot.id) {
+      if (spot?.id) {
          const upload= await dispatch(uploadImage(imageUrl, spot.id))
       }
-      if (spot.errors) {
+      if (spot?.errors) {
          setErrors(spot?.errors)
          return 
       } else {
-         history.push(`/spots/${spot.id}`)
+         history.push(`/spots/${spot?.id}`)
       }
    }
 
@@ -79,10 +80,10 @@ const CreateSpotForm = () => {
                <label>Image</label>
                   <input
                   type="file"
-                  name="image_url"
+                  name="image"
                   accept=".jpg, .jpeg, .png"
                   onChange={updateImage}
-                  required
+                  // required
                   ></input>
             </div>
             {imagePreview && <img src={imagePreview} />}
