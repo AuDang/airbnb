@@ -39,9 +39,10 @@ const CreateSpotForm = () => {
       setImagePreview(false);
     }
   };
-
+   
    const handleSubmit = async (e) => {
       e.preventDefault()
+
       const spot = await dispatch(addSpot({
          user_id: sessionUser?.id,
          address,
@@ -54,9 +55,9 @@ const CreateSpotForm = () => {
          guest,
          bathroom,
          bedroom,
-
+         
       }))
-
+      
       if (spot?.id) {
          const upload= await dispatch(uploadImage(imageUrl, spot.id))
       }
@@ -64,11 +65,11 @@ const CreateSpotForm = () => {
          setErrors(spot?.errors)
          return 
       } else {
-         history.push(`/spots/${spot?.id}`)
+         history.push(`/spots/${spot.id}`)
       }
    }
-
-
+   
+   
    return (
       <div className='create-spot-page-container'>
          <div>

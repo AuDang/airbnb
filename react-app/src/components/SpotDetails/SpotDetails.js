@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { getSpot } from '../../store/spot';
 import EditSpotModal from '../EditSpot';
 import DeleteSpot from '../DeleteSpot/DeleteSpot';
+import ShowReview from '../Reviews/ShowReview/ShowReview';
 import './SpotDetails.css'
 
 const SpotDetails = () => {
@@ -40,9 +41,15 @@ const SpotDetails = () => {
             <h1>Hosted by: {spot?.firstname} {spot?.lastname}</h1>
             <p>{spot?.guest} Guests {spot?.bedroom} Bedrooms {spot?.bathroom} Bathrooms</p>
          </div>
+         <div className='spot-detail-price'>
+            <p>${spot?.price}/Night</p>
+         </div>
          <div className='spot-detail-description-container'>
             <h1>Description</h1>
             <p>{spot?.description}</p>
+         </div>
+         <div className='spot-detail-reviews-container'>
+            <ShowReview />
          </div>
       </div>
    )

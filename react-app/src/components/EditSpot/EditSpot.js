@@ -4,6 +4,7 @@ import { useHistory, useParams } from "react-router-dom"
 import { getSpot } from "../../store/spot"
 import { editSpot } from "../../store/spot"
 import SpotsPage from "../Spots/SpotsPage"
+import { uploadImage } from "../../store/spot"
 
 const EditSpot = ({ setShowModal }) => {
    const dispatch = useDispatch()
@@ -22,7 +23,22 @@ const EditSpot = ({ setShowModal }) => {
    const [bathroom, setBathroom] = useState(spot.bathroom)
    const [bedroom,setBedroom] =useState(spot.bedroom)
    const [errors, setErrors] =useState([])
+   const [imageUrl, setImageUrl] =useState(false)
+   const [imagePreview, setImagePreview] =useState(false)
 
+const updateImage = async (e) => {
+   const file = e.target.files[0];
+   if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function (e) {
+         setImagePreview(reader.result);
+      };
+      setImageUrl(file);
+    } else {
+      setImagePreview(false);
+    }
+  };
 const handleSubmit = async (e) => {
    e.preventDefault()
    
@@ -41,9 +57,15 @@ const handleSubmit = async (e) => {
       bedroom,
    }))
 
+   if(edit.id) {
+      const upload = await dispatch(uploadImage(imageUrl, spot.id))
+   }
    if (edit.errors) {
       setErrors(edit?.errors)
       return
+   } else  {
+      history.push(`/spots/${spot.id}`)
+      setShowModal(false)
    }
 }  
 return ( 
@@ -52,6 +74,17 @@ return (
          <h1>Host a spot on LuxBnB</h1>
       </div>
       <form className='spot-form-container' onSubmit={handleSubmit}>
+            <div className="spot-form-image-container">
+               <label>Image</label>
+                  <input
+                  type="file"
+                  name="image"
+                  accept=".jpg, .jpeg, .png"
+                  onChange={updateImage}
+                  // required
+                  ></input>
+            </div>
+            {imagePreview && <img src={imagePreview} />}
          <div>
             <label>Name</label>
             <input

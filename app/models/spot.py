@@ -19,7 +19,7 @@ class Spot(db.Model):
    created_at = db.Column(db.DateTime, default=datetime.datetime.now())
    updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
-   user = db.relationship("User", back_populates='spot')
+   user = db.relationship("User", back_populates='spot', lazy='subquery')
    reviews = db.relationship(
        "Review", back_populates='spot', cascade="all,delete")
    images = db.relationship(
@@ -39,7 +39,7 @@ class Spot(db.Model):
          'guest': self.guest,
          'bathroom': self.bathroom,
          'bedroom': self.bedroom,
-         'reviews': [{'id': review.id, 'rating': review.rating} for review in self.reviews],
+         'reviews': [review.to_dict() for review in self.reviews],
          'images': [{'id': image.id, "image": image.image} for image in self.images],
          'firstname': self.user.first_name,
          'lastname': self.user.last_name,
