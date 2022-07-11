@@ -22,6 +22,7 @@ def seed_images():
       spot_id=1,
       image='https://res.cloudinary.com/dejdhbcrb/image/upload/v1657258116/airbnb/Screenshot_2022-07-07_205211_n20ud1.png'
    )
+   
    img6 = Image(
       spot_id=2,
       image='https://res.cloudinary.com/dejdhbcrb/image/upload/v1657258119/airbnb/Screenshot_2022-07-07_205358_mpckmd.png'

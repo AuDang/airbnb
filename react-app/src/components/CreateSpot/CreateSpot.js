@@ -25,7 +25,7 @@ const CreateSpotForm = () => {
    const [imagePreview, setImagePreview] =useState(false)
    console.log(sessionUser, '1111')
    console.log(imageUrl)
-   
+
    const updateImage = async (e) => {
    const file = e.target.files[0];
    if (file) {
@@ -76,7 +76,7 @@ const CreateSpotForm = () => {
          </div>
 
          <form className='spot-form-container' onSubmit={handleSubmit}>
-            <div className="labelInputContainerImage">
+            <div className="spot-form-image-container">
                <label>Image</label>
                   <input
                   type="file"

@@ -31,7 +31,7 @@ def get_spot(id):
     return spot.to_dict()
 
 
-@spot_routes.route("/images", methods=["POST"])
+@spot_routes.route("/images/<int:spot_id>", methods=["POST"])
 @login_required
 def upload_image(spot_id):
     if "image" in request.files:
@@ -42,6 +42,7 @@ def upload_image(spot_id):
             return {"errors": "File type not supported"}, 400
 
         image.filename = get_unique_filename(image.filename)
+
         upload = upload_file_to_s3(image)
 
         if "url" not in upload:
