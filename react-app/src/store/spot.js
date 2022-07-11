@@ -22,7 +22,7 @@ const deleteSpot = spot => {
    }}
 
 export const getAllSpots = () => async dispatch => {
-   const res = await fetch(`/api/spots`)
+   const res = await fetch(`/api/spots/`)
    if (res.ok) {
       const spots = await res.json()
       dispatch(loadSpots(spots))
