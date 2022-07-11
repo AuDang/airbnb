@@ -21,27 +21,27 @@ def validation_errors_to_error_messages(validation_errors):
 
 @spot_routes.route('/')
 def get_spots():
-   spots = Spot.query.all()
-   return jsonify([spot.to_dict() for spot in spots])
+    spots = Spot.query.all()
+    return jsonify([spot.to_dict() for spot in spots])
 
 
 @spot_routes.route('/<int:id>')
 def get_spot(id):
-   spot = Spot.query.get(id)
-   return spot.to_dict()
+    spot = Spot.query.get(id)
+    return spot.to_dict()
 
 
 @spot_routes.route("/images", methods=["POST"])
 @login_required
 def upload_image():
     if "image" not in request.files:
-        return {"errors": "image required"}, 400
+        return {"errors": "Image required"}, 400
 
     image = request.files["image"]
     spot_id = request.form["spot_id"]
 
     if not allowed_file(image.filename):
-        return {"errors": "file type not permitted"}, 400
+        return {"errors": "File type not supported"}, 400
 
     image.filename = get_unique_filename(image.filename)
 
@@ -76,35 +76,51 @@ def delete_images(id):
 
 @spot_routes.route('/', methods=['POST'])
 @login_required
-def post_spot():
-   form = SpotForm()
-   form =['csrf_token'].data = request.cookies['csrf.token']
+def add_spot():
+    form = SpotForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print(request.get_json())
 
-   if form.validate_on_submit():
-      spot = Spot()
-      form.populate_obj(spot)
-      db.session.add(spot)
-      db.session.commit()
-      return spot.to_dict()
+    if form.validate_on_submit():
+        newSpot = Spot(
+            user_id=request.get_json()['user_id'],
+            address=form.data['address'],
+            city=form.data['city'],
+            state=form.data['state'],
+            country=form.data['country'],
+            name=form.data['name'],
+            price=form.data['price'],
+            description=form.data['description'],
+            guest=form.data['guest'],
+            bedroom=form.data['bedroom'],
+            bathroom=form.data['bathroom'],
+        )
+
+        db.session.add(newSpot)
+        db.session.commit()
+        return newSpot.to_dict()
+
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @spot_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def edit_spot(id):
-   form = SpotForm()
-   form['csrf_token'].data = request.cookies['csrf.token']
-   if form.validate_on_submit():
-      spot = Spot.query.get(id)
-      form.populate_obj(spot)
-      db.session.commit()
-      return spot.to_dict()
+    form = SpotForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        spot = Spot.query.get(id)
+        form.populate_obj(spot)
+        db.session.commit()
+        return spot.to_dict()
 
 @spot_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_spot(id):
-   delete_spot = Spot.query.get(id)
+    delete_spot = Spot.query.get(id)
 
-   db.session.delete(delete_spot)
-   db.session.commit()
-   return delete_spot.to_dict()
+    db.session.delete(delete_spot)
+    db.session.commit()
+    return delete_spot.to_dict()
 
 

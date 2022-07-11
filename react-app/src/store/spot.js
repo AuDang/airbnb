@@ -42,7 +42,7 @@ export const getSpot = (id) => async dispatch => {
 }
 
 export const addSpot = (payload) => async dispatch => {
-   const res = await fetch(`/api/spots`, 
+   const res = await fetch(`/api/spots/`, 
    {
       method:'POST',
       headers: {"Content-Type": "application/json"},
@@ -61,7 +61,7 @@ export const addSpot = (payload) => async dispatch => {
 }
 
 export const editSpot = (payload) => async dispatch => {
-   const res = await fetch(`api/spots/${payload.id}`, 
+   const res = await fetch(`/api/spots/${payload.id}`, 
    {
       method:'PUT',
       headers: {"Content-Type": "application/json"},
@@ -80,7 +80,7 @@ export const editSpot = (payload) => async dispatch => {
 }
 
 export const removeSpot = (id) => async dispatch =>{
-   const res = await fetch(`api/spots/${id}`, 
+   const res = await fetch(`/api/spots/${id}`, 
    {
       method:'DELETE'
    })

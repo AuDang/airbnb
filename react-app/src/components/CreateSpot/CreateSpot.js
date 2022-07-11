@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
 import { addSpot } from "../../store/spot"
-import { useLocations } from "../../context/Location"
+
 
 const CreateSpotForm = () => {
    const {id} = useParams()
@@ -20,14 +20,13 @@ const CreateSpotForm = () => {
    const [bathroom, setBathroom] = useState("")
    const [bedroom,setBedroom] =useState("")
    const [errors, setErrors] =useState([])
-   const [images, setImages] =useState([])
    console.log(sessionUser, '1111')
 
 
    const handleSubmit = async (e) => {
       e.preventDefault()
       const spot = await dispatch(addSpot({
-         user_Id: sessionUser?.id,
+         user_id: sessionUser?.id,
          address,
          city,
          state,
@@ -40,6 +39,13 @@ const CreateSpotForm = () => {
          bedroom,
 
       }))
+
+      if (spot.errors) {
+         setErrors(spot?.errors)
+         return 
+      } else {
+         history.push(`/spots/${spot.id}`)
+      }
    }
    return (
       <div className='create-spot-page-container'>

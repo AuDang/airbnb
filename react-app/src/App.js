@@ -7,7 +7,7 @@ import NavBar from './components/Navigation/NavBar';
 import { authenticate } from './store/session';
 import SpotsPage from './components/Spots/SpotsPage';
 import SpotDetails from './components/SpotDetails/SpotDetails';
-import CreateSpotForm from './components/CreateSpot/CreateSpotForm';
+import CreateSpotForm from './components/CreateSpot/CreateSpot';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
