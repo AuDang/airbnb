@@ -73,19 +73,19 @@ const CreateSpotForm = () => {
          <div>
             <h1>Host a spot on LuxBnB</h1>
          </div>
-         <div className="labelInputContainerImage">
-            <label>Image</label>
-               <input
-               type="file"
-               name="image_url"
-               accept=".jpg, .jpeg, .png"
-               onChange={updateImage}
-               required
-               ></input>
-        </div>
-         {imagePreview && <img src={imagePreview} />}
 
          <form className='spot-form-container' onSubmit={handleSubmit}>
+            <div className="labelInputContainerImage">
+               <label>Image</label>
+                  <input
+                  type="file"
+                  name="image_url"
+                  accept=".jpg, .jpeg, .png"
+                  onChange={updateImage}
+                  required
+                  ></input>
+            </div>
+            {imagePreview && <img src={imagePreview} />}
             <div>
                <label>Name</label>
                <input

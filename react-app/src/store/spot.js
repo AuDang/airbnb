@@ -90,12 +90,12 @@ export const removeSpot = (id) => async dispatch =>{
       return spot 
    }
 }
-export const uploadImage = (image_url, spot_id) => async (dispatch) => {
+export const uploadImage = (image_url, id) => async (dispatch) => {
 
   const form = new FormData();
   form.append("image_url", image_url);
 
-  const res = await fetch(`/api/images/spots/${spot_id}`, {
+  const res = await fetch(`/api/spots/images`, {
     method: "POST",
     body: form,
   });
@@ -109,7 +109,7 @@ export const uploadImage = (image_url, spot_id) => async (dispatch) => {
 };
 
 export const removeImage = (imageId) => async (dispatch) => {
-  const res = await fetch(`/api/spots/images/${imageId}/delete`, {
+  const res = await fetch(`/api/spots/images/${imageId}/`, {
     method: "DELETE"
   })
   if (res.ok) {
