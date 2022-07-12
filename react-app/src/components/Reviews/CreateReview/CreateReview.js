@@ -38,7 +38,7 @@ useEffect(() => {
 }, [rating,review])
 
    return (
-      <div className='review-form-containe-page'>
+      <div className='review-form-container-page'>
          <div className='review-form-header'>
             <h1> Leave a Review</h1>
          </div>
