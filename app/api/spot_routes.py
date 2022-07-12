@@ -100,8 +100,9 @@ def add_spot():
         db.session.add(newSpot)
         db.session.commit()
         return newSpot.to_dict()
-
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    else:
+        errors= validation_errors_to_error_messages(form.errors)
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @spot_routes.route('/<int:id>', methods=['PUT'])
 @login_required
@@ -126,6 +127,8 @@ def edit_spot(id):
         db.session.add(spot)
         db.session.commit()
         return spot.to_dict()
+    else:
+        errors = validation_errors_to_error_messages(form.errors)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @spot_routes.route('/<int:id>', methods=['DELETE'])

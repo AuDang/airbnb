@@ -16,16 +16,19 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(first, last, username, email, password));
+    // if (password -== repeatPassword) {
+      const data = await dispatch(signUp(first, last, username, email, password, repeatPassword));
       if (data) {
-        setErrors(data)
+        console.log('data', data)
+        // setErrors(data)
         if (password !== repeatPassword) {
-          setPassword("")
-          setRepeatPassword("")
-        }
+          data.push('Password: Passwords must match')
+          // setPassword("")
+          // setRepeatPassword("")
+        }console.log('newdata', data)
+        setErrors(data)
       }
-    }
+    // }
   };
   const updateFirst = (e) => {
     setFirst(e.target.value)
@@ -57,7 +60,7 @@ const SignUpForm = () => {
     <form onSubmit={onSignUp}>
       <h1>Welcome to Luxbnb</h1>
       <div>
-        {errors.map((error, ind) => (
+        {errors.length>0 && errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
@@ -118,7 +121,6 @@ const SignUpForm = () => {
           name='repeat_password'
           onChange={updateRepeatPassword}
           value={repeatPassword}
-          // required={true}
           placeholder='Confirm Password'
         ></input>
       </div>

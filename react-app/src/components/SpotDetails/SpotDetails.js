@@ -7,13 +7,16 @@ import EditSpotModal from '../EditSpot';
 import CreateReviewModal from '../Reviews/CreateReview';
 import DeleteSpot from '../DeleteSpot/DeleteSpot';
 import ShowReview from '../Reviews/ShowReview/ShowReview';
+import { IoDiamond } from 'react-icons/io5';
 import './SpotDetails.css'
 
 const SpotDetails = () => {
    const {id} = useParams()
    const sessionUser = useSelector(state =>state.session.user)
    const spot = useSelector(state => state?.spotReducer[id])
+   const reviews = Object.values(useSelector(state => state.reviewReducer))
    console.log('spot', spot)
+   console.log('review', reviews)
    const history = useHistory()
    const dispatch = useDispatch()
 
@@ -23,13 +26,24 @@ const SpotDetails = () => {
    },[dispatch])
 
 
+   const filteredReviews = reviews.filter(({spot_id}) => spot_id === +id)
+   let sum = 0;
+   filteredReviews.forEach(({rating}) => {
+      sum+= rating
+   })
+   const averageReviews = sum /filteredReviews.length
+   let roundedAverage = Math.round(averageReviews * 100) /100
+   if (Number.isNaN(roundedAverage)) {
+      roundedAverage = "Unrated"
+   }
    return (
       <div className='spot-details-container'>
-         <DeleteSpot/>
-         <EditSpotModal />
+         {sessionUser?.id === spot?.user_id && <DeleteSpot/>}
+         {sessionUser?.id === spot?.user_id && <EditSpotModal/>}
          <div className='spot-detail-name'>
             <h1>{spot?.name}</h1>
          </div>
+           <IoDiamond color='purple'/> {roundedAverage}
          <div className='spot-detail-location'>
             {spot?.address}, {spot?.city},{spot?.state}
          </div>
@@ -50,6 +64,15 @@ const SpotDetails = () => {
             <p>{spot?.description}</p>
          </div>
          <div className='spot-detail-reviews-container'>
+         <div className='spot-details-rating'>
+            <div className='spot-detail-rating-average-container'>
+               <p className='spot-detail-rating-average'> <IoDiamond color="purple"/> {roundedAverage}</p>
+            </div>
+            <div className='spot-detail-total-reviews'>
+               {filteredReviews.length} {filteredReviews.length === 1 ? 'Review' : 'Reviews'}
+            </div>
+
+         </div>
             <CreateReviewModal/>
             <ShowReview />
          </div>

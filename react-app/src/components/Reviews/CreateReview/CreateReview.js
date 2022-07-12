@@ -16,7 +16,7 @@ const CreateReview = ({setShowModal}) => {
 const handleSubmit = async (e) => {
    e.preventDefault()
    const new_review = {
-      user_id: sessionUser.id,
+      user_id: sessionUser?.id,
       spot_id: id,
       rating,
       review
@@ -31,7 +31,7 @@ const handleSubmit = async (e) => {
 }
 useEffect(() => {
    const validation_errors = []
-   if(review.length >= 5000) {
+   if(review.length >= 1500) {
       validation_errors.push("Maximum characters reached")
    }
    setErrors(validation_errors)

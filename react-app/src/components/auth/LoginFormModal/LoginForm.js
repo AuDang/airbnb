@@ -33,12 +33,12 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={onLogin}>
+      <h1>Welcome to Luxbnb</h1>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <h1>Welcome to Luxbnb</h1>
       <div>
         {/* <label htmlFor='email'>Email</label> */}
         <input

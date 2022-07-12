@@ -30,16 +30,16 @@ useEffect(async() => {
                <div className='each-review-username'>
                   {review.username}
                   {console.log("reviewid", review.id)}
-                  <EditReviewModal review={review}/>
-                  <DeleteReviewModal id={review.id}/>
                <div className='review-rating-container'>
                   <p> Rating: {[...Array(5)].map((diamond,i) => (
                      <IoDiamond key={i}
                      color={(i+1) <= review.rating ? "purple" : "lightgrey"}
                      />
-                  ))}
+                     ))}
                   </p>
                      <p className='each-review'>{review.review}</p>
+                     <EditReviewModal review={review}/>
+                     <DeleteReviewModal id={review.id}/>
                </div> 
                </div>
             </div>

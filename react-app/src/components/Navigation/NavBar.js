@@ -20,7 +20,7 @@ const NavBar = () => {
       <div className='nav-right'>
         <div className='host-spot-container'>
           <NavLink exact to='/spots/new'>
-            <button type='submit'> Host a Spot</button>
+            {sessionUser && <button type='submit'> Host a Spot</button>}
           </NavLink>
         </div>
         <ProfileButton />

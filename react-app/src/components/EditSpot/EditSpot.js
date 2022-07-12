@@ -71,7 +71,12 @@ const handleSubmit = async (e) => {
 return ( 
    <div className='create-spot-page-container'>
       <div>
-         <h1>Host a spot on LuxBnB</h1>
+         <h1>Edit Your Spot</h1>
+      </div>
+      <div className="spot-error-form-container">
+         {errors?.map((error, ind) => (
+      <div key={ind}>{error}</div>
+            ))}
       </div>
       <form className='spot-form-container' onSubmit={handleSubmit}>
             <div className="spot-form-image-container">

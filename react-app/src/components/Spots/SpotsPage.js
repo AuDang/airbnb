@@ -5,16 +5,21 @@ import { useHistory } from 'react-router-dom';
 import './SpotsPage.css'
 import { NavLink } from 'react-router-dom';
 
+
 const SpotsPage = () => {
    const spots = useSelector(state => state.spotReducer)
    const spotsArr = Object.values(spots)
    console.log('spots', spotsArr)
+   const reviews = Object.values(spotsArr)
+   console.log('spotsArr', reviews)
    const history = useHistory()
    const dispatch = useDispatch()
-
    useEffect(() => {
       dispatch(getAllSpots())
    },[dispatch])
+
+
+
 
    return (
       <div className='spots-page-container'>

@@ -58,11 +58,11 @@ const CreateSpotForm = () => {
          
       }))
       
-      if (spot?.id) {
+      if (spot.id) {
          const upload= await dispatch(uploadImage(imageUrl, spot.id))
       }
-      if (spot?.errors) {
-         setErrors(spot?.errors)
+      if (spot.errors) {
+         setErrors(spot.errors)
          return 
       } else {
          history.push(`/spots/${spot.id}`)
@@ -76,6 +76,12 @@ const CreateSpotForm = () => {
             <h1>Host a spot on LuxBnB</h1>
          </div>
 
+         <div className="create-spot-error-container">
+            {errors?.map((error, ind) => (
+               <div key={ind}>{error}</div>
+            ))}
+         </div>
+         
          <form className='spot-form-container' onSubmit={handleSubmit}>
             <div className="spot-form-image-container">
                <label>Image</label>
