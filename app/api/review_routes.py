@@ -20,16 +20,19 @@ def validation_errors_to_error_messages(validation_errors):
 @review_routes.route('/')
 def get_reviews():
    reviews = Review.query.all()
+   return {"reviews":[review.to_dict() for review in reviews]}
 
 
 @review_routes.route('/spots/<int:id>', methods=["POST"])
+# @review_routes.route('/new', methods=["POST"])
 @login_required
 def post_review(id):
    form = ReviewForm()
    form['csrf_token'].data = request.cookies['csrf_token']
    if form.validate_on_submit():
       new_review = Review(
-
+         user_id=request.json['user_id'],
+         spot_id=request.json['spot_id'],
          review = form.data['review'],
          rating = form.data['rating']
       )

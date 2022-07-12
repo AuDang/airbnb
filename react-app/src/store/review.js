@@ -25,7 +25,7 @@ const removeReview = review => (
 
 
 export const getReviews = () => async dispatch => {
-    const res = await fetch('/api/reviews/')
+    const res = await fetch(`/api/reviews/`)
     if (res.ok) {
         const reviews = await res.json()
         dispatch(loadReviews(reviews))
@@ -35,11 +35,9 @@ export const getReviews = () => async dispatch => {
 }
 
 export const addReview = (payload) => async dispatch => {
-    const res = await fetch(`/api/reviews/spot/${payload.spot_id}`, {
+    const res = await fetch(`/api/reviews/spots/${payload.spot_id}`, {
         method: 'POST',
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify(payload)
     })
     if (res.ok) {
@@ -57,9 +55,7 @@ export const addReview = (payload) => async dispatch => {
 export const editReview = (payload) => async dispatch => {
     const res = await fetch(`/api/reviews/${payload.id}`, {
         method: 'PUT',
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify(payload)
     })
     if (res.ok) {
@@ -93,7 +89,9 @@ const reviewReducer = (state = {}, action) => {
     switch (action.type) {
         case LOAD_REVIEWS: {
             newState = { ...state };
-            action.reviews.forEach(review => newState[review.id] = review);
+            console.log('action' , action.reviews)
+            action.reviews.reviews.forEach(review =>newState[review.id] = review)
+            // action.reviews.forEach(review => newState[review.id] = review);
             return newState
         }
         case ADD_REVIEW: {

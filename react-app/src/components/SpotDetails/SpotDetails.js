@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { getSpot } from '../../store/spot';
 import EditSpotModal from '../EditSpot';
+import CreateReviewModal from '../Reviews/CreateReview';
 import DeleteSpot from '../DeleteSpot/DeleteSpot';
 import ShowReview from '../Reviews/ShowReview/ShowReview';
 import './SpotDetails.css'
@@ -49,6 +50,7 @@ const SpotDetails = () => {
             <p>{spot?.description}</p>
          </div>
          <div className='spot-detail-reviews-container'>
+            <CreateReviewModal/>
             <ShowReview />
          </div>
       </div>

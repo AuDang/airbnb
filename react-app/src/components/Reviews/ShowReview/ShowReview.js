@@ -5,9 +5,13 @@ import { getReviews } from "../../../store/review";
 
 const ShowReview = () => {
    const dispatch =useDispatch()
+   const {id} =useParams()
    const sessionUser = useSelector(state => state.session.user)
-   const reviews = useSelector(state => state.reviewsReducer)
-   console.log('reviews', reviews )
+   const reviews = useSelector(state => state.reviewReducer)
+   const reviewsArr = Object.values(reviews)
+   const filteredReviewsArr = reviewsArr.filter(({spot_id}) => spot_id === +id)
+   console.log('reviews', reviewsArr )
+   console.log('filter', filteredReviewsArr)
 
 
 
@@ -16,8 +20,16 @@ useEffect(async() => {
 },[dispatch])
 
    return (
-      <div>
-         hello
+      <div className='review-display-container'>
+         {filteredReviewsArr.map((review) =>(
+            <div className='each-review-display-container'>
+               {console.log('reviewMap' , review)}
+               <div className='each-revire-username'>
+                  {review.username}
+               <p>{review.review}</p>
+               </div>
+            </div>
+         ))}
       </div>
    )
 }
