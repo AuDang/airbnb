@@ -40,16 +40,20 @@ const SpotDetails = () => {
       <div className='spot-details-container'>
          {sessionUser?.id === spot?.user_id && <DeleteSpot/>}
          {sessionUser?.id === spot?.user_id && <EditSpotModal/>}
-         <div className='spot-detail-name'>
-            <h1>{spot?.name}</h1>
+         <div className='spot-detail-name-container'>
+            <h1 className='spot-detail-name'>{spot?.name}</h1>
          </div>
-           <IoDiamond color='purple'/> {roundedAverage}
-         <div className='spot-detail-location'>
-            {spot?.address}, {spot?.city},{spot?.state}
-         </div>
+            <div className='spot-detail-review-location-container'>
+               <div className='spot-detail-diamond'>
+                  <IoDiamond color='purple'/> {roundedAverage} 
+               </div>
+               <div className='spot-detail-location'>
+               {spot?.address}, {spot?.city}, {spot?.state}
+               </div>
+            </div>
          <div className='spot-detail-images'>
             {spot?.images.map(({ image }, idx) => (
-               <img className='spot-detail-image' src={image} key={idx} alt="house" />
+               <img className={`spot-detail-image-${idx}`} src={image} key={idx} alt="new" />
             ))}
          </div>
          <div className='spot-detail-host'>
@@ -73,7 +77,7 @@ const SpotDetails = () => {
             </div>
 
          </div>
-            <CreateReviewModal/>
+            {sessionUser && <CreateReviewModal/>}
             <ShowReview />
          </div>
       </div>

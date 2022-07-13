@@ -24,20 +24,20 @@ const SpotsPage = () => {
    return (
       <div className='spots-page-container'>
       {spotsArr.map(spot => (
-         <div key={spot.id}>
+         <div className='spotspage-container' key={spot.id}>
             <div className='all-spots-image'> 
                <NavLink exact to={`/spots/${spot.id}`}>
                   <img className='single-spot-image' alt='image' src={spot?.images[0]?.image}/>
                </NavLink>
             </div>
             <div className='all-spots-info'>
-               <div>
+               <div className='spotspage-location'>
                   <p>{spot?.city}, {spot?.state}</p>
                </div>
-               <div>
+               <div className='spotspage-name'>
                   <p>{spot?.name}</p>
                </div>
-               <div>
+               <div className='spotspage-price'>
                   <p>${spot?.price}/Night</p>
                </div>
             </div>

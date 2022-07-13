@@ -1,0 +1,80 @@
+#modal-content {
+   background-color: white;
+   border-radius: 5%;
+}
+.login-form-container {
+   height:400px;
+   width: 425px;
+}
+.login-form-header {
+   color: rgba(255, 98, 127, 255);
+   display: flex;
+   justify-content: center;
+}
+
+.login-form-email {
+   display: flex;
+   justify-content: center;
+}
+.login-form-email-field {
+   width: 290px;
+   margin-top:10px;
+   margin-bottom:10px;
+   height:45px;
+   font-size: 19px;
+   border-radius: 5px;
+}
+
+.login-form-password {
+   display: flex;
+   justify-content: center;
+   font-size: 40px;
+}
+.login-form-password-field {
+   width: 290px;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   height: 40px;
+   font-size: 19px;
+   border-radius: 5px;
+}
+.login-form-button {
+   display: flex;
+   justify-content: center;
+}
+
+.login-button {
+   background-color: rgb(236, 32, 96);
+   color:white;
+   width: 292px;
+   margin-top: 10px;
+   height:40px;
+   font-size: 19px;
+   border-radius: 5px;
+}
+.login-form-inputs {
+   margin-top: 50px;
+}
+.error-container {
+   display: flex;
+   justify-content: center;
+   color: red;
+   align-items: center;
+}
+
+.login-form-error-container {
+   font-size: 14px;
+   display: flex;
+   flex-direction: column;
+   border: 1px solid red;
+   border-radius: 5px;
+   width: 300px;
+   padding: 10px 0px 10px 0px;
+   background-color: rgba(238, 67, 67, 0.507);
+   color: rgb(163, 17, 17)
+}
+
+.error-list {
+   margin-left: 7px;
+}
+

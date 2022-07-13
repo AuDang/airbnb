@@ -13,17 +13,19 @@ const NavBar = () => {
   return (
     <div className='navbar-container'>
       <div className='navbar-app-name'>
-        <NavLink exact to={`/`}>
-          luxbnb
+        <NavLink className='app-name-link'exact to={`/`}>
+          <p className='app-name'>luxbnb</p>
         </NavLink>
       </div>
-      <div className='nav-right'>
-        <div className='host-spot-container'>
-          <NavLink exact to='/spots/new'>
-            {sessionUser && <button type='submit'> Host a Spot</button>}
-          </NavLink>
-        </div>
-        <ProfileButton />
+      <div className='navbar-right'>
+          <div className='host-spot-button'>
+            <NavLink exact to='/spots/new'>
+              {sessionUser && <button type='submit'> Become a Host</button>}
+            </NavLink>
+          </div>
+          <div className='nav-profile'>
+            <ProfileButton />
+          </div>
       </div>
     </div>
   );

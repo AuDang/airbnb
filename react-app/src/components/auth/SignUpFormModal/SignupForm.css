@@ -1,0 +1,67 @@
+#modal-content {
+   background-color: white;
+   border-radius: 10px;
+}
+.signup-form-container {
+   height: 750px;
+   width:425px;
+   display:flex;
+   justify-content: center;
+}
+.signup-form-header {
+   color: rgba(255, 98, 127, 255);
+   display: flex;
+   justify-content: center;
+}
+.signup-form {
+   display:flex;
+   justify-content: center;
+   
+}
+.signup-form-input {
+   width:290px;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   height: 40px;
+   font-size: 19px;
+   border-radius: 5px;
+}
+.signup-button-container {
+   display:flex;
+   justify-content: center;
+   
+}
+.signup-button {
+   background-color: rgb(236, 32, 96);
+   color: white;
+   width: 300px;
+   margin-top: 10px;
+   height: 40px;
+   font-size: 19px;
+   border-radius: 5px;
+}
+
+.signup-form-input-container {
+   margin-top:40px;
+}
+.error-container {
+   display: flex;
+   justify-content: center;
+   color: red;
+   align-items: center;
+}
+
+.signup-form-error-container {
+   font-size: 14px;
+   display: flex;
+   flex-direction: column;
+   border: 1px solid red;
+   border-radius: 5px;
+   width: 300px;
+   padding: 10px 0px 10px 0px;
+   background-color: rgba(238, 67, 67, 0.507);
+   color: rgb(163, 17, 17)
+}
+.error-list {
+   margin-left: 7px;
+}

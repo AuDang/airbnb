@@ -7,4 +7,31 @@ align-self: center;
 .navbar-container {
    display:flex;
    justify-content: space-between;
+   margin: 0 5% 0 5%;
+}
+.app-name-link {
+   text-decoration: none;
+   color: rgba(255, 98, 127, 255);
+   font-size: 20px;
+   letter-spacing: -.8px;
+   font-weight: 600;
+   font-size: 22px;
+}
+
+.navbar-right {
+   display: flex;
+   justify-content: center;
+}
+
+.host-spot-button {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-right: 20px;
+}
+
+.nav-profile {
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }

@@ -22,7 +22,7 @@ const SignUpForm = () => {
         console.log('data', data)
         // setErrors(data)
         if (password !== repeatPassword) {
-          data.push('Password: Passwords must match')
+          data.push('Both passwords must match, please try again')
           // setPassword("")
           // setRepeatPassword("")
         }console.log('newdata', data)
@@ -57,75 +57,87 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <h1>Welcome to Luxbnb</h1>
-      <div>
-        {errors.length>0 && errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-            <div>
-        <input 
-        type='text'
-        name='first'
-        onChange={updateFirst}
-        value={first}
-        // required={true}
-        placeholder='First name'
-        />
-      </div>
-      <div>
-        <input 
-        type='text'
-        name='last'
-        onChange={updateLast}
-        value={last}
-        // required={true}
-        placeholder='Last name'
-        />
-      </div>
-      <div>
-        {/* <label>User Name</label> */}
-        <input
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
-          placeholder='Username'
-        ></input>
-      </div>
-      <div>
-        {/* <label>Email</label> */}
-        <input
-          type='text'
-          name='email'
-          onChange={updateEmail}
-          value={email}
-          placeholder='Email Address'
-        ></input>
-      </div>
-      <div>
-        {/* <label>Password</label> */}
-        <input
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password}
-          placeholder='Password'
-        ></input>
-      </div>
-      <div>
-        {/* <label>Repeat Password</label> */}
-        <input
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          placeholder='Confirm Password'
-        ></input>
-      </div>
-      <button type='submit'>Agree and continue</button>
-    </form>
+    <div className = 'signup-form-container'>
+      <form onSubmit={onSignUp}>
+        <h1 className='signup-form-header'>Welcome to Luxbnb</h1>
+        <div className='error-container'>
+          {errors.length > 0 && (
+            <div className='signup-form-error-container'>
+              <span className="error-title">The following errors occured:</span>
+              {errors.length && errors.map((error, ind) => (
+                <li className='error-list' key={ind}>{error}</li>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className='signup-form-input-container'>
+
+          <div className='signup-form'>
+            <input className='signup-form-input'
+            type='text'
+            name='first'
+            onChange={updateFirst}
+            value={first}
+            // required={true}
+            placeholder='First name'
+            />
+          </div>
+          <div className='signup-form'>
+            <input className='signup-form-input'
+            type='text'
+            name='last'
+            onChange={updateLast}
+            value={last}
+            // required={true}
+            placeholder='Last name'
+            />
+          </div>
+          <div className='signup-form'>
+            {/* <label>User Name</label> */}
+            <input className='signup-form-input'
+              type='text'
+              name='username'
+              onChange={updateUsername}
+              value={username}
+              placeholder='Username'
+              ></input>
+          </div>
+          <div className='signup-form'>
+            {/* <label>Email</label> */}
+            <input className='signup-form-input'
+              type='text'
+              name='email'
+              onChange={updateEmail}
+              value={email}
+              placeholder='Email Address'
+              ></input>
+          </div>
+          <div className='signup-form'>
+            {/* <label>Password</label> */}
+            <input className='signup-form-input'
+              type='password'
+              name='password'
+              onChange={updatePassword}
+              value={password}
+              placeholder='Password'
+              ></input>
+          </div>
+          <div className='signup-form'>
+            {/* <label>Repeat Password</label> */}
+            <input className='signup-form-input'
+              type='password'
+              name='repeat_password'
+              onChange={updateRepeatPassword}
+              value={repeatPassword}
+              placeholder='Confirm Password'
+              ></input>
+          </div>
+          <div className='signup-button-container'>
+            <button className='signup-button'type='submit'>Agree and continue</button>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 };
 
