@@ -1,0 +1,117 @@
+.create-spot-page-container {
+   /* background-color: red; */
+   display:flex;
+   justify-content: center;
+   flex-direction: column;
+   width:100%;
+   margin:auto;
+   border: 1px solid black
+}
+.spot-form-container {
+   min-height: 500px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: space-between;
+   width: 80%;
+   margin:auto;
+}
+.create-spot-name-container {
+   display: flex;
+   justify-content: center;
+   text-align: center;
+}
+.error-container {
+   display: flex;
+   justify-content: center;
+   color: red;
+   align-items: center;
+}
+
+.create-spot-form-error-container {
+   font-size: 14px;
+   display: flex;
+   flex-direction: column;
+   border: 1px solid red;
+   border-radius: 5px;
+   width: 400px;
+   padding: 10px 0px 10px 0px;
+   background-color: rgba(238, 67, 67, 0.507);
+   margin-bottom: 20px ;
+   color: rgb(163, 17, 17)
+}
+
+.error-list {
+   margin-left: 7px;
+}
+.create-spot-form {
+   display:flex;
+   /* background-color: blue; */
+   justify-content: space-between;
+   width:85%
+   
+}
+.create-spot-input {
+   width:90%;
+}
+.create-spot-label {
+   display:flex;
+   /* justify-content: center; */
+   align-items: center;
+}
+.create-spot-city-state-country {
+   display: flex;
+   /* justify-content: space-between; */
+   width:85%
+}
+.create-spot-label-location {
+   padding-right:10px;
+}
+.create-spot-form-city {
+   display:flex;
+   width:100%;
+}
+.create-spot-input-city {
+   width: 40%;
+   padding-right:50px;
+}
+
+.create-spot-select-state {
+   width:60%;
+   padding-right: 50px;
+}
+.create-spot-form-state {
+   display: flex;
+   width: 100%;
+}
+
+.create-spot-form-country {
+   display: flex;
+   width:60%
+}
+.create-spot-select-country {
+   width: 85%;
+}
+
+.create-spot-price-gues-bed-bath {
+   display:flex;
+   width:85%;
+   justify-content: space-between;
+}
+
+.create-spot-label-room-info {
+   padding-right: 10px;
+}
+.create-spot-room-info {
+   width: 60%
+}
+.create-spot-room-info-bath {
+   width: 73%
+}
+.create-spot-textarea {
+   width:85%;
+   height:60px;
+}
+
+
+
