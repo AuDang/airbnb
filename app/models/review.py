@@ -12,7 +12,7 @@ class Review(db.Model):
    created_at = db.Column(db.DateTime, default=datetime.datetime.now())
    updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
-   user = db.relationship("User", back_populates='reviews')
+   user = db.relationship("User", back_populates='reviews', lazy='subquery')
    spot = db.relationship("Spot", back_populates='reviews')
 
    def to_dict(self):

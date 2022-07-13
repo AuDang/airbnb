@@ -36,6 +36,7 @@
    width: 600px;
    border-radius: 10px;     
    grid-area: a;
+   object-fit:cover;
    
 }
 .spot-detail-image-1 {
@@ -43,22 +44,26 @@
    width: 300px;
    border-radius: 10px;
    grid-area: b;
+   object-fit: cover;
 }
 .spot-detail-image-2 {
    height: 300px;
    width: 300px;
    border-radius: 10px;
    grid-area: c;
+   object-fit: cover;
 }
 .spot-detail-image-3 {
    height: 300px;
    width: 300px;
    border-radius: 10px;
    grid-area: d;
+   object-fit: cover;
 }
 .spot-detail-image-4 {
    height: 300px;
    width: 300px;
    border-radius: 10px;
    grid-area: e;
+   object-fit: cover;
 }

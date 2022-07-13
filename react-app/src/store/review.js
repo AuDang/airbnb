@@ -72,6 +72,7 @@ export const editReview = (payload) => async dispatch => {
 
 
 export const deleteReview = (id) => async dispatch => {
+    console.log(id)
     const res = await fetch(`/api/reviews/${id}`, {
         method: "DELETE"
     })
@@ -83,12 +84,11 @@ export const deleteReview = (id) => async dispatch => {
 }
 
 
-
 const reviewReducer = (state = {}, action) => {
     let newState;
     switch (action.type) {
         case LOAD_REVIEWS: {
-            newState = { ...state };
+            newState = {};
             console.log('action' , action.reviews)
             action.reviews.reviews.forEach(review =>newState[review.id] = review)
             // action.reviews.forEach(review => newState[review.id] = review);

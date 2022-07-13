@@ -11,6 +11,7 @@ const DeleteReview =({id, setShowModal}) => {
    const handleDelete = async (e) => {
       e.preventDefault()
       const data = await dispatch(deleteReview(id))
+      // console.log('reviewid', id)
       if (data) {
          setShowModal(false)
       }

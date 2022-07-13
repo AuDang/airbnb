@@ -39,7 +39,7 @@ useEffect(async() => {
                   </p>
                      <p className='each-review'>{review.review}</p>
                      <EditReviewModal review={review}/>
-                     <DeleteReviewModal id={review.id}/>
+                     <DeleteReviewModal id={review?.id}/>
                </div> 
                </div>
             </div>
