@@ -32,4 +32,4 @@ class SignUpForm(FlaskForm):
     password = StringField('Password', validators=[DataRequired("Please enter a password"), EqualTo(
         "repeatPassword", message="Passwords dont match. Please try again."), Length(
         min=6, max=20, message='Password must be between 6 and 20 characters')])
-    repeatPassword =StringField('Repeat Password', validators=[DataRequired("PLease confirm your password")])
+    repeatPassword =StringField('Repeat Password', validators=[DataRequired("Please confirm your password")])
