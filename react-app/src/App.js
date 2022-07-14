@@ -21,7 +21,6 @@ function App() {
     (async() => {
       await dispatch(authenticate());
       await dispatch(getAllSpots())
-      await dispatch(getSpot())
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -31,7 +30,7 @@ function App() {
   }
 
   return (
-    <>
+    <BrowserRouter>
       <NavBar />
       <Switch>
         <Route exact path='/' >
@@ -51,7 +50,7 @@ function App() {
         </Route>
       </Switch>
       <Footer />
-    </>
+    </BrowserRouter>
 
   );
 }
