@@ -2,3 +2,7 @@
    width:1350px;
    margin-bottom: 50px;
 }
+.edit-modal-button:hover {
+   cursor:pointer;
+   font-weight: 900
+}

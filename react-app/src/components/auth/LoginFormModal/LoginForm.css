@@ -44,13 +44,16 @@
 }
 
 .login-button {
-   background-color: rgb(236, 32, 96);
+   background-color: rgba(255, 98, 127, 255);
    color:white;
    width: 292px;
    margin-top: 10px;
    height:40px;
    font-size: 19px;
    border-radius: 5px;
+}
+.login-button:hover{
+   cursor:pointer
 }
 .login-form-inputs {
    margin-top: 50px;

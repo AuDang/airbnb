@@ -6,6 +6,7 @@ import { getSpot } from '../../store/spot';
 import EditSpotModal from '../EditSpot';
 import CreateReviewModal from '../Reviews/CreateReview';
 import DeleteSpot from '../DeleteSpot/DeleteSpot';
+import DeleteSpotModal from '../DeleteSpot';
 import ShowReview from '../Reviews/ShowReview/ShowReview';
 import { IoDiamond } from 'react-icons/io5';
 import './SpotDetails.css'
@@ -38,8 +39,6 @@ const SpotDetails = () => {
    }
    return (
       <div className='spot-details-container'>
-         {sessionUser?.id === spot?.user_id && <DeleteSpot/>}
-         {sessionUser?.id === spot?.user_id && <EditSpotModal/>}
          <div className='spot-detail-name-container'>
             <h1 className='spot-detail-name'>{spot?.name}</h1>
          </div>
@@ -49,6 +48,14 @@ const SpotDetails = () => {
                </div>
                <div className='spot-detail-location'>
                {spot?.address}, {spot?.city}, {spot?.state}
+               </div>
+            </div>
+            <div className='spot-details-edit-delete-container'>
+               <div className='spot-details-edit'>
+                  {sessionUser?.id === spot?.user_id && <EditSpotModal/>}
+               </div>
+               <div className='spot-details-delete'>
+                  {sessionUser?.id === spot?.user_id && <DeleteSpotModal/>}
                </div>
             </div>
          <div className='spot-detail-images'>
@@ -68,17 +75,22 @@ const SpotDetails = () => {
             <p>{spot?.description}</p>
          </div>
          <div className='spot-detail-reviews-container'>
-         <div className='spot-details-rating'>
-            <div className='spot-detail-rating-average-container'>
-               <p className='spot-detail-rating-average'> <IoDiamond color="purple"/> {roundedAverage}</p>
+            <div className='spot-detail-rating-review-create-container'>
+               <div className='spot-details-rating'>
+                  <div className='spot-detail-rating-average-container'>
+                     <p className='spot-detail-rating-average'> <IoDiamond color="purple"/> {roundedAverage}</p>
+                  </div>
+                  <div className='spot-detail-total-reviews'>
+                     {filteredReviews.length} {filteredReviews.length === 1 ? 'Review' : 'Reviews'}
+                  </div>
+               </div>
+               <div className='spot-detail-create-review-button'>
+                  {sessionUser && <CreateReviewModal/>}
+               </div>
             </div>
-            <div className='spot-detail-total-reviews'>
-               {filteredReviews.length} {filteredReviews.length === 1 ? 'Review' : 'Reviews'}
+            <div className='show-details-all-reviwews-container'>
+               <ShowReview />
             </div>
-
-         </div>
-            {sessionUser && <CreateReviewModal/>}
-            <ShowReview />
          </div>
       </div>
    )

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector  } from 'react-redux'
 import { editReview } from '../../../store/review'
 import { IoDiamond } from "react-icons/io5";
+import './EditReview.css'
 
 const EditReview = ({current_review, setShowModal}) => {
    const dispatch=useDispatch()
@@ -40,27 +41,31 @@ const EditReview = ({current_review, setShowModal}) => {
       setErrors(validation_errors)
    }, [rating, review])
    return (
-      <div className='edit-review-form-container-page'>
-         <div className='edit-review-form-header'>
+      <div className='review-form-container-page'>
+         <div className='review-form-header'>
             <h1> Edit Your Review</h1>
          </div>
-         {errors && 
-         (<div className="edit-review-form-error-container">
-            {errors?.map((error, ind) => (
-               <p className='edit-review-form-error-message' key={ind}>{error}</p>
-            ))}
-         </div>)}
-            <form className='edit-review-form-container'>
-               <div>
+         <div className='error-container'>
+            {errors.length > 0 && (
+            <div className='signup-form-error-container'>
+               <span className="error-title">The following errors occured:</span>
+               {errors.length && errors.map((error, ind) => (
+                  <li className='error-list' key={ind}>{error}</li>
+               ))}
+            </div>
+         )}
+        </div>
+            <form className='review-form-container'>
+               <div className='edit-review-form-rating-container'>
                   {[...Array(5)].map((diamond, i) =>(
                      <label>
-                        <input className='edit-review-form-rating-container'
+                        <input className='review-form-rating'
                         type='radio'
                         value={rating} 
                         onClick={() => setRating(i+1)}
                         />
                         <IoDiamond
-                        className="edit-review-form-rating-diamond"
+                        className="review-form-rating-diamond"
                         color={(i+1) <= (hover || rating) ? "purple": "lightgray"}
                         onMouseEnter={() => setHover(i +1)}
                         onMouseLeave={() => setHover(null)}
@@ -68,17 +73,17 @@ const EditReview = ({current_review, setShowModal}) => {
                      </label>
                   ))}
                </div>
-               <div className='edit-review-form-review-container'>
-                  <label>Review</label>
-                  <textarea
+               <div className='review-form-review-container'>
+                  {/* <label>Review</label> */}
+                  <textarea className='review-form-textarea'
                      name='description'
                      value={review}
                      placeholder='Leave a review'
                      onChange={(e) => setReview(e.target.value)}
                   />
                </div>
-               <div className='edit-review-form-submit-container'>
-                  <button className='edit-review-form-submit' onClick={handleEdit}>Edit</button>
+               <div className='review-form-submit-container'>
+                  <button className='review-form-submit' onClick={handleEdit}>Submit Edit</button>
                </div>
             </form>
       </div>

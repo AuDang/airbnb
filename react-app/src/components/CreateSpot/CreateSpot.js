@@ -60,7 +60,8 @@ const CreateSpotForm = () => {
       }))
       
       if (spot.id) {
-         const upload= await dispatch(uploadImage(imageUrl, spot.id))
+         const upload = await dispatch(uploadImage(imageUrl, spot.id))
+
       }
       if (spot.errors) {
          setErrors(spot.errors)
@@ -68,6 +69,13 @@ const CreateSpotForm = () => {
       } else {
          history.push(`/spots/${spot.id}`)
       }
+   }
+   const handleExpress = (e) => {
+      if (e.key === 'e') return e.preventDefault()
+      if (e.key === 'E') return e.preventDefault()
+      if (e.key === '+') return e.preventDefault()
+      if (e.key === '-') return e.preventDefault()
+      if (e.key === '.') return e.preventDefault()
    }
    
    
@@ -215,6 +223,7 @@ const CreateSpotForm = () => {
                         placeholder='Price per night'
                         name='price'
                         onChange={(e) =>setPrice(e.target.value)}
+                        onKeyDown={handleExpress}
                         value={price}
                         />
                   </div>
@@ -226,6 +235,7 @@ const CreateSpotForm = () => {
                         placeholder='Guests'
                         name='guest'
                         onChange={(e) =>setGuest(e.target.value)}
+                        onKeyDown={handleExpress}
                         value={guest}
                         />
                   </div>
@@ -237,6 +247,7 @@ const CreateSpotForm = () => {
                         placeholder='Bedrooms'
                         name='bedroom'
                         onChange={(e) =>setBedroom(e.target.value)}
+                        onKeyDown={handleExpress}
                         value={bedroom}
                      />
                   </div>
@@ -248,6 +259,7 @@ const CreateSpotForm = () => {
                         placeholder='Bathrooms'
                         name='bathroom'
                         onChange={(e) =>setBathroom(e.target.value)}
+                        onKeyDown={handleExpress}
                         value={bathroom}
                         />
                   </div>

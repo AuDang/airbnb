@@ -1,0 +1,17 @@
+.login-form-demo {
+   display: flex;
+   justify-content: center;
+
+}
+
+.demo-button {
+   width: 292px;
+   margin-top: 10px;
+   height: 40px;
+   font-size: 19px;
+   border-radius: 5px;
+}
+
+.demo-button:hover {
+   cursor:pointer
+}

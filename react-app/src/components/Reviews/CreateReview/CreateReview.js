@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addReview } from "../../../store/review";
 import { useParams } from "react-router-dom";
 import { IoDiamond } from "react-icons/io5";
+import './CreateReview.css'
 
 const CreateReview = ({setShowModal}) => {
    const {id} = useParams()
@@ -42,17 +43,21 @@ useEffect(() => {
          <div className='review-form-header'>
             <h1> Leave a Review</h1>
          </div>
-         {errors && 
-         (<div className="review-form-error-container">
-            {errors?.map((error, ind) => (
-               <p className='review-form-error-message' key={ind}>{error}</p>
-            ))}
-         </div>)}
+         <div className='error-container'>
+            {errors.length > 0 && (
+            <div className='signup-form-error-container'>
+               <span className="error-title">The following errors occured:</span>
+               {errors.length && errors.map((error, ind) => (
+                  <li className='error-list' key={ind}>{error}</li>
+               ))}
+            </div>
+            )}
+         </div>
             <form className='review-form-container'>
-               <div>
+               <div className='review-form-rating-container'>
                   {[...Array(5)].map((diamond, i) =>(
                      <label>
-                        <input className='review-form-rating-container'
+                        <input className='review-form-rating'
                         type='radio'
                         value={rating} 
                         onClick={() => setRating(i+1)}
@@ -67,8 +72,8 @@ useEffect(() => {
                   ))}
                </div>
                <div className='review-form-review-container'>
-                  <label>Review</label>
-                  <textarea
+                  {/* <label>Review</label> */}
+                  <textarea className='review-form-textarea'
                      name='description'
                      value={review}
                      placeholder='Leave a review'

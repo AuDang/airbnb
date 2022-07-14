@@ -16,20 +16,38 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    // if (password -== repeatPassword) {
+    // if (password === repeatPassword) {
       const data = await dispatch(signUp(first, last, username, email, password, repeatPassword));
       if (data) {
-        console.log('data', data)
         // setErrors(data)
-        if (password !== repeatPassword) {
-          data.push('Both passwords must match, please try again')
-          // setPassword("")
-          // setRepeatPassword("")
-        }console.log('newdata', data)
         setErrors(data)
       }
+        // if (password !== repeatPassword) {
+        //   data.push('Passwords dont match, please try again')
+        //   // setPassword("")
+        //   // setRepeatPassword("")
+        // }console.log('newdata', data)
     // }
   };
+
+    // useEffect(() => {
+  //   const err = [];
+    
+  //   if (first === '' || last === '' || email === '' || password === '' || repeatPassword === '' || username === '') err.push('All fields are required');
+    
+  //   if (password !== repeatPassword) err.push('Passwords do not match'); 
+    
+  //   if (first.length > 0 && first.length <= 20 ) err.push("First name must be between 1 and 20 characters")    
+  //   if (last.length > 0 && last.length <= 20 ) err.push("Last name must be between 1 and 20 characters")
+  //   if (username.length > 5 && last.length <= 40 ) err.push("Username must be between 5 and 40 characters long")
+  //   if (email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/) === null) err.push('Please provide a valid email');
+  //   if (password.length > 5 && password.length <= 40 ) err.push("Password must be between 6 and 20 characters")
+    
+
+  //   setErrors(err);
+  // }, [ first, last, email, password, repeatPassword, username]);
+
+
   const updateFirst = (e) => {
     setFirst(e.target.value)
   };

@@ -6,6 +6,7 @@ import { StaticRouter, useHistory } from 'react-router-dom';
 import LoginFormModal from '../auth/LoginFormModal';
 import SignUpForm from '../auth/SignUpFormModal/SignUpForm';
 import SignUpFormModal from '../auth/SignUpFormModal';
+import {CgProfile} from 'react-icons/cg'
 
 function ProfileButton() {
    const dispatch =useDispatch();
@@ -17,8 +18,23 @@ function ProfileButton() {
       // if(showMenu) return;
       setShowMenu(!showMenu);
    };
+   // const openMenu = (e) => {
+   //    if(showMenu) return;
+   //    setShowMenu(true);
+   // };
    
-      const logout = (e) => {
+   // useEffect(() => {
+   //    if (!showMenu) return 
+      
+   //    const closeMenu = () => {
+   //       setShowMenu(false)
+   //    }
+
+   //    document.addEventListener('click',closeMenu)
+
+   // },[showMenu])
+
+   const logout = (e) => {
       e.preventDefault();
       dispatch(sessionActions.logout());
       history.push('/')
@@ -28,14 +44,14 @@ function ProfileButton() {
 
    if (sessionUser) {
       dropdownMenu = (
-         <div>
+         <div className='profile-dropdown'>
             <p> Hello {sessionUser.username}</p>
-            <button onClick={logout}> Logout</button>
+            <button className='logout-button' onClick={logout}> Logout</button>
          </div>
       )
    } else if (!sessionUser) {
       dropdownMenu = (
-         <div>
+         <div className='profile-dropdown'>
             <LoginFormModal />
             <SignUpFormModal />
          </div>
@@ -45,10 +61,17 @@ function ProfileButton() {
 
   return (
    <div className='profile-container'>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button className='profile-button'onClick={openMenu}>
+         <CgProfile className='profile-button-icon'/>
+        {/* <i className="fas fa-user-circle" /> */}
       </button>
-      {showMenu && (dropdownMenu)}
+      <div>
+         {showMenu && 
+            <div>
+               {dropdownMenu}
+            </div>}
+            
+      </div>
     </div>
   )
 }

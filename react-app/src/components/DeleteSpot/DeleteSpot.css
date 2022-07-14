@@ -1,0 +1,50 @@
+.confirm-delete-spot-container {
+   width:400px;
+   height:250px;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+}
+
+.confirm-delete-spot-header-container {
+   display: flex;
+   justify-content: center;
+}
+.confirm-delete-spot-text-container {
+   margin-bottom:10px;
+
+}
+.confirm-delete-spot-text-1 {
+   display:flex;
+   justify-content: center;
+   font-size: 17px;
+}
+.confirm-delete-spot-text-2 {
+   display: flex;
+   justify-content: center;
+   font-weight: 600;
+   color:red;
+   text-transform: uppercase;
+   font-size: 20px;
+
+}
+.confirm-delete-spot-button-container {
+   display:flex;
+   justify-content: center;
+}
+.confirm-delete-spot-button {
+   border:unset;
+   background-color: white;
+   margin-bottom: 20px;
+   font-size:18px;
+}
+.confirm-delete-spot-button:hover {
+   cursor:pointer;
+   font-weight:800;
+   color:red
+}
+.delete-review-modal-button-container:hover {
+   cursor:pointer;
+   font-weight:900;
+   color: red
+}

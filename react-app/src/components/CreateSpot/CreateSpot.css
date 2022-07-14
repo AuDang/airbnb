@@ -5,10 +5,10 @@
    flex-direction: column;
    width:100%;
    margin:auto;
-   border: 1px solid black
+   border: 1px solid black;
 }
 .create-spot-name {
-   color: rgb(236, 32, 96);
+   color: rgba(255, 121, 119, 255);
 }
 .spot-form-container {
    min-height: 500px;
@@ -113,7 +113,20 @@
 }
 .create-spot-textarea {
    width:85%;
-   height:60px;
+   height:150px;
+   font-size:15px;
+}
+.spot-form-button {
+   border:unset;
+   font-size: 20px;
+   background-color: burlywood;
+   border-radius:8px;
+   padding:3px 5px 3px 5px;
+   margin-bottom:20px;
+}
+.spot-form-button:hover {
+   font-weight:400;
+   cursor:pointer;
 }
 
 

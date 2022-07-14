@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
 import { getSpot } from "../../store/spot"
 import { editSpot } from "../../store/spot"
-import SpotsPage from "../Spots/SpotsPage"
 import { uploadImage } from "../../store/spot"
 import './EditSpot.css'
 
@@ -26,6 +25,7 @@ const EditSpot = ({ setShowModal }) => {
    const [errors, setErrors] =useState([])
    const [imageUrl, setImageUrl] =useState(false)
    const [imagePreview, setImagePreview] =useState(false)
+   const [newImage, setNewImage] = useState()
 
 const updateImage = async (e) => {
    const file = e.target.files[0];
@@ -60,6 +60,7 @@ const handleSubmit = async (e) => {
 
    if(edit.id) {
       const upload = await dispatch(uploadImage(imageUrl, spot.id))
+      await dispatch(getSpot(edit.id))
    }
    if (edit.errors) {
       setErrors(edit?.errors)
@@ -69,6 +70,15 @@ const handleSubmit = async (e) => {
       setShowModal(false)
    }
 }  
+
+   const handleExpress = (e) => {
+      if (e.key === 'e') return e.preventDefault()
+      if (e.key === 'E') return e.preventDefault()
+      if (e.key === '+') return e.preventDefault()
+      if (e.key === '-') return e.preventDefault()
+      if (e.key === '.') return e.preventDefault()
+}
+
 return ( 
       <div className='edit-spot-page-container'>
          <div className='create-spot-name-container'>
@@ -213,6 +223,7 @@ return (
                         placeholder='Price per night'
                         name='price'
                         onChange={(e) =>setPrice(e.target.value)}
+                        onKeyDown={handleExpress}
                         value={price}
                         />
                   </div>
@@ -224,6 +235,7 @@ return (
                         placeholder='Guests'
                         name='guest'
                         onChange={(e) =>setGuest(e.target.value)}
+                        onKeyDown={handleExpress}
                         value={guest}
                         />
                   </div>
@@ -235,6 +247,7 @@ return (
                         placeholder='Bedrooms'
                         name='bedroom'
                         onChange={(e) =>setBedroom(e.target.value)}
+                        onKeyDown={handleExpress}
                         value={bedroom}
                      />
                   </div>
@@ -246,6 +259,7 @@ return (
                         placeholder='Bathrooms'
                         name='bathroom'
                         onChange={(e) =>setBathroom(e.target.value)}
+                        onKeyDown={handleExpress}
                         value={bathroom}
                         />
                   </div>

@@ -8,6 +8,7 @@ import { authenticate } from './store/session';
 import SpotsPage from './components/Spots/SpotsPage';
 import SpotDetails from './components/SpotDetails/SpotDetails';
 import CreateSpotForm from './components/CreateSpot/CreateSpot';
+import Footer from './components/Footer/Footer'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -25,7 +26,7 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
+    <>
       <NavBar />
       <Switch>
         <Route exact path='/' >
@@ -37,9 +38,10 @@ function App() {
         <Route exact path='/spots/:id'>
           <SpotDetails />
         </Route>
-        
       </Switch>
-    </BrowserRouter>
+      <Footer />
+    </>
+
   );
 }
 

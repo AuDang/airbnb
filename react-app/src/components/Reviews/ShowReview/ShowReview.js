@@ -5,6 +5,7 @@ import { getReviews } from "../../../store/review";
 import { IoDiamond } from "react-icons/io5";
 import EditReviewModal from "../EditReview";
 import DeleteReviewModal from "../DeleteReview";
+import './ShowReview.css'
 
 const ShowReview = () => {
    const dispatch =useDispatch()
@@ -26,22 +27,31 @@ useEffect(async() => {
       <div className='review-display-container'>
          {filteredReviewsArr.map((review) =>(
             <div className='each-review-display-container'>
-               {console.log('reviewMap' , review)}
-               <div className='each-review-username'>
-                  {review.username}
-                  {console.log("reviewid", review.id)}
-               <div className='review-rating-container'>
-                  <p> Rating: {[...Array(5)].map((diamond,i) => (
-                     <IoDiamond key={i}
-                     color={(i+1) <= review.rating ? "purple" : "lightgrey"}
-                     />
-                     ))}
-                  </p>
-                     <p className='each-review'>{review.review}</p>
-                     <EditReviewModal review={review}/>
-                     <DeleteReviewModal id={review?.id}/>
-               </div> 
+               {/* {console.log('reviewMap' , review)} */}
+               <div className='review-name-edit-delete-container'> 
+                  <div className='each-review-username'>
+                     Rated by: {review.username}
+                     {/* {console.log("reviewid", review.id)} */}
+                  </div>
+                  <div className='review-edit-delete-container'>
+                     <div className='review-edit'>
+                        {sessionUser?.id === review?.user_id && <EditReviewModal review={review}/>}
+                     </div>
+                     <div classname='review-delete'>
+                        {sessionUser?.id === review?.user_id && <DeleteReviewModal id={review?.id}/>}
+                     </div>
+                  </div>
                </div>
+                  <div className='review-rating-container'>
+                     <p> Rating: {[...Array(5)].map((diamond,i) => (
+                        <IoDiamond key={i}
+                        color={(i+1) <= review.rating ? "purple" : "lightgrey"}
+                        />
+                        ))}
+                     </p>
+                  </div>
+               {/* </div>  */}
+                     <p className='each-review'>{review.review}</p>
             </div>
          ))}
       </div>

@@ -1,0 +1,11 @@
+.edit-review-form-rating {
+   display:flex;
+   background-color: red;
+}
+.edit-rewiew-button-container {
+   margin-right:10px;
+}
+.edit-rewiew-button-container:hover {
+cursor: pointer;
+font-weight:900;
+}

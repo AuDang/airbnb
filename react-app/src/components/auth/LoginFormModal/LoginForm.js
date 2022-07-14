@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { login } from '../../../store/session';
+import DemoUser from '../DemoUser/DemoUser';
 
 
 const LoginForm = () => {
@@ -34,7 +35,7 @@ const LoginForm = () => {
   return (
     <div className='login-form-container'>
       <form onSubmit={onLogin}>
-        <h1 className='login-form-header'>Welcome to Luxbnb</h1>
+        <h1 className='login-form-header'>Sign In to Luxbnb</h1>
           <div className='error-container'>
           {errors.length > 0 && (
             <div className='login-form-error-container'>
@@ -70,6 +71,9 @@ const LoginForm = () => {
         </div>
         <div className='login-form-button'>
           <button  className='login-button' type='submit'>Continue</button>
+        </div>
+        <div className='login-form-demo'>
+          <DemoUser/>
         </div>
       </form>    
     </div>

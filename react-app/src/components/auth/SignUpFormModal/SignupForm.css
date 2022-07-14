@@ -12,6 +12,7 @@
    color: rgba(255, 98, 127, 255);
    display: flex;
    justify-content: center;
+   margin-top: 50px;
 }
 .signup-form {
    display:flex;
@@ -32,13 +33,16 @@
    
 }
 .signup-button {
-   background-color: rgb(236, 32, 96);
+   background-color: rgba(255, 98, 127, 255);
    color: white;
    width: 300px;
    margin-top: 10px;
    height: 40px;
    font-size: 19px;
    border-radius: 5px;
+}
+.signup-button:hover {
+   cursor:pointer
 }
 
 .signup-form-input-container {
@@ -64,4 +68,21 @@
 }
 .error-list {
    margin-left: 7px;
+}
+.nav-signin-button {
+   width: 150px;
+   font-size: 15px;
+   background-color: grey;
+   border:unset;
+   padding: 10px 0 10px 0;
+   border-bottom: 1px solid black;
+}
+.nav-signup-button {
+   width: 150px;
+   font-size: 15px;
+   border-top: 1px solid black;
+   background-color: grey;
+   padding: 10px 0 10px 0;
+   border:unset;
+   
 }
