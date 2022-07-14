@@ -72,12 +72,11 @@ Luxbnb is a full-stack web application clone of <a href="https://airbnb.com/">Lu
 
 ### Splash Page
 Landing page for when users first arrive at Chatter. Users can sign in, sign up, or explore the site through a demo user without signing up. Check out the live site <a href="https://lux-bnb.herokuapp.com/" target="_blank">here</a>! 
-![Splash Page]([https://user-images.githubusercontent.com/96894806/171970664-f718ba0b-fb5e-4f4d-98a7-9a958797a375.png](https://user-images.githubusercontent.com/91802108/179044546-2d2740b5-ba0b-4e83-90a5-15aad08ada27.png))
+
 
 ## Database Schema
 [Back to top](#table-of-contents)
 
-![Database Schema]
 
 ## Future Features
 [Back to top](#table-of-contents)
