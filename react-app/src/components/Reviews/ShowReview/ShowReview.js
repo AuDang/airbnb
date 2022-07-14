@@ -37,7 +37,7 @@ useEffect(async() => {
                      <div className='review-edit'>
                         {sessionUser?.id === review?.user_id && <EditReviewModal review={review}/>}
                      </div>
-                     <div classname='review-delete'>
+                     <div className='review-delete'>
                         {sessionUser?.id === review?.user_id && <DeleteReviewModal id={review?.id}/>}
                      </div>
                   </div>

@@ -1,0 +1,32 @@
+.error-page-container {
+   margin-top:200px;
+   display:flex;
+   justify-content: center;
+}
+.error-page-header-container {
+   width:500px;
+}
+.error-page-header {
+   font-size: 125px;
+   line-height: 2.5rem;
+   color: rgba(72, 72, 72, 255);
+}
+.error-text-1 {
+   font-size: 30px;
+   font-weight: 100;
+   margin-bottom: -3px;
+   color:rgba(72, 72, 72, 255);
+}
+.error-text-2 {
+   font-size: 15px;
+   font-weight: 300;
+}
+.error-image-container{
+margin-left: 50px;
+}
+.error-image {
+   height:500px;
+}
+.error-spot-link{
+   text-decoration: none;
+}

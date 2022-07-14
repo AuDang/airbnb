@@ -10,22 +10,30 @@ import DeleteSpotModal from '../DeleteSpot';
 import ShowReview from '../Reviews/ShowReview/ShowReview';
 import { IoDiamond } from 'react-icons/io5';
 import './SpotDetails.css'
+import { getReviews } from '../../store/review';
+import { getAllSpots } from '../../store/spot';
+
 
 const SpotDetails = () => {
    const {id} = useParams()
    const sessionUser = useSelector(state =>state.session.user)
    const spot = useSelector(state => state?.spotReducer[id])
+   // const spotId = Object.values(spot)
    const reviews = Object.values(useSelector(state => state.reviewReducer))
    console.log('spot', spot)
    console.log('review', reviews)
    const history = useHistory()
    const dispatch = useDispatch()
 
-
+   
    useEffect( async () => {
-     await dispatch(getSpot(id))
+      await dispatch(getSpot(id))
    },[dispatch])
 
+      // console.log('asdasdasdasd', spot_id)
+   if( spot === undefined) {
+      history.push('/404-Page-Not-Found')
+   }
 
    const filteredReviews = reviews.filter(({spot_id}) => spot_id === +id)
    let sum = 0;
@@ -46,6 +54,7 @@ const SpotDetails = () => {
                <div className='spot-detail-diamond'>
                   <IoDiamond color='purple'/> {roundedAverage} 
                </div>
+               
                <div className='spot-detail-location'>
                {spot?.address}, {spot?.city}, {spot?.state}
                </div>

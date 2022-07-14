@@ -4,7 +4,8 @@
    flex-direction: row;
    flex-wrap: wrap;
    margin:auto;
-   width: 80%
+   width: 80%;
+   margin-top:100px;
 }
 .spotspage-container {
    margin:20px;

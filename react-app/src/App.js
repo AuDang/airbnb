@@ -9,6 +9,9 @@ import SpotsPage from './components/Spots/SpotsPage';
 import SpotDetails from './components/SpotDetails/SpotDetails';
 import CreateSpotForm from './components/CreateSpot/CreateSpot';
 import Footer from './components/Footer/Footer'
+import ErrorPage from './components/404/404';
+import { getAllSpots, getSpot } from './store/spot';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -17,6 +20,8 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
+      await dispatch(getAllSpots())
+      await dispatch(getSpot())
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -37,6 +42,12 @@ function App() {
         </Route>
         <Route exact path='/spots/:id'>
           <SpotDetails />
+        </Route>
+        <Route path='/404-Page-Not-Found'>
+          <ErrorPage />
+        </Route>
+        <Route>
+          <ErrorPage />
         </Route>
       </Switch>
       <Footer />
