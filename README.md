@@ -57,7 +57,7 @@ Luxbnb is a full-stack web application clone of <a href="https://airbnb.com/">Ai
    development environment
    
    ```bash
-  DATABASE_URL=postgresql://luxbnb_dev:Any_password_here@localhost/luxbnb_app
+    DATABASE_URL=postgresql://luxbnb_dev:Any_password_here@localhost/luxbnb_app
    ```
 
 6. Get into your pipenv, migrate your database, seed your database, and run your flask app
