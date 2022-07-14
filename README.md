@@ -1,7 +1,7 @@
 <h1 align="center"> Luxbnb</h1>
 
 
-Luxbnb is a full-stack web application clone of <a href="https://airbnb.com/">Luxbnb</a>. Luxbnb allows users create and join channels, interact with other users via a live chat, and send direct messages to other users or groups of users.
+Luxbnb is a full-stack web application clone of <a href="https://airbnb.com/">Airbnb</a>. Luxbnb allows users create and join channels, interact with other users via a live chat, and send direct messages to other users or groups of users.
 
 <a href="https://lux-bnb.herokuapp.com/" target="_blank"><strong>Explore the website »</strong></a><br/>
 
@@ -32,7 +32,7 @@ Luxbnb is a full-stack web application clone of <a href="https://airbnb.com/">Lu
 1. Clone this repository (only this branch)
 
    ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
+   git clone https://github.com/AuDang/lux-bnb.git
    ```
 
 2. Install dependencies
@@ -40,12 +40,27 @@ Luxbnb is a full-stack web application clone of <a href="https://airbnb.com/">Lu
       ```bash
       pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
       ```
-
-3. Create a **.env** file based on the example with proper settings for your
+3. Install dependencies for frontend react-app
+  ```bash
+  cd react-app
+  npm install
+  ```
+4. Create a PostgreSQL use and database 
+   ```bash
+   CREATE USER luxbnb_dev WITH PASSWORD 'INPUT-PASSWORD-HERE' CREATEDB;
+   ```
+   
+   ```bash
+   CREATE DATABASE luxbnb_db WITH OWNER luxbnb_dev;
+   ```
+5. Create a **.env** file based on the example with proper settings for your
    development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+   
+   ```bash
+  DATABASE_URL=postgresql://luxbnb_dev:Any_password_here@localhost/luxbnb_app
+   ```
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+6. Get into your pipenv, migrate your database, seed your database, and run your flask app
 
    ```bash
    pipenv shell
@@ -63,19 +78,12 @@ Luxbnb is a full-stack web application clone of <a href="https://airbnb.com/">Lu
    flask run
    ```
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+8. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
 ## Features
 [Back to top](#table-of-contents)
 
 <a href="https://github.com/AuDang/lux-bnb/wiki">See wiki page for feature list</a>
-
-### Splash Page
-Landing page for when users first arrive at Chatter. Users can sign in, sign up, or explore the site through a demo user without signing up. Check out the live site <a href="https://lux-bnb.herokuapp.com/" target="_blank">here</a>! 
-
-
-## Database Schema
-[Back to top](#table-of-contents)
 
 
 ## Future Features
