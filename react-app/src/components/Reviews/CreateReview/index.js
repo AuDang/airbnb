@@ -15,7 +15,6 @@ const CreateReviewModal = () => {
                     <CreateReview setShowModal={setShowModal} />
                 </Modal>
             }
-
         </div>
     )
 }
