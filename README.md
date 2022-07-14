@@ -25,7 +25,7 @@ Luxbnb is a full-stack web application clone of <a href="https://airbnb.com/">Lu
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
-![Socket.io](https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socket.io&badgeColor=010101)
+
 
 
 ## Getting started
@@ -72,7 +72,7 @@ Luxbnb is a full-stack web application clone of <a href="https://airbnb.com/">Lu
 
 ### Splash Page
 Landing page for when users first arrive at Chatter. Users can sign in, sign up, or explore the site through a demo user without signing up. Check out the live site <a href="https://lux-bnb.herokuapp.com/" target="_blank">here</a>! 
-!
+![Splash Page]([https://user-images.githubusercontent.com/96894806/171970664-f718ba0b-fb5e-4f4d-98a7-9a958797a375.png](https://user-images.githubusercontent.com/91802108/179044546-2d2740b5-ba0b-4e83-90a5-15aad08ada27.png))
 
 ## Database Schema
 [Back to top](#table-of-contents)
@@ -81,3 +81,9 @@ Landing page for when users first arrive at Chatter. Users can sign in, sign up,
 
 ## Future Features
 [Back to top](#table-of-contents)
+
+### Favorites
+* Users will be able to add their favorite spots to a their favorites page
+
+### Dynamic Search
+* Users will be able to search for a spot by their name or location
