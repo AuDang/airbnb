@@ -37,15 +37,17 @@ Luxbnb is a full-stack web application clone of <a href="https://airbnb.com/">Ai
 
 2. Install dependencies
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+    ```bash
+    pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
+    ```
 3. Install dependencies for frontend react-app
-  ```bash
-  cd react-app
-  npm install
-  ```
+
+    ```bash
+    cd react-app
+    npm install
+    ```
 4. Create a PostgreSQL use and database 
+   
    ```bash
    CREATE USER luxbnb_dev WITH PASSWORD 'INPUT-PASSWORD-HERE' CREATEDB;
    ```
@@ -78,7 +80,15 @@ Luxbnb is a full-stack web application clone of <a href="https://airbnb.com/">Ai
    flask run
    ```
 
-8. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+8. Start backend while in the root directory
+
+    ```bash
+      flask run 
+    ```
+10. Start frontend while in react-app directory
+    ```bash
+      npm start
+    ```
 
 ## Features
 [Back to top](#table-of-contents)
