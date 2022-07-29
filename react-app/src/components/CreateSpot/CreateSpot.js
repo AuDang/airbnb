@@ -141,12 +141,13 @@ const CreateSpotForm = () => {
                         {imageList.map((image,index) => (
                            <div key={index} className='image-item'>
                               <img src={image["data_url"]} alt="" className='image-preview'/>
-
-                              <div className='image-edit' onClick={() => onImageUpdate(index)}>
-                                 Update
-                              </div>
-                              <div className='image-delete' onClick={() => onImageRemove(index)}>
-                                 Remove
+                              <div className='update-remove'> 
+                                 <div className='image-edit' onClick={() => onImageUpdate(index)}>
+                                    Update
+                                 </div>
+                                 <div className='image-delete' onClick={() => onImageRemove(index)}>
+                                    Remove
+                                 </div>
                               </div>
                            </div>
                         ))}

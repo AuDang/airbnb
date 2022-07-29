@@ -20,7 +20,8 @@ function App() {
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
-      await dispatch(getAllSpots())
+      await dispatch(getAllSpots());
+      await dispatch(getSpot());
       setLoaded(true);
     })();
   }, [dispatch]);
