@@ -21,7 +21,7 @@ function App() {
     (async() => {
       await dispatch(authenticate());
       await dispatch(getAllSpots());
-      await dispatch(getSpot());
+      // await dispatch(getSpot());
       setLoaded(true);
     })();
   }, [dispatch]);

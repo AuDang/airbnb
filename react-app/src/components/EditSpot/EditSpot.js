@@ -30,8 +30,9 @@ const EditSpot = ({ setShowModal }) => {
    const [isLoaded, setIsLoaded] = useState(false); 
 
    // console.log('spooooot',  spot )
-   // console.log('removethis',imageRemove)
+   console.log('removethis',imageRemove)
    // console.log('yoooooo', spot.images)
+
 // const updateImage = async (e) => {
 //    const file = e.target.files[0];
 //    if (file) {
@@ -51,7 +52,7 @@ const EditSpot = ({ setShowModal }) => {
       let images = spot?.images.map((image) => {
          return { 'data_url': image['image'], 'id': image['id'] };
       })
-      // console.log('images', images)
+      console.log('images', images)
       setImages(images)
       if (spot) {
          setIsLoaded(true)
@@ -59,6 +60,7 @@ const EditSpot = ({ setShowModal }) => {
    },[dispatch])
 
    const multiUpload = async (images, spotId) => {
+
       for(let i = 0; i<imageRemove.length; i++) {
          await dispatch(removeImage(imageRemove[i]))
       }
@@ -75,7 +77,6 @@ const EditSpot = ({ setShowModal }) => {
          } else {
          file = image.data_url;
          }
-
          await dispatch(uploadImage(file, spotId))
       }
    }
@@ -101,12 +102,12 @@ const EditSpot = ({ setShowModal }) => {
       if(edit.id) {
          // const upload = await dispatch(uploadImage(imageUrl, spot.id))
          await multiUpload(images, spot.id)
+         history.push(`/spots/${spot?.id}`)
       }
       if (edit.errors) {
          setErrors(edit?.errors)
          return
       } else  {
-         history.push(`/spots/${spot.id}`)
          setShowModal(false)
       }
       }    
@@ -171,7 +172,9 @@ const EditSpot = ({ setShowModal }) => {
                                  <div className='image-edit' onClick={() => onImageUpdate(index)}>
                                     Update
                                  </div>
-                                 <div className='image-delete' onClick={() => onImageRemove(index)}>
+                                 <div className='image-delete' onClick={() => {onImageRemove(index)
+                                 imageRemove.push(image['id'])}}
+                                 >
                                     Remove
                                  </div>
                               </div>
