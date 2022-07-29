@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
 import { addSpot, uploadImage } from "../../store/spot"
+import ImageUploading from 'react-images-uploading'
 import { getSpot } from "../../store/spot"
 import './CreateSpot.css'
 
@@ -11,7 +12,6 @@ const CreateSpotForm = () => {
    const sessionUser = useSelector(state => state.session.user)
    const dispatch = useDispatch()
    const history = useHistory()
-   const imageInputRef = useRef()
    const [address, setAddress] = useState("")
    const [city, setCity] = useState("")
    const [state, setState] = useState("")
@@ -24,24 +24,35 @@ const CreateSpotForm = () => {
    const [bedroom,setBedroom] =useState("")
    const [errors, setErrors] =useState([])
    const [imageUrl, setImageUrl] =useState([])
+   const [images, setImages] =useState([])
    const [imagePreview, setImagePreview] =useState(false)
    console.log(sessionUser, '1111')
    console.log(imageUrl)
 
-   const updateImage = async (e) => {
-   const file = e.target.files[0];
-   if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = function (e) {
-         setImagePreview(reader.result);
-      };
-      setImageUrl(file);
-    } else {
-      setImagePreview(false);
-    }
-  };
-   
+//    const updateImage = async (e) => {
+
+//    const file = e.target.files[0];
+//    if (file) {
+//       const reader = new FileReader();
+//       reader.readAsDataURL(file);
+//       reader.onload = function (e) {
+//          setImagePreview(reader.result);
+//       };
+//       setImageUrl(file);
+//     } else {
+//       setImagePreview(false);
+//     }
+//   };
+
+
+   const multiUpload = async (images, spotId) => {
+      for (let i = 0; i< images.length; i++) {
+         const file = images[i].file
+         await dispatch(uploadImage(file, spotId))
+      }
+   }
+
+
    const handleSubmit = async (e) => {
       e.preventDefault()
 
@@ -61,7 +72,8 @@ const CreateSpotForm = () => {
       }))
       
       if (spot.id) {
-         const upload = await dispatch(uploadImage(imageUrl, spot.id))
+         // const upload = await dispatch(uploadImage(imageUrl, spot.id))
+         await multiUpload(images, spot.id)
 
       }
       if (spot.errors) {
@@ -98,18 +110,52 @@ const CreateSpotForm = () => {
         </div>
          
          <form className='spot-form-container' onSubmit={handleSubmit}>
-            <div className="spot-form-image-container">
+            {/* <div className="spot-form-image-container">
                <label>Image</label>
                   <input className='create-spot-input'
                   type="file"
                   name="image"
                   multiple={true}
                   accept=".jpg, .jpeg, .png"
-                  onChange={updateImage}
-                  // required
+                  // onChange={updateImage}
+                  required
                   ></input>
             </div>
-            {imagePreview && <img className='image-preview' src={imagePreview} />}
+            {imagePreview && <img className='image-preview' src={imagePreview} />} */}
+
+               <ImageUploading
+                  value={images}
+                  onChange={(imageList) => setImages(imageList)}
+                  maxNumber={5}
+                  multiple
+                  acceptType={['jpg', 'gif','png','peg']}
+                  dataURLKey="data_url"
+               >
+               {({ imageList, onImageUpload, onImageRemoveAll, onImageUpdate, onImageRemove }) => (
+                  <div className='upload-container'>
+                     <div 
+                        className='image-upload-container' onClick={onImageUpload}>Click to Add Images
+                     </div>
+                     {imageList.length >= 1 && (
+                     <div className='upload-images'>
+                        {imageList.map((image,index) => (
+                           <div key={index} className='image-item'>
+                              <img src={image["data_url"]} alt="" className='image-preview'/>
+
+                              <div className='image-edit' onClick={() => onImageUpdate(index)}>
+                                 Update
+                              </div>
+                              <div className='image-delete' onClick={() => onImageRemove(index)}>
+                                 Remove
+                              </div>
+                           </div>
+                        ))}
+                     </div>
+                     )}
+                  </div>
+               )}
+               </ImageUploading>
+
             <div className='create-spot-form'>
                <label className='create-spot-label'>Name</label>
                <input className='create-spot-input'
@@ -119,6 +165,7 @@ const CreateSpotForm = () => {
                   name='name'
                   onChange={(e) =>setName(e.target.value)}
                   value={name}
+                  required
                />
             </div>
                <div className='create-spot-form'>
@@ -129,6 +176,7 @@ const CreateSpotForm = () => {
                      name='address'
                      onChange={(e) =>setAddress(e.target.value)}
                      value={address}
+                     required
                   />
                </div>
                <div className='create-spot-city-state-country'>
@@ -141,6 +189,7 @@ const CreateSpotForm = () => {
                         name='city'
                         onChange={(e) =>setCity(e.target.value)}
                         value={city}
+                        required
                      />
                   </div>
 

@@ -66,10 +66,10 @@ def upload_image(spot_id):
 @login_required
 def delete_images(id):
     image = Image.query.get(id)
-    name = request.form['image'].split('/')[-1]
+    # name = request.form['image'].split('/')[-1]
 
-    if 'amazonaws' in request.form['image']:
-        delete_image_from_s3(name)
+    # if 'amazonaws' in request.form['image']:
+    #     delete_image_from_s3(name)
 
     db.session.delete(image)
     db.session.commit()

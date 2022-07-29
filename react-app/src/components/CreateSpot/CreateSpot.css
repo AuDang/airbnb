@@ -8,7 +8,9 @@
    border: 1px solid black;
 }
 .image-preview {
-   height:150px;
+   height:120px;
+   padding:10px;
+
 }
 .create-spot-name {
    color: rgba(255, 121, 119, 255);
@@ -131,6 +133,18 @@
    font-weight:400;
    cursor:pointer;
 }
-
+.upload-container {
+   display:flex;
+   flex-direction: column;
+}
+.upload-images {
+   display:flex;
+   flex-wrap: wrap;
+}
+.image-upload-container{
+   display:flex;
+   justify-self: center;
+   background-color: red;
+}
 
 
