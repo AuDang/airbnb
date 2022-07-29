@@ -11,6 +11,7 @@ const CreateSpotForm = () => {
    const sessionUser = useSelector(state => state.session.user)
    const dispatch = useDispatch()
    const history = useHistory()
+   const imageInputRef = useRef()
    const [address, setAddress] = useState("")
    const [city, setCity] = useState("")
    const [state, setState] = useState("")
@@ -22,7 +23,7 @@ const CreateSpotForm = () => {
    const [bathroom, setBathroom] = useState("")
    const [bedroom,setBedroom] =useState("")
    const [errors, setErrors] =useState([])
-   const [imageUrl, setImageUrl] =useState(false)
+   const [imageUrl, setImageUrl] =useState([])
    const [imagePreview, setImagePreview] =useState(false)
    console.log(sessionUser, '1111')
    console.log(imageUrl)
@@ -102,6 +103,7 @@ const CreateSpotForm = () => {
                   <input className='create-spot-input'
                   type="file"
                   name="image"
+                  multiple={true}
                   accept=".jpg, .jpeg, .png"
                   onChange={updateImage}
                   // required
