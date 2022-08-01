@@ -23,26 +23,13 @@ const CreateSpotForm = () => {
    const [bathroom, setBathroom] = useState("")
    const [bedroom,setBedroom] =useState("")
    const [errors, setErrors] =useState([])
-   const [imageUrl, setImageUrl] =useState([])
+   // const [imageUrl, setImageUrl] =useState([])
    const [images, setImages] =useState([])
-   const [imagePreview, setImagePreview] =useState(false)
+   // const [imagePreview, setImagePreview] =useState(false)
    console.log(sessionUser, '1111')
-   console.log(imageUrl)
+   // console.log(imageUrl)
 
-//    const updateImage = async (e) => {
 
-//    const file = e.target.files[0];
-//    if (file) {
-//       const reader = new FileReader();
-//       reader.readAsDataURL(file);
-//       reader.onload = function (e) {
-//          setImagePreview(reader.result);
-//       };
-//       setImageUrl(file);
-//     } else {
-//       setImagePreview(false);
-//     }
-//   };
 
 
    const multiUpload = async (images, spotId) => {
@@ -110,18 +97,7 @@ const CreateSpotForm = () => {
         </div>
          
          <form className='spot-form-container' onSubmit={handleSubmit}>
-            {/* <div className="spot-form-image-container">
-               <label>Image</label>
-                  <input className='create-spot-input'
-                  type="file"
-                  name="image"
-                  multiple={true}
-                  accept=".jpg, .jpeg, .png"
-                  // onChange={updateImage}
-                  required
-                  ></input>
-            </div>
-            {imagePreview && <img className='image-preview' src={imagePreview} />} */}
+
 
                <ImageUploading
                   value={images}

@@ -23,8 +23,7 @@ const EditSpot = ({ setShowModal }) => {
    const [bathroom, setBathroom] = useState(spot.bathroom)
    const [bedroom,setBedroom] =useState(spot.bedroom)
    const [errors, setErrors] =useState([])
-   const [imageUrl, setImageUrl] =useState(false)
-   const [imagePreview, setImagePreview] =useState(false)
+
    const [images, setImages] =useState('')
    const [imageRemove, setImageRemove]=useState([])
    const [isLoaded, setIsLoaded] = useState(false); 
@@ -33,19 +32,7 @@ const EditSpot = ({ setShowModal }) => {
    console.log('removethis',imageRemove)
    // console.log('yoooooo', spot.images)
 
-// const updateImage = async (e) => {
-//    const file = e.target.files[0];
-//    if (file) {
-//       const reader = new FileReader();
-//       reader.readAsDataURL(file);
-//       reader.onload = function (e) {
-//          setImagePreview(reader.result);
-//       };
-//       setImageUrl(file);
-//     } else {
-//       setImagePreview(false);
-//     }
-//   };
+
 
    useEffect(async () => {
       dispatch(getSpot(id));
@@ -100,8 +87,8 @@ const EditSpot = ({ setShowModal }) => {
       }))
 
       if(edit.id) {
-         // const upload = await dispatch(uploadImage(imageUrl, spot.id))
          await multiUpload(images, spot.id)
+         await dispatch(editSpot(edit))
          history.push(`/spots/${spot?.id}`)
       }
       if (edit.errors) {
@@ -139,17 +126,7 @@ const EditSpot = ({ setShowModal }) => {
          </div>
             
             <form className='spot-form-container' onSubmit={handleSubmit}>
-               {/* <div className="spot-form-image-container">
-                  <label>Image</label>
-                     <input className='create-spot-input'
-                     type="file"
-                     name="image"
-                     accept=".jpg, .jpeg, .png"
-                     onChange={updateImage}
-                     // required
-                     ></input>
-               </div> */}
-               {/* {imagePreview && <img className='image-preview' src={imagePreview} />} */}
+
 
                <ImageUploading
                   value={images}
@@ -158,20 +135,20 @@ const EditSpot = ({ setShowModal }) => {
                   multiple
                   acceptType={['jpg', 'gif','png','peg']}
                   dataURLKey="data_url"
+                  required
                >
                {({ imageList, onImageUpload, onImageRemoveAll, onImageUpdate, onImageRemove }) => (
                   <div className='upload-container'>
-                     <div 
-                     className='image-upload-container' onClick={onImageUpload}>Click to Add Images</div>
+                     <div className='image-upload-container' onClick={onImageUpload} >Click to Add Images</div>
                      {imageList.length >= 1 && (
                      <div className='upload-images'>
                         {imageList.map((image,index) => (
                            <div key={index} className='image-item'>
                               <img src={image["data_url"]} alt="" className='image-preview'/>
                               <div className='update-remove'> 
-                                 <div className='image-edit' onClick={() => onImageUpdate(index)}>
+                                 {/* <div className='image-edit' onClick={() => onImageUpdate(index)}>
                                     Update
-                                 </div>
+                                 </div> */}
                                  <div className='image-delete' onClick={() => {onImageRemove(index)
                                  imageRemove.push(image['id'])}}
                                  >

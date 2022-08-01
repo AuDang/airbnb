@@ -3,13 +3,13 @@ import React from 'react';
 import { NavLink,} from 'react-router-dom';
 import ProfileButton from './ProfileButton';
 import { useSelector } from 'react-redux';
-import {GiCutDiamond} from 'react-icons/gi'
+// import {GiCutDiamond} from 'react-icons/gi'
 import airbnb from '../../images/Airbnb.png'
 
 
 const NavBar = () => {
   const sessionUser = useSelector(state =>state.session.user)
-  let sessionLinks
+
   
 
   return (
