@@ -59,7 +59,6 @@ function ProfileButton() {
       )
    }
 
-
   return (
    <div className='profile-container'>
       <button className='profile-button'onClick={openMenu}>

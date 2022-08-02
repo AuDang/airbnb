@@ -15,6 +15,7 @@ class User(db.Model, UserMixin):
 
     reviews = db.relationship("Review", back_populates='user') 
     spot = db.relationship("Spot", back_populates='user')
+    bookings = db.relationship("Booking", back_populates='user')
 
 
     @property
