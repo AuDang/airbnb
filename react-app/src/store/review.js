@@ -34,6 +34,7 @@ export const getReviews = () => async dispatch => {
     return res
 }
 
+
 export const addReview = (payload) => async dispatch => {
     const res = await fetch(`/api/reviews/spots/${payload.spot_id}`, {
         method: 'POST',
@@ -51,6 +52,7 @@ export const addReview = (payload) => async dispatch => {
         }
     }
 }
+
 
 export const editReview = (payload) => async dispatch => {
     const res = await fetch(`/api/reviews/${payload.id}`, {
@@ -89,7 +91,7 @@ const reviewReducer = (state = {}, action) => {
     switch (action.type) {
         case LOAD_REVIEWS: {
             newState = {};
-            console.log('action' , action.reviews)
+            // console.log('action' , action.reviews)
             action.reviews.reviews.forEach(review =>newState[review.id] = review)
             // action.reviews.forEach(review => newState[review.id] = review);
             return newState
