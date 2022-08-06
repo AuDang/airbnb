@@ -3,31 +3,31 @@ const ADD_BOOKING ='/bookings/ADD_BOOKINGS'
 const REMOVE_BOOKING ='/bookings/REMOVE_BOOKING'
 
 
-const loadBookings = bookings => {
+const loadBookings = bookings => (
    {
       type: LOAD_BOOKINGS,
       bookings
    }
-}
+)
 
-const loadBooking = booking => {
+const loadBooking = booking => (
    {
       type: ADD_BOOKING,
       booking
    }
-}
+)
 
-const removeBooking = booking => {
+const removeBooking = booking => (
    {
       type: REMOVE_BOOKING,
       booking
    }
-}
+)
 
 export const getUserBookings = (id) => async dispatch => {
    const res = await fetch(`/api/bookings/users/${id}`)
    if (res.ok) {
-      const booking = await response.json()
+      const booking = await res.json()
       dispatch(loadBookings(booking))
    }
    return res
@@ -81,7 +81,7 @@ export const deleteBooking = (id) => async dispatch => {
    }
 }
 
-const bookingReduce = (state = {}, action) => {
+const bookingReducer = (state = {}, action) => {
    let newState;
    switch(action.type) {
       case LOAD_BOOKINGS: {
@@ -90,7 +90,18 @@ const bookingReduce = (state = {}, action) => {
          return newState
       }
       case ADD_BOOKING: {
-         newState= {}
+         newState= {...state};
+         newState[action.booking.id] = action.booking
+         return newState
       }
+      case REMOVE_BOOKING: {
+         newState = {...state}
+         delete newState[action.booking.id]
+         return newState
+      }
+      default: 
+         return state
    }
 }
+
+export default bookingReducer

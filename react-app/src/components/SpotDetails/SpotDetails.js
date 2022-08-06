@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import { getSpot } from '../../store/spot';
 import EditSpotModal from '../EditSpot';
 import CreateReviewModal from '../Reviews/CreateReview';
-import DeleteSpot from '../DeleteSpot/DeleteSpot';
+// import DeleteSpot from '../DeleteSpot/DeleteSpot';
 import DeleteSpotModal from '../DeleteSpot';
 import ShowReview from '../Reviews/ShowReview/ShowReview';
 import { IoDiamond } from 'react-icons/io5';
+import CreateBooking from '../Bookings/CreateBooking/CreateBooking';
 import './SpotDetails.css'
-import { getReviews } from '../../store/review';
-import { getAllSpots } from '../../store/spot';
+// import { getReviews } from '../../store/review';
+// import { getAllSpots } from '../../store/spot';
 
 
 const SpotDetails = () => {
@@ -24,6 +25,7 @@ const SpotDetails = () => {
    console.log('review', reviews)
    const history = useHistory()
    const dispatch = useDispatch()
+   console.log('book', CreateBooking)
 
    
    useEffect( async () => {
@@ -72,6 +74,8 @@ const SpotDetails = () => {
                <img className={`spot-detail-image-${idx}`} src={image} key={idx} alt="new" />
             ))}
          </div>
+
+
          <div className='spot-detail-host'>
             <h1>Hosted by: {spot?.firstname} {spot?.lastname}</h1>
             <p>{spot?.guest} Guests {spot?.bedroom} Bedrooms {spot?.bathroom} Bathrooms</p>
@@ -79,10 +83,15 @@ const SpotDetails = () => {
          <div className='spot-detail-price'>
             <p>${spot?.price}/Night</p>
          </div>
+
+
          <div className='spot-detail-description-container'>
             <h1>Description</h1>
             <p>{spot?.description}</p>
          </div>
+               <h1>Booking Component</h1>
+               <CreateBooking />
+
          <div className='spot-detail-reviews-container'>
             <div className='spot-detail-rating-review-create-container'>
                <div className='spot-details-rating'>
