@@ -10,10 +10,8 @@ import DeleteSpotModal from '../DeleteSpot';
 import ShowReview from '../Reviews/ShowReview/ShowReview';
 import { IoDiamond } from 'react-icons/io5';
 import CreateBooking from '../Bookings/CreateBooking/CreateBooking';
-import Calendar from '../Calendar/Calendar';
+// import Calendar from '../Calendar/Calendar';
 import './SpotDetails.css'
-// import { getReviews } from '../../store/review';
-// import { getAllSpots } from '../../store/spot';
 
 
 const SpotDetails = () => {
@@ -26,7 +24,7 @@ const SpotDetails = () => {
    console.log('review', reviews)
    const history = useHistory()
    const dispatch = useDispatch()
-   console.log('book', CreateBooking)
+
 
    // let stateVars = {checkin,setCheckin,checkout,setCheckout,nights,setNights,}
   
@@ -93,7 +91,7 @@ const SpotDetails = () => {
          </div>
                <h1>Booking Component</h1>
                <CreateBooking />
-               <Calendar />
+               {/* <Calendar /> */}
 
          <div className='spot-detail-reviews-container'>
             <div className='spot-detail-rating-review-create-container'>

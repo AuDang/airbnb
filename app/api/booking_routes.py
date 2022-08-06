@@ -17,6 +17,12 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
+@booking_routes.route('/')
+@login_required
+def get_bookings():
+    bookings = Booking.query.all()
+    return jsonify([booking.to_dict() for booking in bookings])
+
 @booking_routes.route('/users/<int:id>')
 def user_bookings(id):
     bookings = Booking.query.filter(Booking.user_id == id)

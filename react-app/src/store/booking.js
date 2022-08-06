@@ -35,7 +35,7 @@ export const getUserBookings = (id) => async dispatch => {
 
 
 export const addBooking = (payload) => async dispatch => {
-   const res = await fetch(`api/bookings/spot/${payload.spot_id}`, {
+   const res = await fetch(`/api/bookings/spot/${payload.spot_id}`, {
       method:'POST',
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(payload)
