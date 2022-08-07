@@ -21,6 +21,7 @@ def validation_errors_to_error_messages(validation_errors):
 @login_required
 def get_bookings():
     bookings = Booking.query.all()
+    print ('booking', bookings)
     return jsonify([booking.to_dict() for booking in bookings])
 
 @booking_routes.route('/users/<int:id>')
@@ -29,14 +30,21 @@ def user_bookings(id):
     return jsonify([booking.to_dict() for booking in bookings])
 
 
-@booking_routes.route('/spot/<int:id>' , methods=['POST'])
+@booking_routes.route('/spots/<int:id>', methods=['POST'])
 @login_required
+
 def create_booking(id):
     form = BookingForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        new_booking = Booking()
-        form.populate_obj(new_booking)
+        new_booking = Booking(
+            user_id=form.data['user_id'],
+            spot_id=form.data['spot_id'],
+            guests=form.data['guests'],
+            check_in=form.data['check_in'],
+            check_out=form.data['check_out']
+        )
+        
         db.session.add(new_booking)
         db.session.commit()
 

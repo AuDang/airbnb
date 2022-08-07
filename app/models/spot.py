@@ -24,7 +24,8 @@ class Spot(db.Model):
         "Review", back_populates='spot', cascade="all,delete")
     images = db.relationship(
         "Image", back_populates='spot', cascade="all,delete")
-    bookings = db.relationship("Booking", back_populates='spot')
+    bookings = db.relationship(
+        "Booking", back_populates='spot', cascade="all,delete")
 
 
     def to_dict(self):
@@ -42,6 +43,7 @@ class Spot(db.Model):
             'bathroom': self.bathroom,
             'bedroom': self.bedroom,
             'reviews': [review.to_dict() for review in self.reviews],
+            'bookings': [booking.to_dict() for booking in self.bookings],
             'images': [{'id': image.id, "image": image.image} for image in self.images],
             'firstname': self.user.first_name,
             'lastname': self.user.last_name,

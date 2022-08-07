@@ -7,7 +7,7 @@ import bookingReducer from './booking';
 
 const rootReducer = combineReducers({
   session,
-  spotReducer,
+  spots:spotReducer,
   reviewReducer,
   bookingReducer,
 });

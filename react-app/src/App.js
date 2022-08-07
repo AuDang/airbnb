@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import LoginForm from './components/auth/LoginFormModal/LoginForm';
-import SignUpForm from './components/auth/SignUpFormModal/SignUpForm';
 import NavBar from './components/Navigation/NavBar';
 import { authenticate } from './store/session';
 import SpotsPage from './components/Spots/SpotsPage';
@@ -10,7 +8,8 @@ import SpotDetails from './components/SpotDetails/SpotDetails';
 import CreateSpotForm from './components/CreateSpot/CreateSpot';
 import Footer from './components/Footer/Footer'
 import ErrorPage from './components/404/404';
-import { getAllSpots, getSpot } from './store/spot';
+import { getAllSpots} from './store/spot';
+
 
 
 function App() {
@@ -21,7 +20,7 @@ function App() {
     (async() => {
       await dispatch(authenticate());
       await dispatch(getAllSpots());
-      // await dispatch(getSpot());
+      // await dispatch(getReviews());
       setLoaded(true);
     })();
   }, [dispatch]);

@@ -10,7 +10,7 @@ const EditSpot = ({ setShowModal }) => {
    const dispatch = useDispatch()
    const sessionUser = useSelector(state => state.session.user)
    const {id} = useParams()
-   const spot = useSelector(state =>state.spotReducer[id])
+   const spot = useSelector(state =>state.spots[id])
    const history = useHistory()
    const [address, setAddress] = useState(spot.address)
    const [city, setCity] = useState(spot.city)

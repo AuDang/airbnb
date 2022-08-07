@@ -14,8 +14,8 @@ const ShowReview = () => {
    const reviews = useSelector(state => state.reviewReducer)
    const reviewsArr = Object.values(reviews)
    const filteredReviewsArr = reviewsArr.filter(({spot_id}) => spot_id === +id)
-   console.log('reviews', reviewsArr )
-   console.log('filter', filteredReviewsArr)
+   // console.log('reviews', reviewsArr )
+   // console.log('filter', filteredReviewsArr)
 
 
 

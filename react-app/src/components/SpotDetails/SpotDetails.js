@@ -1,32 +1,87 @@
-import React, { useEffect} from 'react';
+import React, { useEffect,useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-// import { NavLink } from 'react-router-dom';
 import { getSpot } from '../../store/spot';
 import EditSpotModal from '../EditSpot';
 import CreateReviewModal from '../Reviews/CreateReview';
-// import DeleteSpot from '../DeleteSpot/DeleteSpot';
 import DeleteSpotModal from '../DeleteSpot';
 import ShowReview from '../Reviews/ShowReview/ShowReview';
 import { IoDiamond } from 'react-icons/io5';
 import CreateBooking from '../Bookings/CreateBooking/CreateBooking';
-// import Calendar from '../Calendar/Calendar';
 import './SpotDetails.css'
 
+import {DateRange} from 'react-date-range'
+import {addDays} from 'date-fns'
+import {addBooking} from '../../store/booking'
 
 const SpotDetails = () => {
    const {id} = useParams()
    const sessionUser = useSelector(state =>state.session.user)
-   const spot = useSelector(state => state?.spotReducer[id])
-   // const spotId = Object.values(spot)
+   const spot = useSelector(state => state?.spots[id])
+   console.log('spotDetails', spot.id)
    const reviews = Object.values(useSelector(state => state.reviewReducer))
-   console.log('spot', spot)
    console.log('review', reviews)
+   // const bookings =Object.values(useSelector(state => state.bookingReducer))
+   // console.log('booking', bookings)
+
    const history = useHistory()
    const dispatch = useDispatch()
 
+//////////////////////////////////////////////////////////////
 
-   // let stateVars = {checkin,setCheckin,checkout,setCheckout,nights,setNights,}
+
+   // const tomorrow = addDays(new Date (),1)
+   // const defaultEnd = addDays(new Date(), 2)
+   const [guests, setGuests] = useState(1)
+   const [date, setDate] = useState(null);
+   const [startDate, setStartDate] = useState(addDays(new Date(),1))
+   const [endDate, setEndDate] = useState(addDays(new Date(), 3))
+   const [errors, setErrors] = useState([])
+
+
+   // const [dateRange, setDateRange] = useState([
+   // {
+   //    startDate: check_in,
+   //    endDate: check_out,
+   //    key: 'selection'
+   // }
+   // ]);
+
+   const selectionRange = {
+      startDate: startDate,
+      endDate: endDate,
+      key: "selection",
+   };
+
+
+   function handleSelect(ranges) {
+   setStartDate(ranges.selection.startDate);
+   setEndDate(ranges.selection.endDate);
+  }
+
+   // console.log('checkin', check_in)
+
+   const handleBooking = async (e) => {
+   e.preventDefault()
+   const booking = {
+      spot_id: spot?.id,
+      user_id: sessionUser?.id,
+      guests: parseInt(guests),
+      check_in:startDate.toISOString().split('T')[0],
+      check_out:endDate.toISOString().split('T')[0],
+   }
+   const data = await dispatch(addBooking(booking))
+   if(data?.errors) {
+      setErrors(data.errors)
+   } 
+   // else if (data) {
+   //    history.push(`/users/${sessionUser.id}/bookings`)
+   // }
+   }
+
+   
+
+   ///////////////////////////////////////////////////////////////////
   
    useEffect( async () => {
       await dispatch(getSpot(id))
@@ -47,6 +102,10 @@ const SpotDetails = () => {
    if (Number.isNaN(roundedAverage)) {
       roundedAverage = "Unrated"
    }
+
+
+
+
    return (
       <div className='spot-details-container'>
          <div className='spot-detail-name-container'>
@@ -90,7 +149,16 @@ const SpotDetails = () => {
             <p>{spot?.description}</p>
          </div>
                <h1>Booking Component</h1>
-               <CreateBooking />
+                  <form className='create-booking-form-container' >
+                     <DateRange 
+                     onChange={handleSelect}
+                     editableDateInputs={true}
+                     months={1}
+                     ranges={[selectionRange]}
+                     />
+                     <button onClick={handleBooking}>Book</button>
+                  </form>
+               {/* <CreateBooking /> */}
                {/* <Calendar /> */}
 
          <div className='spot-detail-reviews-container'>

@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllSpots } from '../../store/spot';
-import { useHistory } from 'react-router-dom';
 import './SpotsPage.css'
 import { NavLink } from 'react-router-dom';
 
 
 const SpotsPage = () => {
-   const spots = useSelector(state => state.spotReducer)
+   const spots = useSelector(state => state.spots)
    const spotsArr = Object.values(spots)
-   console.log('spots', spotsArr)
-   const reviews = Object.values(spotsArr)
-   console.log('spotsArr', reviews)
-   const history = useHistory()
+   // console.log('spots', spotsArr)
+   // const reviews = Object.values(spotsArr)
+   // console.log('spotsArr', reviews)
+
    const dispatch = useDispatch()
    useEffect(() => {
       dispatch(getAllSpots())
@@ -27,7 +26,7 @@ const SpotsPage = () => {
          <div className='spotspage-container' key={spot.id}>
             <div className='all-spots-image'> 
                <NavLink exact to={`/spots/${spot.id}`}>
-                  <img className='single-spot-image' alt='image' src={spot?.images[0]?.image}/>
+                  <img className='single-spot-image' alt='single-spot' src={spot?.images[0]?.image}/>
                </NavLink>
             </div>
             <div className='all-spots-info'>
