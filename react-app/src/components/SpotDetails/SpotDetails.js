@@ -18,9 +18,9 @@ const SpotDetails = () => {
    const {id} = useParams()
    const sessionUser = useSelector(state =>state.session.user)
    const spot = useSelector(state => state?.spots[id])
-   console.log('spotDetails', spot.id)
+   // console.log('spotDetails', spot.id)
    const reviews = Object.values(useSelector(state => state.reviewReducer))
-   console.log('review', reviews)
+   // console.log('review', reviews)
    // const bookings =Object.values(useSelector(state => state.bookingReducer))
    // console.log('booking', bookings)
 
@@ -28,56 +28,44 @@ const SpotDetails = () => {
    const dispatch = useDispatch()
 
 //////////////////////////////////////////////////////////////
+//    const bookings = useSelector(state => state.bookingReducer)
+//    console.log('booking', bookings)
+
+//    const [guests, setGuests] = useState(1)
+//    const [startDate, setStartDate] = useState(addDays(new Date(),1))
+//    const [endDate, setEndDate] = useState(addDays(new Date(), 3))
+//    const [errors, setErrors] = useState([])
 
 
-   // const tomorrow = addDays(new Date (),1)
-   // const defaultEnd = addDays(new Date(), 2)
-   const [guests, setGuests] = useState(1)
-   const [date, setDate] = useState(null);
-   const [startDate, setStartDate] = useState(addDays(new Date(),1))
-   const [endDate, setEndDate] = useState(addDays(new Date(), 3))
-   const [errors, setErrors] = useState([])
+//    const selectionRange = {
+//       startDate: startDate,
+//       endDate: endDate,
+//       key: "selection",
+//    };
+
+//    function handleSelect(ranges) {
+//    setStartDate(ranges.selection.startDate);
+//    setEndDate(ranges.selection.endDate);
+//   }
 
 
-   // const [dateRange, setDateRange] = useState([
-   // {
-   //    startDate: check_in,
-   //    endDate: check_out,
-   //    key: 'selection'
-   // }
-   // ]);
-
-   const selectionRange = {
-      startDate: startDate,
-      endDate: endDate,
-      key: "selection",
-   };
-
-
-   function handleSelect(ranges) {
-   setStartDate(ranges.selection.startDate);
-   setEndDate(ranges.selection.endDate);
-  }
-
-   // console.log('checkin', check_in)
-
-   const handleBooking = async (e) => {
-   e.preventDefault()
-   const booking = {
-      spot_id: spot?.id,
-      user_id: sessionUser?.id,
-      guests: parseInt(guests),
-      check_in:startDate.toISOString().split('T')[0],
-      check_out:endDate.toISOString().split('T')[0],
-   }
-   const data = await dispatch(addBooking(booking))
-   if(data?.errors) {
-      setErrors(data.errors)
-   } 
-   // else if (data) {
-   //    history.push(`/users/${sessionUser.id}/bookings`)
-   // }
-   }
+//    const handleBooking = async (e) => {
+//    e.preventDefault()
+//    const booking = {
+//       spot_id: spot?.id,
+//       user_id: sessionUser?.id,
+//       guests: parseInt(guests),
+//       check_in:startDate.toISOString().split('T')[0],
+//       check_out:endDate.toISOString().split('T')[0],
+//    }
+//    const data = await dispatch(addBooking(booking))
+//    if(data?.errors) {
+//       setErrors(data.errors)
+//    } 
+//    // else if (data) {
+//    //    history.push(`/users/${sessionUser.id}/bookings`)
+//    // }
+//    }
 
    
 
@@ -149,7 +137,7 @@ const SpotDetails = () => {
             <p>{spot?.description}</p>
          </div>
                <h1>Booking Component</h1>
-                  <form className='create-booking-form-container' >
+                  {/* <form className='create-booking-form-container' >
                      <DateRange 
                      onChange={handleSelect}
                      editableDateInputs={true}
@@ -157,8 +145,8 @@ const SpotDetails = () => {
                      ranges={[selectionRange]}
                      />
                      <button onClick={handleBooking}>Book</button>
-                  </form>
-               {/* <CreateBooking /> */}
+                  </form> */}
+               <CreateBooking />
                {/* <Calendar /> */}
 
          <div className='spot-detail-reviews-container'>

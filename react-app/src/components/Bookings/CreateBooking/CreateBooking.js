@@ -2,68 +2,111 @@ import React, {useState,useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {useHistory, useParams} from 'react-router-dom'
 import {addBooking} from '../../../store/booking'
-// import moment from 'moment'
+import {moment} from 'moment'
 import {DateRange} from 'react-date-range'
 import {addDays} from 'date-fns'
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
+import { dateArrayCreator } from '../../../utils/dateArray'
 
 const CreateBooking = () => {
-   const {id} = useParams
+   const {id} = useParams()
    const history = useHistory()
    const dispatch = useDispatch()
-   // const tomorrow = addDays(new Date (),1)
-   // const endDate = addDays(new Date(), 2)
-
    const sessionUser = useSelector(state => state.session.user)
-   const spot = (useSelector(state => state.spots))
-   console.log('spooot', spot )
+   const spot = useSelector(state => (state.spots[id]))
+   // console.log('spooot', spot )
    
-   const [guests, setGuests] = useState(1)
-   const [check_in, setCheck_in] = useState(new Date())
-   const [check_out, setCheck_out] = useState(addDays(new Date(), 3))
-   const [errors, setErrors] = useState([])
-   console.log(typeof startDate)
+   const bookings = useSelector(state => Object.values(state.bookingReducer))
+   const spotBookings = bookings?.filter(booking => spot?.id === booking.spot_id)
+   
+   console.log('spotbookeee', spotBookings)
+   // console.log('booking', bookings)
 
-   const [dateRange, setDateRange] = useState([
-   {
-      startDate: check_in,
-      endDate: check_out,
-      key: 'selection'
-   }
-   ]);
-      console.log('start', dateRange.startDate)
+   // let ciDate = new Date();
+   // let coDate = addDays( new Date(), 7);
+   // const [checkinDate, setCheckinDate] = useState(ciDate);
+   // const [checkoutDate, setCheckoutDate] = useState(coDate);
+
+   const [guests, setGuests] = useState(1)
+   const [startDate, setStartDate] = useState(new Date())
+   const [endDate, setEndDate] = useState(addDays(new Date(), 1))
+   const [errors, setErrors] = useState([])
    
-   const handleSubmit = async (e) => {
-      e.preventDefault()
-      const booking = {
-         spot_id: spot.id,
-         user_id: sessionUser.id,
-         guests: parseInt(guests),
-         check_in,
-         check_out
+   let disabledDatesArray = []
+
+
+
+   // const dateArrayCreator = (startDate, stopDate) => {
+   //    const dateArray = new Array();
+   //    const currentDate = startDate;
+   //    while (currentDate <= stopDate) {
+   //       dateArray.push(new Date (currentDate));
+   //       currentDate = addDays(currentDate, 1);
+   //    }
+   // return dateArray
+   // }
+   // spotBookings?.forEach(booking => {
+   //    (dateArrayCreator(addDays(new Date (booking?.check_in),1), addDays(new Date (booking?.end_date),1))).forEach(date => {
+   //       disabledDatesArray.push(date)
+   //    })
+   // })
+   // console.log('datearraytest', dateArrayCreator(startDate, endDate))
+
+
+
+   const [state, setState] = useState([
+		{
+      startDate: startDate,
+      endDate: endDate,
+      key: "selection",
       }
-      const data = await dispatch(addBooking(booking))
-      if(data?.errors) {
-         setErrors(data.errors)
-      } else if (data) {
-         history.push(`/users/${sessionUser.id}/bookings`)
-      }
+   ]);
+
+   // useEffect(()=> {
+   //    setStartDate (state[0].startDate)
+   //    setEndDate(state[0].endDate)
+   //    console.log(disabledDatesArray)
+   // },[state])
+
+   // useEffect(() => {
+   //    state[0].startDate = startDate;
+   //    state[0].endDate = endDate;
+   // }, [startDate, endDate])
+
+   // console.log('ahhhhh', state[0])
+
+   const handleBooking = async (e) => {
+   e.preventDefault()
+   const booking = {
+      spot_id: spot?.id,
+      user_id: sessionUser?.id,
+      guests: parseInt(guests),
+      check_in:startDate.toISOString().split('T')[0],
+      check_out:endDate.toISOString().split('T')[0],
+   }
+   const data = await dispatch(addBooking(booking))
+   if(data?.errors) {
+      setErrors(data.errors)
+   } 
+   // else if (data) {
+   //    history.push(`/users/${sessionUser.id}/bookings`)
+   // }
    }
 
    return (
       <div>
-         <form className='create-booking-form-container' onSubmit={handleSubmit}>
+         <form className='create-booking-form-container' >
             <DateRange 
-            onChange={item => setDateRange([item.selection])}
+            onChange={(item) => setState([item.selection])}
             editableDateInputs={true}
             months={1}
-            // ranges={dateRange}
-            // startDate={startDate}
-            // endDate={endDate}
-            // direction="horizontal"
+            ranges={state}
+            minDate={startDate}
+            disabledDates={(disabledDatesArray)}
+            dragSelectionEnabled={true}
             />
-            <button>Book</button>
+            <button onClick={handleBooking}>Book</button>
          </form>
       </div>
    )

@@ -9,6 +9,7 @@ import CreateSpotForm from './components/CreateSpot/CreateSpot';
 import Footer from './components/Footer/Footer'
 import ErrorPage from './components/404/404';
 import { getAllSpots} from './store/spot';
+import {getBookings} from './store/booking'
 
 
 
@@ -20,7 +21,7 @@ function App() {
     (async() => {
       await dispatch(authenticate());
       await dispatch(getAllSpots());
-      // await dispatch(getReviews());
+      await dispatch(getBookings());
       setLoaded(true);
     })();
   }, [dispatch]);
