@@ -7,22 +7,22 @@ import {DateRange} from 'react-date-range'
 import {addDays} from 'date-fns'
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
+import { IoDiamond } from 'react-icons/io5';
 import { dateArrayCreator } from '../../../utils/dateArray'
+import './CreateBooking.css'
 
-const CreateBooking = () => {
+const CreateBooking = ({reviews}) => {
    const {id} = useParams()
    const history = useHistory()
    const dispatch = useDispatch()
    const sessionUser = useSelector(state => state.session.user)
    const spot = useSelector(state => (state.spots[id]))
-   console.log('spotPrice', spot.price )
+   console.log('spot', spot)
    
    const bookings = useSelector(state => Object.values(state.bookingReducer))
    const spotBookings = bookings?.filter(booking => spot?.id === booking.spot_id)
-   
+   // console.log()
    console.log('spotbookeee', spotBookings)
-   // console.log('booking', bookings)
-
 
    const [guests, setGuests] = useState(1)
    const [startDate, setStartDate] = useState(new Date())
@@ -30,6 +30,18 @@ const CreateBooking = () => {
    const [endDate, setEndDate] = useState(addDays(new Date(), 2))
    const [errors, setErrors] = useState([])
    
+   const filteredReviews = reviews.filter(({spot_id}) => spot_id === +id)
+   let sum = 0;
+   filteredReviews.forEach(({rating}) => {
+      sum+= rating
+   })
+   const averageReviews = sum /filteredReviews.length
+   let roundedAverage = (Math.round(averageReviews * 100) /100).toFixed(1)
+   if (Number.isNaN(roundedAverage)) {
+      roundedAverage = "Unrated"
+   }
+
+
    let disabledDatesArray = []
 
    // const dateArrayCreator = (startDate, stopDate) => {
@@ -55,6 +67,7 @@ const CreateBooking = () => {
       startDate: startDate,
       endDate: endDate,
       key: "selection",
+      color: '#ff627f'
       }
    ]);
 
@@ -78,6 +91,15 @@ const CreateBooking = () => {
       return days
    }
 
+   const cleaningFees = (spot?.price * totalNights(startDate, endDate) * 0.06);
+   const serviceFees = (spot?.price * totalNights(startDate, endDate) * 0.07);
+   const occupancyFees = (spot?.price * totalNights(startDate, endDate)* 0.03)
+
+   console.log('fee1', serviceFees)
+   console.log('fee2', cleaningFees)
+   console.log('fee3', occupancyFees)
+
+
    const handleBooking = async (e) => {
    e.preventDefault()
    const booking = {
@@ -98,7 +120,20 @@ const CreateBooking = () => {
    }
 
    return (
-      <div>
+      <div className='create-booking-container'>
+         <div className='create-booking-top'>
+               <div className='create-booking-price'>
+                  ${spot.price} night
+               </div>
+               <div className='create-booking-reviews'>
+                  <div className='booking-diamond'>
+                     <IoDiamond color='purple'/> {roundedAverage} 
+                  </div>
+                  <div>
+                     {filteredReviews.length} {filteredReviews.length === 1 ? 'Review' : 'Reviews'}
+                  </div>
+            </div>
+         </div>
          <form className='create-booking-form-container' >
             <DateRange 
             onChange={(item) => setState([item.selection])}
@@ -107,10 +142,45 @@ const CreateBooking = () => {
             ranges={state}
             minDate={today}
             dragSelectionEnabled={true}
-            // disabledDates={(disabledDatesArray)}
             />
-            <button onClick={handleBooking}>Book</button>
+            {/* <div className='create-booking-form-guests-container'>
+               <label>Guests</label>
+                  <select defaultValue={guests} onChange={(e) => setGuests(e.target.value)}>
+                     {[...Array(spot.guest).keys()].map((number, i) => (
+                        <option key={i}>{number + 1}</option>
+                     ))}
+                  </select>
+            </div> */}
          </form>
+            <button className='create-booking-button'onClick={handleBooking}>Reserve</button>
+         <div className='create-booking-info'>
+            <div className='create-booking-fee-container'>
+               <div className='create-booking-fees'>
+                  <div>${spot?.price} x {totalNights(startDate, endDate)} nights </div>
+                  <div>${totalPrice(startDate, endDate).toLocaleString()}</div>
+               </div>
+
+               <div className='create-booking-fees'>
+                  <div>Cleaning fee</div>
+                  <div>${cleaningFees.toFixed(2)}</div>
+               </div>
+
+               <div className='create-booking-fees'>
+                  <div>Service fee</div>
+                  <div>${serviceFees.toFixed(2)}</div>
+               </div>
+
+               <div className='create-booking-fees'>
+                  <div>Occupany fee</div>
+                  <div>${occupancyFees.toFixed(2)}</div>
+               </div>
+            </div>
+
+            <div className='create-booking-total'>
+               <div>Total before taxes</div>
+               <div>${(cleaningFees + serviceFees + occupancyFees + totalPrice(startDate, endDate)).toLocaleString(undefined, {minimumFractionDigits: 2})} </div>
+            </div>
+         </div>
       </div>
    )
 }

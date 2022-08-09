@@ -5,6 +5,10 @@
    display:flex;
    flex-wrap: wrap;
 }
+.bookings-title {
+   display: flex;
+   justify-content: center;
+}
 .booking-card {
    width:300px;
    height:400px;
@@ -22,5 +26,28 @@
    width:100%;
    height:100%;
    object-fit: cover;
-   border-radius: 10px 0 0 0 ;
+   border-radius: 10px 10px 0 0 ;
+}
+.booking-name {
+   font-size: 1.25em;
+   margin: 0em .25em .4em .25em
+}
+.booking-date {
+   font-size: .9em;
+   margin: 0em .25em 0 
+   
+}
+.booking-price-night-container {
+   display:flex;
+   margin-top: 1em;
+   align-items: center;
+   justify-content: space-between;
+   margin: 1em .25em 0 .25em
+}
+.booking-info-left {
+   font-size: .9em;
+}
+.fa.fa-trash-o{
+   color: rgba(255, 98, 127, 255);
+   font-size:2em;
 }

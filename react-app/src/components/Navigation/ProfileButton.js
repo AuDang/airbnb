@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import { useDispatch , useSelector} from 'react-redux';
 import * as sessionActions from '../../store/session'
 import './NavBar.css'
-import { StaticRouter, useHistory } from 'react-router-dom';
+import {useHistory,NavLink } from 'react-router-dom';
 import LoginFormModal from '../auth/LoginFormModal';
-import SignUpForm from '../auth/SignUpFormModal/SignUpForm';
+
 import SignUpFormModal from '../auth/SignUpFormModal';
 import {CgProfile} from 'react-icons/cg'
 
@@ -14,7 +14,7 @@ function ProfileButton() {
    const sessionUser = useSelector(state => state.session.user)
    const history = useHistory()
 
-   const openMenu = (e) => {
+   const openMenu = () => {
       // if(showMenu) return;
       setShowMenu(!showMenu);
    };
@@ -46,15 +46,20 @@ function ProfileButton() {
    if (sessionUser) {
       dropdownMenu = (
          <div className='profile-dropdown'>
-            <p> Hello {sessionUser.username}</p>
-            <button className='logout-button' onClick={logout}> Logout</button>
+            <div className='dropdown-content'>
+               <p className='nav-user'> Hello {sessionUser.username}</p>
+               <NavLink className='nav-book-logout' to= {`/users/${sessionUser.id}/bookings`} >My Bookings</NavLink>
+               <button className='nav-book-logout' onClick={logout}> Logout</button>
+            </div>
          </div>
       )
    } else if (!sessionUser) {
       dropdownMenu = (
          <div className='profile-dropdown'>
-            <LoginFormModal />
-            <SignUpFormModal />
+            <div className='dropdown-content'>
+               <LoginFormModal onClick={!openMenu}/>
+               <SignUpFormModal />
+            </div>
          </div>
       )
    }

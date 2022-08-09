@@ -9,7 +9,7 @@ const DeleteBookingModal =({id}) => {
    return (
       <div className='delete-booking-modal-container'>
          <div className='delete-booking-modal-button-container' onClick={() => setShowModal(true)}>
-            <p className='delete-booking-button'>Delete</p>
+            <i className="fa fa-trash-o" aria-hidden="true" ></i>
          </div>
          {showModal && 
          (<Modal onClose={() => setShowModal(false)}>

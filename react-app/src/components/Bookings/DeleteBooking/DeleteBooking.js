@@ -15,18 +15,15 @@ const DeleteBooking =({setShowModal, id}) => {
    }
 
    return (
-      <div className ='confirm-delete-spot-container'>
-         <div className='confirm-delete-spot-header-container'>
-            <h1 className='confirm-delete-spot-header'>Delete Booking?</h1>
+      <div className ='confirm-delete-container'>
+         <div className='confirm-delete-header-container'>
+            <h1 className='confirm-delete-header'>Cancel Booking?</h1>
          </div>
-         <div className='confirm-delete-spot-text-container'>
-            <p className='confirm-delete-spot-text-2'> This action is irreversible </p>
-            <span>
-               <p className='confirm-delete-spot-text-1'>Are you sure you want to delete this Booking? </p>
-            </span>
+         <div className='confirm-delete-text-container'>
+               <p className='confirm-delete-text-1'>Are you sure you want to cancel this Booking? </p>
          </div>
-         <div className='confirm-delete-spot-button-container'>
-            <button className='confirm-delete-spot-button' onClick={handleDelete} >Confirm Delete</button>
+         <div className='confirm-delete-button-container'>
+            <button className='confirm-delete-button' onClick={handleDelete} >Cancel Booking</button>
          </div>
 
       </div>

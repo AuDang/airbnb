@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory, useParams } from 'react-router-dom'
-import { getUserBookings, deleteBooking } from '../../../store/booking'
+import { getUserBookings } from '../../../store/booking'
 import DeleteBookingModal from '../DeleteBooking'
 
 import "./UserBookings.css"
@@ -12,14 +12,12 @@ const UserBookings = () => {
    const history = useHistory()
    const {id} = useParams()
    const sessionUser = useSelector((state) => state.session.user)
-   console.log('sessionUser', sessionUser)
+
    const bookings = Object.values(useSelector(state => state.bookingReducer)).reverse()
-   console.log('bookings', bookings)
-   // const filteredBookings = bookings.filter(id=> id)
-   // console.log('filter', filteredBookings.id)
+   // console.log('bookings', bookings)
    const spots = useSelector(state => state.spots)
-   console.log('spotsss', spots[id].price)
-   console.log('id',id)
+   // console.log('spotsss', spots[id].price)
+   // console.log('id',id)
 
    const totalPrice = (night, price) => {
       return (night * price)
@@ -31,13 +29,6 @@ const UserBookings = () => {
       }
    },[dispatch, sessionUser])
 
-   const handleDelete = async (e) => {
-      e.preventDefault()
-      const data = await dispatch(deleteBooking(id))
-      if (data) {
-         history.push()
-      }
-   }
 
    if(sessionUser.id !== +id) {
       history.push('/404-Page-Not-Found')
@@ -76,17 +67,20 @@ const UserBookings = () => {
                                  Check out: {booking.check_out.slice(0,16)}
                               </div>
 
-                              <div className='booking-price-night'>
-                                 <div className='booking-price'>
-                                    ${spots[id].price}/Night
+                              <div className='booking-price-night-container'>
+                                 <div className='booking-info-left'>
+                                    <div className='booking-price'>
+                                       ${spots[id].price}/Night
+                                    </div>
+                                    <div className='booking-nights'>
+                                       Total Nights: {booking.nights}
+                                    </div>
+                                    <div className='booking-total-price'>
+                                       Total Price: ${totalPrice(spots[id].price, booking.nights)}
+                                    </div>
                                  </div>
-                                 <div className='booking-nights'>
-                                    Total Nights: {booking.nights}
-                                 </div>
-                                 <div className='booking-total-price'>
-                                    Price: ${totalPrice(spots[id].price, booking.nights)}
-                                 </div>
-                                 <div>
+
+                                 <div className='booking-info-right'>
                                     <DeleteBookingModal id={booking.id}/>
                                  </div>
                               </div>

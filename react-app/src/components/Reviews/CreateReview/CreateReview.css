@@ -63,10 +63,12 @@ font-size:15px
 }
 .create-review-modal-button {
    border:unset;
-   background-color: burlywood;
+   background-color: rgba(255, 98, 127, 255);
    font-size:17px;
    border-radius:8px;
    padding:3px;
+   height:28px;
+   width:150px;
    
 }
 .create-review-modal-button:hover{

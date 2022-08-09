@@ -17,18 +17,18 @@ const DeleteSpot = () => {
       }
    }
    return (
-      <div className ='confirm-delete-spot-container'>
-         <div className='confirm-delete-spot-header-container'>
-            <h1 className='confirm-delete-spot-header'>Delete Spot?</h1>
+      <div className ='confirm-delete-container'>
+         <div className='confirm-delete-header-container'>
+            <h1 className='confirm-delete-header'>Delete Spot?</h1>
          </div>
-         <div className='confirm-delete-spot-text-container'>
-            <p className='confirm-delete-spot-text-2'> This action is irreversible </p>
+         <div className='confirm-delete-text-container'>
+            {/* <p className='confirm-delete-text-2'> This action is irreversible </p> */}
             <span>
-               <p className='confirm-delete-spot-text-1'>Are you sure you want to delete this spot? </p>
+               <p className='confirm-delete-text-1'>Are you sure you want to delete this spot? </p>
             </span>
          </div>
-         <div className='confirm-delete-spot-button-container'>
-            <button className='confirm-delete-spot-button' onClick={handleDelete} >Confirm</button>
+         <div className='confirm-delete-button-container'>
+            <button className='confirm-delete-button' onClick={handleDelete} >Confirm</button>
          </div>
 
       </div>

@@ -1,0 +1,68 @@
+.create-booking-container {
+   display:flex;
+   flex-direction: column;
+   border: 1px solid black;
+   border-radius: 8px;
+   width: 400px;
+}
+.create-booking-top {
+   display:flex;
+   justify-content: space-between;
+   flex-direction: row;
+   /* width: 90% */
+   margin: 1.2em 1.2em .5em 1.2em;
+}
+.create-booking-reviews {
+   display:flex;
+}
+.booking-diamond {
+   padding-right: .5em
+}
+
+/* .create-booking-form-container{
+   display:flex;
+   justify-content: center;
+} */
+
+.rdrCalendarWrapper {
+display: flex;
+justify-content: center;
+margin: 1.2em 1.2em 1.2em 1.2em;
+}
+.rdrMonth {
+   margin: auto
+}
+.create-booking-info {
+   margin: 0 1.2em 0 1.2em;
+}
+.create-booking-fees {
+   display:flex;
+   justify-content: space-between;
+   margin: .5em 0 .5em 0;
+}
+.create-booking-fee-container {
+   border-bottom: 1px solid rgba(0, 0, 0, 0.445);
+   /* background-color: red; */
+}
+.create-booking-total {
+   display: flex;
+   justify-content: space-between;
+   margin: 1em 0 1em 0;
+   font-weight: 700; 
+}
+.create-booking-button {
+   width: 91%;
+   height: 3em;
+   display:inline-block;
+   align-self: center;
+   font-size: 1em;
+   color:white;
+   background-color: rgba(255, 98, 127, 255);
+   border:unset;
+   border-radius: 5px;
+   margin-bottom: 1em;
+   /* text-align: center; */
+}
+.create-booking-button:hover {
+   cursor: pointer;
+}

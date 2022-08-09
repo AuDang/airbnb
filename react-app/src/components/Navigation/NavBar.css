@@ -1,5 +1,5 @@
 .profile-button {
-font-size: 25px;
+font-size: 30px;
 display:flex;
 align-self: center;
 border:unset;
@@ -7,8 +7,7 @@ background-color: white;
 margin-right:30px;
 }
 .profile-button-icon:hover{
-   /* color:burlywood; */
-   color:burlywood
+   color:rgba(255, 98, 127, 255);
 }
 .navbar-container {
    display:flex;
@@ -37,15 +36,11 @@ margin-right:30px;
    height:30px;
    margin-left:30px;
 }
-.nav-signin-button:hover {
-   background-color: burlywood;
+.nav-sign-button:hover {
+   background-color: rgba(255, 98, 127, 255);
    cursor:pointer;
 }
-.nav-signup-button:hover {
-   cursor:pointer;
-   background-color: burlywood;
 
-}
 .app-name-link {
    text-decoration: none;
    color: rgba(255, 121, 119, 255);
@@ -79,35 +74,56 @@ margin-right:30px;
    font-size: 16px;
 }
 .nav-host-button:hover {
-   background-color: burlywood;
+   background-color: rgba(255, 98, 127, 255);
    border-radius:8px;
    cursor:pointer; 
 }
 .profile-dropdown {
    background-color: grey;
-   /* justify-content: center; */
    align-items: center;
    position: fixed;
    display:flex;
    flex-direction: column;
    width:150px;
-   height:80px;
+   height:110px;
    margin-top: 10px;
    border-radius: 5px;
    border: 2px solid black;
    right:1.5%;
 }
-.logout-button {
-background-color: grey;
+.nav-user {
+   display: flex;
+   justify-content: center;
+   align-items:center;
+   height:100%;
+   width:100%;
+   margin: .2em 0 .2em 0;
+   
+}
+.nav-book-logout {
+  background-color: grey;
   color:black; 
   width:100%;
-  height:30px;
+  height:100%;
   font-size: 15px;
   border: none;
+  text-decoration: none;
   border-top: 1px solid black;
-  margin-bottom:3px;
+  justify-content: center;
+  align-items: center;
+  display:flex;
 }
-.logout-button:hover {
+.nav-book-logout:hover {
    cursor:pointer;
-   background-color: burlywood;
+   background-color: rgba(255, 98, 127, 255);
+
+}
+
+.dropdown-content {
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   align-items: center;
+   height:100%;
+   width:100%
 }

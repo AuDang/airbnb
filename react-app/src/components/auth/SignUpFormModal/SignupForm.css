@@ -69,20 +69,16 @@
 .error-list {
    margin-left: 7px;
 }
-.nav-signin-button {
-   width: 150px;
+.nav-loginsignup-container {
+   width:100%;
+   height:100%
+}
+.nav-sign-button {
+   width: 100%;
+   height:100%;
    font-size: 15px;
    background-color: grey;
    border:unset;
    padding: 10px 0 10px 0;
    border-bottom: 1px solid black;
-}
-.nav-signup-button {
-   width: 150px;
-   font-size: 15px;
-   border-top: 1px solid black;
-   background-color: grey;
-   padding: 10px 0 10px 0;
-   border:unset;
-   
 }
