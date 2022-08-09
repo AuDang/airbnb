@@ -11,6 +11,8 @@ import ErrorPage from './components/404/404';
 import { getAllSpots} from './store/spot';
 import {getBookings} from './store/booking'
 
+import UserBookings from './components/Bookings/UserBookings/UserBookings';
+
 
 
 function App() {
@@ -42,6 +44,9 @@ function App() {
         </Route>
         <Route exact path='/spots/:id'>
           <SpotDetails />
+        </Route>
+        <Route exact path='/users/:id/bookings'>
+          <UserBookings/>
         </Route>
         <Route path='/404-Page-Not-Found'>
           <ErrorPage />

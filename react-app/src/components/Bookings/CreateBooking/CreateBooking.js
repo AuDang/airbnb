@@ -23,19 +23,14 @@ const CreateBooking = () => {
    console.log('spotbookeee', spotBookings)
    // console.log('booking', bookings)
 
-   // let ciDate = new Date();
-   // let coDate = addDays( new Date(), 7);
-   // const [checkinDate, setCheckinDate] = useState(ciDate);
-   // const [checkoutDate, setCheckoutDate] = useState(coDate);
 
    const [guests, setGuests] = useState(1)
    const [startDate, setStartDate] = useState(new Date())
-   const [endDate, setEndDate] = useState(addDays(new Date(), 1))
+   const [today,setToday] = useState(new Date())
+   const [endDate, setEndDate] = useState(addDays(new Date(), 2))
    const [errors, setErrors] = useState([])
    
    let disabledDatesArray = []
-
-
 
    // const dateArrayCreator = (startDate, stopDate) => {
    //    const dateArray = new Array();
@@ -63,18 +58,14 @@ const CreateBooking = () => {
       }
    ]);
 
-   // useEffect(()=> {
-   //    setStartDate (state[0].startDate)
-   //    setEndDate(state[0].endDate)
-   //    console.log(disabledDatesArray)
-   // },[state])
+   useEffect(()=> {
+      setStartDate (state[0].startDate)
+      setEndDate(state[0].endDate)
+      // console.log(disabledDatesArray)
+   },[state])
 
-   // useEffect(() => {
-   //    state[0].startDate = startDate;
-   //    state[0].endDate = endDate;
-   // }, [startDate, endDate])
 
-   // console.log('ahhhhh', state[0])
+   console.log('DateState', state[0])
 
    const handleBooking = async (e) => {
    e.preventDefault()
@@ -102,9 +93,9 @@ const CreateBooking = () => {
             editableDateInputs={true}
             months={1}
             ranges={state}
-            minDate={startDate}
-            disabledDates={(disabledDatesArray)}
+            minDate={today}
             dragSelectionEnabled={true}
+            // disabledDates={(disabledDatesArray)}
             />
             <button onClick={handleBooking}>Book</button>
          </form>
