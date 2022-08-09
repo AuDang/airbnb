@@ -12,10 +12,8 @@ import { getAllSpots} from './store/spot';
 import {getBookings} from './store/booking'
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList'
-import User from './components/User'
-import {getUsers} from './store/users'
 import UserBookings from './components/Bookings/UserBookings/UserBookings';
-import {getUserBookings} from './store/booking'
+import BookingConfirmation from './components/Bookings/BookingConfirmation/BookingConfirmation';
 // 
 
 
@@ -67,6 +65,9 @@ function App() {
         </Route>
         <Route exact path='/users/:id/bookings'>
           <UserBookings />
+        </Route>
+        <Route exact path='/bookings'>
+          <BookingConfirmation />
         </Route>
         <Route path='/404-Page-Not-Found'>
           <ErrorPage />

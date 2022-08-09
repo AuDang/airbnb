@@ -18,6 +18,7 @@ const UserBookings = () => {
    const spots = useSelector(state => state.spots)
    const filteredBookings = bookings.filter(({booking_id}) => booking_id===+id)
    console.log('filtered', filteredBookings)
+   console.log('spooots', spots)
 
 
    const totalPrice = (night, price) => {

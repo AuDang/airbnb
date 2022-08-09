@@ -94,10 +94,6 @@ const CreateBooking = ({reviews}) => {
    const serviceFees = (spot?.price * totalNights(startDate, endDate) * 0.07);
    const occupancyFees = (spot?.price * totalNights(startDate, endDate)* 0.03)
 
-   console.log('fee1', serviceFees)
-   console.log('fee2', cleaningFees)
-   console.log('fee3', occupancyFees)
-
 
    const handleBooking = async (e) => {
    e.preventDefault()
