@@ -22,5 +22,5 @@ class Booking(db.Model):
          'check_in': self.check_in,
          'check_out': self.check_out,
          'guests': self.guests,
-         'nights': self.nights
+         'nights': self.nights,
       }

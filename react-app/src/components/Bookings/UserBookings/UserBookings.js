@@ -14,14 +14,16 @@ const UserBookings = () => {
    const sessionUser = useSelector((state) => state.session.user)
 
    const bookings = Object.values(useSelector(state => state.bookingReducer)).reverse()
-   // console.log('bookings', bookings)
+   console.log('bookings', bookings)
    const spots = useSelector(state => state.spots)
-   // console.log('spotsss', spots[id].price)
-   // console.log('id',id)
+   const filteredBookings = bookings.filter(({booking_id}) => booking_id===+id)
+   console.log('filtered', filteredBookings)
+
 
    const totalPrice = (night, price) => {
       return (night * price)
    }
+
 
    useEffect(async () => {
       if (sessionUser) {
@@ -58,7 +60,7 @@ const UserBookings = () => {
                            </div>
                            <div className='booking-info'>
                               <div className='booking-name'>
-                                 {spots[id]?.name}
+                                 {spots[booking.spot_id].name}
                               </div>
                               <div className='booking-date'>
                                  Check in: {booking.check_in.slice(0,16)}
@@ -70,14 +72,18 @@ const UserBookings = () => {
                               <div className='booking-price-night-container'>
                                  <div className='booking-info-left'>
                                     <div className='booking-price'>
-                                       ${spots[id].price}/Night
+                                       ${spots[booking.spot_id].price}/Night
                                     </div>
                                     <div className='booking-nights'>
                                        Total Nights: {booking.nights}
                                     </div>
-                                    <div className='booking-total-price'>
-                                       Total Price: ${totalPrice(spots[id].price, booking.nights)}
+                                    <div className='booking-fees'>
+                                       Fees: ${((totalPrice(spots[booking.spot_id].price, booking.nights))*.16).toLocaleString(undefined, {minimumFractionDigits: 2})}
                                     </div>
+                                    <div className='booking-total-price'>
+                                       Total (USD) ${((totalPrice(spots[booking.spot_id].price, booking.nights) * 0.16) + (totalPrice(spots[booking.spot_id].price, booking.nights))).toLocaleString(undefined, {minimumFractionDigits: 2})}
+                                    </div>
+
                                  </div>
 
                                  <div className='booking-info-right'>

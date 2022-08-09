@@ -19,18 +19,14 @@
    padding-right: .5em
 }
 
-/* .create-booking-form-container{
-   display:flex;
-   justify-content: center;
-} */
 
 .rdrCalendarWrapper {
 display: flex;
 justify-content: center;
-margin: 1.2em 1.2em 1.2em 1.2em;
+margin: 1.2em 1.2em 0 1.2em;
 }
 .rdrMonth {
-   margin: auto
+   margin: auto auto 0 auto
 }
 .create-booking-info {
    margin: 0 1.2em 0 1.2em;
@@ -65,4 +61,8 @@ margin: 1.2em 1.2em 1.2em 1.2em;
 }
 .create-booking-button:hover {
    cursor: pointer;
+}
+.create-booking-text {
+   align-self: center;
+   font-size: .85em;
 }

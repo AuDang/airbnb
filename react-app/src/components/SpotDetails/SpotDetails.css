@@ -17,7 +17,13 @@
 .spot-details-edit {
    margin-right:10px;
 };
+.spot-detail-reviews {
+   padding-right: 2em;
 
+}
+.spot-detail-location {
+   padding-left: 1em;
+}
 .spot-detail-name {
    font-size: 45px;
    font-weight:300;
@@ -77,6 +83,13 @@
    border-radius: 10px;
    grid-area: e;
    object-fit: cover;
+}
+.spot-detail-mid {
+   display:flex;
+   margin:3em 0 3em 0;
+}
+.spot-detail-mid-right {
+   margin-left: 3em;
 }
 .spot-details-rating {
    display:flex;

@@ -35,10 +35,10 @@ const SpotDetails = () => {
       sum+= rating
    })
    const averageReviews = sum /filteredReviews.length
-   let roundedAverage = (Math.round(averageReviews * 100) /100).toFixed(1)
+   let roundedAverage = (Math.round(averageReviews * 100) /100)
    if (Number.isNaN(roundedAverage)) {
       roundedAverage = "Unrated"
-   }
+   } else roundedAverage = (Math.round(averageReviews * 100) /100).toFixed(1)
 
 
    return (
@@ -71,24 +71,25 @@ const SpotDetails = () => {
             ))}
          </div>
 
+         <div className='spot-detail-mid'>
+            <div className='spot-detail-mid-left'>
+               <div className='spot-detail-host'>
+                  <h1>Hosted by: {spot?.firstname} {spot?.lastname}</h1>
+                  <p>{spot?.guest} Guests {spot?.bedroom} Bedrooms {spot?.bathroom} Bathrooms</p>
+               </div>
 
-         <div className='spot-detail-host'>
-            <h1>Hosted by: {spot?.firstname} {spot?.lastname}</h1>
-            <p>{spot?.guest} Guests {spot?.bedroom} Bedrooms {spot?.bathroom} Bathrooms</p>
-         </div>
-         <div className='spot-detail-price'>
-            <p>${spot?.price}/Night</p>
+               <div className='spot-detail-description-container'>
+                  <h1>Description</h1>
+                  <p>{spot?.description}</p>
+               </div>
+            </div>
+            <div className='spot-detail-mid-right'>
+               <div className='spot-detail-booking'>
+                     <CreateBooking reviews={reviews}/>
+               </div>
+            </div>
          </div>
 
-
-         <div className='spot-detail-description-container'>
-            <h1>Description</h1>
-            <p>{spot?.description}</p>
-         </div>
-         <div className='spot-detail-book'>
-               <h1>Booking Component</h1>
-               <CreateBooking reviews={reviews}/>
-         </div>
 
          <div className='spot-detail-reviews-container'>
             <div className='spot-detail-rating-review-create-container'>

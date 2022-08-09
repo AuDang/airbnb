@@ -2,7 +2,6 @@ import React, {useState,useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {useHistory, useParams} from 'react-router-dom'
 import {addBooking} from '../../../store/booking'
-import {moment} from 'moment'
 import {DateRange} from 'react-date-range'
 import {addDays} from 'date-fns'
 import 'react-date-range/dist/styles.css'; // main css file
@@ -152,6 +151,7 @@ const CreateBooking = ({reviews}) => {
                   </select>
             </div> */}
          </form>
+            <p className='create-booking-text'>You won't be charged yet</p>
             <button className='create-booking-button'onClick={handleBooking}>Reserve</button>
          <div className='create-booking-info'>
             <div className='create-booking-fee-container'>
