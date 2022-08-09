@@ -42,7 +42,8 @@ def create_booking(id):
             spot_id=form.data['spot_id'],
             guests=form.data['guests'],
             check_in=form.data['check_in'],
-            check_out=form.data['check_out']
+            check_out=form.data['check_out'],
+            nights=form.data['nights']
         )
         
         db.session.add(new_booking)

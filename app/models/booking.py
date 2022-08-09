@@ -9,6 +9,7 @@ class Booking(db.Model):
    check_in = db.Column(db.DateTime, nullable=False)
    check_out = db.Column(db.DateTime, nullable=False)
    guests = db.Column(db.Integer, nullable=False)
+   nights = db.Column(db.Integer, nullable=False)
 
    user = db.relationship("User", back_populates='bookings')
    spot = db.relationship("Spot", back_populates='bookings')
@@ -20,5 +21,6 @@ class Booking(db.Model):
          'spot_id': self.spot_id,
          'check_in': self.check_in,
          'check_out': self.check_out,
-         'guests': self.guests
+         'guests': self.guests,
+         'nights': self.nights
       }

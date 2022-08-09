@@ -15,7 +15,7 @@ const CreateBooking = () => {
    const dispatch = useDispatch()
    const sessionUser = useSelector(state => state.session.user)
    const spot = useSelector(state => (state.spots[id]))
-   // console.log('spooot', spot )
+   console.log('spotPrice', spot.price )
    
    const bookings = useSelector(state => Object.values(state.bookingReducer))
    const spotBookings = bookings?.filter(booking => spot?.id === booking.spot_id)
@@ -64,8 +64,19 @@ const CreateBooking = () => {
       // console.log(disabledDatesArray)
    },[state])
 
-
    console.log('DateState', state[0])
+
+   const totalPrice = (date1,date2) => {
+      let oned = 24 * 60 * 60 * 1000;
+      const days = Math.ceil((date2-date1) /oned)
+      return (spot?.price * days)
+   }
+
+   const totalNights = (date1,date2) => {
+      let oned = 24 * 60 * 60 * 1000;
+      const days = Math.ceil((date2-date1) /oned)
+      return days
+   }
 
    const handleBooking = async (e) => {
    e.preventDefault()
@@ -75,14 +86,15 @@ const CreateBooking = () => {
       guests: parseInt(guests),
       check_in:startDate.toISOString().split('T')[0],
       check_out:endDate.toISOString().split('T')[0],
+      nights: totalNights(startDate, endDate)
    }
    const data = await dispatch(addBooking(booking))
    if(data?.errors) {
       setErrors(data.errors)
    } 
-   // else if (data) {
-   //    history.push(`/users/${sessionUser.id}/bookings`)
-   // }
+   else if (data) {
+      history.push(`/users/${sessionUser.id}/bookings`)
+   }
    }
 
    return (

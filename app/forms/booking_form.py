@@ -10,3 +10,4 @@ class BookingForm(FlaskForm):
    check_in = DateField("check_in", validators=[DataRequired('Please enter a start date...')])
    check_out = DateField("check_out", validators=[DataRequired('please enter an end date...')])
    guests = IntegerField("guests", validators=[DataRequired('guest cant be empty')])
+   nights = IntegerField("nights", validators =[DataRequired('Nights cannot be empty')])

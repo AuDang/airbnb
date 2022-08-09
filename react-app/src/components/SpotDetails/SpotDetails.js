@@ -10,6 +10,7 @@ import { IoDiamond } from 'react-icons/io5';
 import CreateBooking from '../Bookings/CreateBooking/CreateBooking';
 import './SpotDetails.css'
 
+
 // import {DateRange} from 'react-date-range'
 // import {addDays} from 'date-fns'
 // import {addBooking} from '../../store/booking'
@@ -147,7 +148,6 @@ const SpotDetails = () => {
                      <button onClick={handleBooking}>Book</button>
                   </form> */}
                <CreateBooking />
-               {/* <Calendar /> */}
 
          <div className='spot-detail-reviews-container'>
             <div className='spot-detail-rating-review-create-container'>

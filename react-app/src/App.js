@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import NavBar from './components/Navigation/NavBar';
 import { authenticate } from './store/session';
 import SpotsPage from './components/Spots/SpotsPage';
@@ -10,20 +10,34 @@ import Footer from './components/Footer/Footer'
 import ErrorPage from './components/404/404';
 import { getAllSpots} from './store/spot';
 import {getBookings} from './store/booking'
-
+import ProtectedRoute from './components/auth/ProtectedRoute';
+import UsersList from './components/UsersList'
+import User from './components/User'
+import {getUsers} from './store/users'
 import UserBookings from './components/Bookings/UserBookings/UserBookings';
-
+import {getUserBookings} from './store/booking'
+// 
 
 
 function App() {
   const [loaded, setLoaded] = useState(false);
+  // const user = useSelector(state => state.session.user)
   const dispatch = useDispatch();
+
+//   useEffect(() => {
+//   (async () => {
+//     if (user) {
+//       await dispatch(getUserBookings(user?.id))
+//     }
+//   })();
+// }, [dispatch, user])
 
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
       await dispatch(getAllSpots());
       await dispatch(getBookings());
+      // await dispatch(getUsers())
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -39,6 +53,12 @@ function App() {
         <Route exact path='/' >
           <SpotsPage/>
         </Route>
+        <ProtectedRoute exact path='/users'>
+          <UsersList />
+        </ProtectedRoute>
+        {/* <ProtectedRoute exact path='/users/:userId'>
+          <User/>
+        </ProtectedRoute> */}
         <Route exact path='/spots/new'>
           <CreateSpotForm />
         </Route>
@@ -46,7 +66,7 @@ function App() {
           <SpotDetails />
         </Route>
         <Route exact path='/users/:id/bookings'>
-          <UserBookings/>
+          <UserBookings />
         </Route>
         <Route path='/404-Page-Not-Found'>
           <ErrorPage />

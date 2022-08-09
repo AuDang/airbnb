@@ -7,7 +7,8 @@ def seed_bookings():
       spot_id= 1,
       check_in= "August 10 2022",
       check_out= "August 20 2022",
-      guests= 2
+      guests= 2,
+      nights=10
    )
 
    db.session.add(booking1)
