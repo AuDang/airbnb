@@ -35,7 +35,6 @@ function App() {
       await dispatch(authenticate());
       await dispatch(getAllSpots());
       await dispatch(getBookings());
-      // await dispatch(getUsers())
       setLoaded(true);
     })();
   }, [dispatch]);
