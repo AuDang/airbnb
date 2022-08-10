@@ -66,7 +66,7 @@ function App() {
         <Route exact path='/users/:id/bookings'>
           <UserBookings />
         </Route>
-        <Route exact path='/bookings'>
+        <Route path='/bookings'>
           <BookingConfirmation />
         </Route>
         <Route path='/404-Page-Not-Found'>

@@ -12,15 +12,18 @@ import './CreateBooking.css'
 
 const CreateBooking = ({reviews}) => {
    const {id} = useParams()
+   const params = useParams()
+   const spotId = parseInt(params.id)
    const history = useHistory()
    const dispatch = useDispatch()
-   const sessionUser = useSelector(state => state.session.user)
+   const sessionUser = useSelector(state => state.session?.user)
+   const sessionUserId = useSelector(state => state.session.user?.id)
    const spot = useSelector(state => (state.spots[id]))
    console.log('spot', spot)
    
    const bookings = useSelector(state => Object.values(state.bookingReducer))
    const spotBookings = bookings?.filter(booking => spot?.id === booking.spot_id)
-   // console.log()
+
    console.log('spotbookeee', spotBookings)
 
    const [guests, setGuests] = useState(1)
@@ -28,6 +31,8 @@ const CreateBooking = ({reviews}) => {
    const [today,setToday] = useState(new Date())
    const [endDate, setEndDate] = useState(addDays(new Date(), 2))
    const [errors, setErrors] = useState([])
+   const [bookingPayload, setBookingPayload] = useState(null);
+   const [nights, setNights] =useState(null)
    
    const filteredReviews = reviews.filter(({spot_id}) => spot_id === +id)
    let sum = 0;
@@ -95,24 +100,46 @@ const CreateBooking = ({reviews}) => {
    const occupancyFees = (spot?.price * totalNights(startDate, endDate)* 0.03)
 
 
-   const handleBooking = async (e) => {
-   e.preventDefault()
-   const booking = {
-      spot_id: spot?.id,
-      user_id: sessionUser?.id,
-      guests: parseInt(guests),
-      check_in:startDate.toISOString().split('T')[0],
-      check_out:endDate.toISOString().split('T')[0],
-      nights: totalNights(startDate, endDate)
+   const handleSubmit = async(e) => {
+      e.preventDefault()
+
+      const checkin = startDate.toISOString().split('T')[0]
+      const checkout = endDate.toISOString().split('T')[0]
+      const nights = totalNights(startDate, endDate)
+
+      const payload = {
+         spotId,
+         sessionUserId,
+         guests,
+         checkin,
+         checkout,
+         nights
+
+      }
+      setBookingPayload(payload)
+      return history.push(
+         `/bookings?user_id=${sessionUserId}&spot_id=${spotId}&guests=${guests}&check_in=${checkin}&check_out=${checkout}&nights=${nights}`
+      )
    }
-   const data = await dispatch(addBooking(booking))
-   if(data?.errors) {
-      setErrors(data.errors)
-   } 
-   else if (data) {
-      history.push(`/users/${sessionUser.id}/bookings`)
-   }
-   }
+
+   // const handleBooking = async (e) => {
+   // e.preventDefault()
+   // const booking = {
+   //    spot_id: spot?.id,
+   //    user_id: sessionUser?.id,
+   //    guests: parseInt(guests),
+   //    check_in:startDate.toISOString().split('T')[0],
+   //    check_out:endDate.toISOString().split('T')[0],
+   //    nights: totalNights(startDate, endDate)
+   // }
+   // const data = await dispatch(addBooking(booking))
+   // if(data?.errors) {
+   //    setErrors(data.errors)
+   // } 
+   // else if (data) {
+   //    history.push(`/users/${sessionUser.id}/bookings`)
+   // }
+   // }
 
    return (
       <div className='create-booking-container'>
@@ -129,7 +156,7 @@ const CreateBooking = ({reviews}) => {
                   </div>
             </div>
          </div>
-         <form className='create-booking-form-container' >
+         <form className='create-booking-form-container'>
             <DateRange 
             onChange={(item) => setState([item.selection])}
             editableDateInputs={true}
@@ -138,17 +165,11 @@ const CreateBooking = ({reviews}) => {
             minDate={today}
             dragSelectionEnabled={true}
             />
-            {/* <div className='create-booking-form-guests-container'>
-               <label>Guests</label>
-                  <select defaultValue={guests} onChange={(e) => setGuests(e.target.value)}>
-                     {[...Array(spot.guest).keys()].map((number, i) => (
-                        <option key={i}>{number + 1}</option>
-                     ))}
-                  </select>
-            </div> */}
+
          </form>
             <p className='create-booking-text'>You won't be charged yet</p>
-            <button className='create-booking-button'onClick={handleBooking}>Reserve</button>
+            <button className='create-booking-button'  onClick={handleSubmit}>Reserve</button>
+            {/* <button className='create-booking-button'onClick={handleBooking}>Reserve</button> */}
          <div className='create-booking-info'>
             <div className='create-booking-fee-container'>
                <div className='create-booking-fees'>

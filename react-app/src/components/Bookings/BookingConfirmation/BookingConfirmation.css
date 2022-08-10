@@ -1,0 +1,97 @@
+.confirmation-page {
+
+   width:1200px;
+   justify-self:center;
+   margin: 5em auto auto auto;
+   flex-direction: column;
+}
+
+.fa.fa-angle-left {
+   margin-right:2em;
+   font-size: 1.5em;
+}
+.fa.fa-angle-left:hover {
+   cursor:pointer;
+}
+.confirm-back-button {
+   display:flex;
+   margin: 0 5em 0 5em;
+   align-items: center;
+   /* max-width:80%; */
+   /* justify-content: center; */
+}
+.confirm {
+   display:flex;
+   justify-content: center;
+   width:100%;
+}
+.confirmation-info-container {
+   border-bottom: 1px solid rgba(0, 0, 0, 0.548);
+   padding-bottom: 2em;
+   /* margin: 0 1em 0 1em */
+}
+.confirm-image {
+   width:200px;
+   border-radius: 10px;
+   object-fit: cover;
+}
+.confirm-image-container {
+   display:flex
+}
+.confirm-right {
+   display:flex;
+   flex-direction: column;
+   border: 1px solid rgba(0, 0, 0, 0.425);
+   border-radius: 10px;
+   padding: 0 1.8em 0 1.8em;
+   width: 600px;
+   margin: 0 5em 0 5em
+}
+.confirm-name {
+   display:flex;
+   justify-content: center;
+   padding: 1em;
+   font-size:.8em
+}
+.confirm-left {
+   width:600px;
+   margin: 3em 5em 0 5em
+}
+.confirm-left-headers {
+   font-size: 1.2em;
+}
+
+.confirm-image-container {
+   margin: 2em 0 0 0;
+}
+.confirm-header {
+   padding-top: .5em;
+   border-top: 1px solid rgba(0, 0, 0, 0.356);
+}
+.confirm-booking-fee {
+   display: flex;
+   justify-content: space-between;
+   margin: 1em 0 1em 0;
+}
+
+.confirm-booking-total {
+   display: flex;
+   justify-content: space-between;
+   margin: 1em 0 1em 0;
+   padding-top: 1em;
+   font-weight:600;
+   border-top: 1px solid rgba(0, 0, 0, 0.349)
+}
+.confirm-button {
+   background-color: rgba(255, 98, 127, 255);
+   color: white;
+   border:unset;
+   margin-top:6.4em;
+   width:100%;
+   height:2em;
+   font-size: 1.2em;
+   border-radius: 7px;
+}
+.confirm-button:hover{
+   cursor:pointer
+}
