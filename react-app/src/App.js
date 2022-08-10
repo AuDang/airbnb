@@ -9,7 +9,7 @@ import CreateSpotForm from './components/CreateSpot/CreateSpot';
 import Footer from './components/Footer/Footer'
 import ErrorPage from './components/404/404';
 import { getAllSpots} from './store/spot';
-import {getBookings} from './store/booking'
+// import {getBookings} from './store/booking'
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList'
 import UserBookings from './components/Bookings/UserBookings/UserBookings';
@@ -34,7 +34,7 @@ function App() {
     (async() => {
       await dispatch(authenticate());
       await dispatch(getAllSpots());
-      await dispatch(getBookings());
+      // await dispatch(getBookings());
       setLoaded(true);
     })();
   }, [dispatch]);
