@@ -32,8 +32,9 @@ const CreateBooking = ({reviews}) => {
    const [endDate, setEndDate] = useState(addDays(new Date(), 2))
    const [errors, setErrors] = useState([])
    const [bookingPayload, setBookingPayload] = useState(null);
-   const [nights, setNights] =useState(null)
+   // const [nights, setNights] =useState(null)
    
+
    const filteredReviews = reviews.filter(({spot_id}) => spot_id === +id)
    let sum = 0;
    filteredReviews.forEach(({rating}) => {
@@ -168,7 +169,10 @@ const CreateBooking = ({reviews}) => {
 
          </form>
             <p className='create-booking-text'>You won't be charged yet</p>
-            <button className='create-booking-button'  onClick={handleSubmit}>Reserve</button>
+               <button className='create-booking-button'  disabled={sessionUserId===undefined}onClick={handleSubmit}>Reserve</button>
+            {!sessionUserId && ( 
+               <div className='not-logged'>*Please login to use this feature*</div>
+               )}
             {/* <button className='create-booking-button'onClick={handleBooking}>Reserve</button> */}
          <div className='create-booking-info'>
             <div className='create-booking-fee-container'>
