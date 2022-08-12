@@ -41,10 +41,10 @@ const CreateBooking = ({reviews}) => {
       sum+= rating
    })
    const averageReviews = sum /filteredReviews.length
-   let roundedAverage = (Math.round(averageReviews * 100) /100).toFixed(1)
+   let roundedAverage = (Math.round(averageReviews * 100) /100)
    if (Number.isNaN(roundedAverage)) {
       roundedAverage = "Unrated"
-   }
+   }else roundedAverage = (Math.round(averageReviews * 100) /100).toFixed(1)
 
 
    let disabledDatesArray = []
