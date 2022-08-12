@@ -39,6 +39,13 @@ const UserBookings = () => {
 
    return (
       <div>
+         {bookings.length < 1 && (
+            <div className='bookings-page'>
+               <div className='bookings-title'>
+                  <h1>You do not have any bookings yet</h1>
+               </div>
+            </div>
+         )}
          {bookings.length >=1 && (
             <div className='bookings-page'>
                <div className='bookings-title'>
