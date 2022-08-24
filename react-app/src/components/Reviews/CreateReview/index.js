@@ -5,6 +5,8 @@ import CreateReview from "./CreateReview"
 const CreateReviewModal = () => {
     const [showModal, setShowModal] = useState(false)
 
+
+
     return (
         <div className="create-review-modal-container">
             <button className="create-review-modal-button" onClick={() => setShowModal(true)}>

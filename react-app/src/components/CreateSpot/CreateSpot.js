@@ -106,11 +106,12 @@ const CreateSpotForm = () => {
                   multiple
                   acceptType={['jpg', 'gif','png','peg']}
                   dataURLKey="data_url"
+                  required
                >
                {({ imageList, onImageUpload, onImageRemoveAll, onImageUpdate, onImageRemove }) => (
                   <div className='upload-container'>
                      <div 
-                        className='image-upload-container' onClick={onImageUpload}>Click to Add Images
+                        className='image-upload-container' onClick={onImageUpload}>Click here to Add Images
                      </div>
                      {imageList.length >= 1 && (
                      <div className='upload-images'>

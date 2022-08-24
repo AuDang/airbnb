@@ -83,7 +83,7 @@ const EditReview = ({current_review, setShowModal}) => {
                   />
                </div>
                <div className='review-form-submit-container'>
-                  <button className='review-form-submit' onClick={handleEdit}>Submit Edit</button>
+                  <button className='review-form-submit' onClick={handleEdit}>Submit</button>
                </div>
             </form>
       </div>

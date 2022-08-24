@@ -19,7 +19,7 @@ const CreateBooking = ({reviews}) => {
    const sessionUser = useSelector(state => state.session?.user)
    const sessionUserId = useSelector(state => state.session.user?.id)
    const spot = useSelector(state => (state.spots[id]))
-   console.log('spot', spot)
+   console.log('spotuser', spot)
    
    const bookings = useSelector(state => Object.values(state.bookingReducer))
    const spotBookings = bookings?.filter(booking => spot?.id === booking.spot_id)
@@ -82,7 +82,7 @@ const CreateBooking = ({reviews}) => {
       // console.log(disabledDatesArray)
    },[state])
 
-   console.log('DateState', state[0])
+   // console.log('DateState', state[0])
 
    const totalPrice = (date1,date2) => {
       let oned = 24 * 60 * 60 * 1000;
@@ -169,7 +169,7 @@ const CreateBooking = ({reviews}) => {
 
          </form>
             <p className='create-booking-text'>You won't be charged yet</p>
-               <button className='create-booking-button'  disabled={sessionUserId===undefined}onClick={handleSubmit}>Reserve</button>
+               <button className='create-booking-button'  disabled={sessionUserId===undefined || sessionUserId===spot.user_id} onClick={handleSubmit}>Reserve</button>
             {!sessionUserId && ( 
                <div className='not-logged'>*Please login to use this feature*</div>
                )}
@@ -178,22 +178,22 @@ const CreateBooking = ({reviews}) => {
             <div className='create-booking-fee-container'>
                <div className='create-booking-fees'>
                   <div>${spot?.price} x {totalNights(startDate, endDate)} nights </div>
-                  <div>${totalPrice(startDate, endDate).toLocaleString()}</div>
+                  <div>${totalPrice(startDate, endDate).toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
                </div>
 
                <div className='create-booking-fees'>
                   <div>Cleaning fee</div>
-                  <div>${cleaningFees.toFixed(2)}</div>
+                  <div>${cleaningFees.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
                </div>
 
                <div className='create-booking-fees'>
                   <div>Service fee</div>
-                  <div>${serviceFees.toFixed(2)}</div>
+                  <div>${serviceFees.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
                </div>
 
                <div className='create-booking-fees'>
                   <div>Occupany fee</div>
-                  <div>${occupancyFees.toFixed(2)}</div>
+                  <div>${occupancyFees.toLocaleString(undefined, {minimumFractionDigits: 2})}</div>
                </div>
             </div>
 

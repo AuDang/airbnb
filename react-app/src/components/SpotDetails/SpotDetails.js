@@ -14,9 +14,12 @@ import './SpotDetails.css'
 const SpotDetails = () => {
    const {id} = useParams()
    const sessionUser = useSelector(state =>state.session.user)
+   // console.log('sessionUser', sessionUser)
    const spot = useSelector(state => state?.spots[id])
-   // console.log('spotDetails', spot.id)
+   console.log('spotOwner', spot)
    const reviews = Object.values(useSelector(state => state.reviewReducer))
+   const userReview = useSelector(state => state.reviewReducer[id])
+   console.log('reviewssss', userReview)
    const history = useHistory()
    const dispatch = useDispatch()
 
@@ -75,7 +78,7 @@ const SpotDetails = () => {
             <div className='spot-detail-mid-left'>
                <div className='spot-detail-host'>
                   <h1>Hosted by: {spot?.firstname} {spot?.lastname}</h1>
-                  <p>{spot?.guest} Guests {spot?.bedroom} Bedrooms {spot?.bathroom} Bathrooms</p>
+                  <p>{spot?.guest} Guests · {spot?.bedroom}  Bedrooms · {spot?.bathroom} Bathrooms</p>
                </div>
 
                <div className='spot-detail-description-container'>
@@ -102,7 +105,7 @@ const SpotDetails = () => {
                   </div>
                </div>
                <div className='spot-detail-create-review-button'>
-                  {sessionUser && <CreateReviewModal/>}
+                  {sessionUser ? <CreateReviewModal/>: null}
                </div>
             </div>
             <div className='show-details-all-reviwews-container'>

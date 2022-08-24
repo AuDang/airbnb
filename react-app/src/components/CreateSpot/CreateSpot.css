@@ -148,8 +148,14 @@
    justify-content: center;
    font-size: 1.5em;
    padding-bottom: 20px;
+   padding-top: 1em;
+   color: rgba(255, 121, 119, 255);
    /* background-color: red; */
 }
+.image-upload-container:hover {
+cursor:pointer
+}
+
 .update-remove{
    display:flex;
    justify-content: space-evenly;

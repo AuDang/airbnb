@@ -91,6 +91,9 @@
 .spot-detail-mid-right {
    margin-left: 3em;
 }
+.spot-detail-mid-left {
+   width: 756rem;
+}
 .spot-details-rating {
    display:flex;
    align-items:center;
