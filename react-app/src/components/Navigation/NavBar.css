@@ -154,9 +154,10 @@ margin-right:30px;
    z-index: 1000;
    margin-top: 1.5em;
    border-radius: 10px;
-   list-style-type: none
+}
 
-
+.search-results li {
+   list-style-type: none;
 }
 .search-result-text {
    all: unset;
@@ -179,7 +180,4 @@ margin-right:30px;
 
 .search-results-item:hover {
    background-color: rgba(255, 98, 127, 255);
-}
-li {
-   list-style-type: none;
 }
