@@ -106,7 +106,7 @@ const SpotDetails = () => {
                   </div>
                </div>
                <div className='spot-detail-create-review-button'>
-                  {sessionUser?.id===spot.user_id ? null :sessionUser ? <CreateReviewModal/>: null}
+                  {sessionUser?.id===spot?.user_id ? null :sessionUser ? <CreateReviewModal/>: null}
                </div>
             </div>
             <div className='show-details-all-reviwews-container'>
