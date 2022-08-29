@@ -11,18 +11,16 @@ const SearchInput = () => {
       setSearchResults(true)
    }, [query])
 
-   const icon = (<i className="fa fa-search" aria-hidden="true"></i>)
-
    return (
-      <div className='search-container'>
+      <div className='search-container' >
          {<div>
             <input
             className='search-input'
             placeholder='Search for spots'
             value={query}
             onChange={e=> setQuery(e.target.value)}
-            onClick={e=> e.stopPropagation}/>
-            
+            onClick={e=> e.stopPropagation}
+            />
             {searchResults && <Search query={query} setQuery={setQuery} setSearchResults={setSearchResults}/>}
          </div>}
 

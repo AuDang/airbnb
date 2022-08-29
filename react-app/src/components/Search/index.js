@@ -27,7 +27,9 @@ const Search = ({query, setQuery, setSearchResults}) => {
   const subStringTwo = result.slice(index+len);
 
   return (
-    <span>{subStringOne}<span className='match'>{match}</span>{subStringTwo}</span>
+    // <div className='result-name'>
+      <span className='match'>{subStringOne}<span className='match'>{match}</span>{subStringTwo}</span>
+ 
   )
 }
  return (
@@ -41,7 +43,11 @@ const Search = ({query, setQuery, setSearchResults}) => {
               setSearchResults(false)
               setQuery('')
             }}>
-              {formatResult(spot?.name)}
+              {/* {console.log('images', spot.images[0].image)} */}
+              <div className='search-pic-name'>
+                <img className='search-results-image'src={spot.images[0]?.image}/>
+                {formatResult(spot?.name)}
+              </div>
             </NavLink>
           </div>
         </li>)

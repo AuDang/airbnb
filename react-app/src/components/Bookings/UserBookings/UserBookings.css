@@ -51,3 +51,6 @@
    color: rgba(255, 98, 127, 255);
    font-size:2em;
 }
+.fa.fa-trash-o:hover{
+cursor:pointer
+}

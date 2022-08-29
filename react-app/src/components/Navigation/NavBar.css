@@ -158,16 +158,29 @@ margin-right:30px;
 
 .search-results li {
    list-style-type: none;
+   margin-left: -35px;
 }
 .search-result-text {
    all: unset;
    cursor: pointer;
-   width:100%
+   width:100%;
+   align-items: center;
+}
+.match {
+padding-top:5px;
+font-size: 1.1em;
+}
+.search-pic-name {
+   display: flex;
 }
 .search-result-text:hover {
    background-color: rgba(255, 98, 127, 255);
 }
-
+.search-results-image {
+   height:30px;
+   object-fit: cover;
+   margin-right:1em;
+}
 .search-results-item {
    display: flex;
    flex-direction: row;
