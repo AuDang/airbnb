@@ -5,6 +5,8 @@ import ProfileButton from './ProfileButton';
 import { useSelector } from 'react-redux';
 // import {GiCutDiamond} from 'react-icons/gi'
 import airbnb from '../../images/Airbnb.png'
+import Search from '../Search'
+import SearchInput from '../Search/SearchInput';
 
 
 const NavBar = () => {
@@ -24,6 +26,8 @@ const NavBar = () => {
           </NavLink>
         </div>
       </div>
+          <SearchInput/>
+          {/* <Search/> */}
       <div className='navbar-right'>
           <div className='host-spot-button'>
             <NavLink exact to='/spots/new'>

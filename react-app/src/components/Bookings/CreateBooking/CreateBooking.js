@@ -19,12 +19,13 @@ const CreateBooking = ({reviews}) => {
    const sessionUser = useSelector(state => state.session?.user)
    const sessionUserId = useSelector(state => state.session.user?.id)
    const spot = useSelector(state => (state.spots[id]))
-   console.log('spotuser', spot)
+   // console.log('spotuser', spot)
    
    const bookings = useSelector(state => Object.values(state.bookingReducer))
+   // console.log('bookings', bookings[id])
    const spotBookings = bookings?.filter(booking => spot?.id === booking.spot_id)
 
-   console.log('spotbookeee', spotBookings)
+   console.log('spotbookings', spotBookings)
 
    const [guests, setGuests] = useState(1)
    const [startDate, setStartDate] = useState(new Date())
@@ -51,19 +52,22 @@ const CreateBooking = ({reviews}) => {
 
    // const dateArrayCreator = (startDate, stopDate) => {
    //    const dateArray = new Array();
-   //    const currentDate = startDate;
+   //    let currentDate = startDate;
    //    while (currentDate <= stopDate) {
    //       dateArray.push(new Date (currentDate));
    //       currentDate = addDays(currentDate, 1);
    //    }
-   // return dateArray
+   //    return dateArray
    // }
+
    // spotBookings?.forEach(booking => {
    //    (dateArrayCreator(addDays(new Date (booking?.check_in),1), addDays(new Date (booking?.end_date),1))).forEach(date => {
    //       disabledDatesArray.push(date)
    //    })
    // })
    // console.log('datearraytest', dateArrayCreator(startDate, endDate))
+   // console.log('diabled', disabledDatesArray)
+
 
 
 
@@ -79,7 +83,7 @@ const CreateBooking = ({reviews}) => {
    useEffect(()=> {
       setStartDate (state[0].startDate)
       setEndDate(state[0].endDate)
-      // console.log(disabledDatesArray)
+      console.log(disabledDatesArray)
    },[state])
 
    // console.log('DateState', state[0])
@@ -161,6 +165,7 @@ const CreateBooking = ({reviews}) => {
             <DateRange 
             onChange={(item) => setState([item.selection])}
             editableDateInputs={true}
+            disabledDates={disabledDatesArray}
             months={1}
             ranges={state}
             minDate={today}

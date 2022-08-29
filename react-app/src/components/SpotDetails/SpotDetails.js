@@ -16,10 +16,9 @@ const SpotDetails = () => {
    const sessionUser = useSelector(state =>state.session.user)
    // console.log('sessionUser', sessionUser)
    const spot = useSelector(state => state?.spots[id])
-   console.log('spotOwner', spot)
+   // console.log('spotOwner', spot)
    const reviews = Object.values(useSelector(state => state.reviewReducer))
-   const userReview = useSelector(state => state.reviewReducer[id])
-   console.log('reviewssss', userReview)
+   console.log("reviews", reviews)
    const history = useHistory()
    const dispatch = useDispatch()
 
@@ -42,6 +41,8 @@ const SpotDetails = () => {
    if (Number.isNaN(roundedAverage)) {
       roundedAverage = "Unrated"
    } else roundedAverage = (Math.round(averageReviews * 100) /100).toFixed(1)
+
+   console.log('filtered', filteredReviews)
 
 
    return (
@@ -105,7 +106,7 @@ const SpotDetails = () => {
                   </div>
                </div>
                <div className='spot-detail-create-review-button'>
-                  {sessionUser ? <CreateReviewModal/>: null}
+                  {sessionUser?.id===spot.user_id ? null :sessionUser ? <CreateReviewModal/>: null}
                </div>
             </div>
             <div className='show-details-all-reviwews-container'>

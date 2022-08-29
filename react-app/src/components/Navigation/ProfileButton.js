@@ -57,7 +57,7 @@ function ProfileButton() {
       dropdownMenu = (
          <div className='profile-dropdown'>
             <div className='dropdown-content'>
-               <LoginFormModal onClick={!openMenu}/>
+               <LoginFormModal setShowMenu={setShowMenu}/>
                <SignUpFormModal />
             </div>
          </div>
@@ -65,8 +65,8 @@ function ProfileButton() {
    }
 
   return (
-   <div className='profile-container'>
-      <button className='profile-button'onClick={openMenu}>
+   <div className='profile-container' onMouseEnter={() => setShowMenu(true)} onMouseLeave={() => setShowMenu(false)} >
+      <button className='profile-button'>
          <CgProfile className='profile-button-icon'/>
         {/* <i className="fas fa-user-circle" /> */}
       </button>
