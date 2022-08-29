@@ -8,7 +8,19 @@ import DeleteSpotModal from '../DeleteSpot';
 import ShowReview from '../Reviews/ShowReview/ShowReview';
 import { IoDiamond } from 'react-icons/io5';
 import CreateBooking from '../Bookings/CreateBooking/CreateBooking';
+import {
+  checkIn,
+  dedicatedWorkspace,
+  freeTV,
+  kitchen,
+  newIcon,
+  parking,
+  secCams,
+  washer,
+  wifi,
+  littleStar,} from '../Navicons'
 import './SpotDetails.css'
+
 
 
 const SpotDetails = () => {
@@ -86,6 +98,52 @@ const SpotDetails = () => {
                   <h1>Description</h1>
                   <p>{spot?.description}</p>
                </div>
+
+            <div className="ammeneties">
+              <div className='spot-detail-ammeneties-container'>
+                <h1 className='spot-detail-ammeneties'>What this place offers</h1>
+              </div>
+              <div className="ammeneties-icon-container">
+                <div className="ammeneties-icons">
+                  {dedicatedWorkspace}{" "}
+                  <div className="ammeneties-title">Dedicated Workspace</div>
+                </div>
+                <div className="ammeneties-icons">
+                  {checkIn}{" "}
+                  <div className="ammeneties-title">
+                    Self check-in with smart lock
+                  </div>
+                </div>
+                <div className="ammeneties-icons">
+                  {secCams}{" "}
+                  <div className="ammeneties-title">
+                    Security cameras on property
+                  </div>
+                </div>
+                <div className="ammeneties-icons">
+                  {washer} <div className="ammeneties-title">Free washer</div>
+                </div>
+                <div className="ammeneties-icons">
+                  {freeTV}{" "}
+                  <div className="ammeneties-title">
+                    HDTV with Amazon Prime Video, Fire TV, Netflix, premium
+                    cable
+                  </div>
+                </div>
+                <div className="ammeneties-icons">
+                  {parking}{" "}
+                  <div className="ammeneties-title">Free parking on premises</div>
+                </div>
+                <div className="ammeneties-icons">
+                  {wifi} <div className="ammeneties-title">Free Wifi</div>
+                </div>
+                <div className="ammeneties-icons">
+                  {kitchen} <div className="ammeneties-title">Kitchen</div>
+                </div>
+              </div>
+            </div>
+
+
             </div>
             <div className='spot-detail-mid-right'>
                <div className='spot-detail-booking'>

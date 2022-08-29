@@ -29,6 +29,28 @@
    font-weight:300;
    letter-spacing: -2px;
 }
+.spot-detail-ammeneties {
+   font-size: 30px;
+   font-weight: bold;
+   letter-spacing: -1px;
+   
+   }
+
+.ammeneties-icon-container {
+   display:flex;
+   flex-direction: row;
+   flex-wrap:wrap;
+   justify-content: space-between;
+}
+.ammeneties-icons {
+   display:flex;
+   align-items: center;
+   padding: 10px;
+}
+.ammeneties-title {
+   padding: 0 10px;
+   width: 300px;
+}
 .spot-detail-diamond {
    margin:0 30px 0 5px;
 }

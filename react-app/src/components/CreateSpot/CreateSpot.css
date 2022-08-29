@@ -52,6 +52,9 @@
 .error-list {
    margin-left: 7px;
 }
+.image-errors {
+   color:rgb(163, 17, 17)
+}
 .create-spot-form {
    display:flex;
    /* background-color: blue; */
@@ -125,10 +128,11 @@
 .spot-form-button {
    border:unset;
    font-size: 20px;
-   background-color: burlywood;
+   background-color: rgba(255, 121, 119, 255);
    border-radius:8px;
    padding:3px 5px 3px 5px;
-   margin-bottom:20px;
+   margin:20px 0 20px 0 ;
+   border: 1.75px solid black
 }
 .spot-form-button:hover {
    font-weight:400;

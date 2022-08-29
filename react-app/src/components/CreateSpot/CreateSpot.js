@@ -5,6 +5,7 @@ import { addSpot, uploadImage } from "../../store/spot"
 import ImageUploading from 'react-images-uploading'
 import { getSpot } from "../../store/spot"
 import './CreateSpot.css'
+import house from '../../static/house.png'
 
 
 const CreateSpotForm = () => {
@@ -26,8 +27,9 @@ const CreateSpotForm = () => {
    // const [imageUrl, setImageUrl] =useState([])
    const [images, setImages] =useState([])
    // const [imagePreview, setImagePreview] =useState(false)
-   console.log(sessionUser, '1111')
+   // console.log(sessionUser, '1111')
    // console.log(imageUrl)
+   // const maxNumber = 5
 
 
 
@@ -78,7 +80,10 @@ const CreateSpotForm = () => {
       if (e.key === '.') return e.preventDefault()
    }
    
-   
+   const handleImage = (e) => {
+   e.target.src = house
+   }
+
    return (
       <div className='create-spot-page-container'>
          <div className='create-spot-name-container'>
@@ -98,7 +103,6 @@ const CreateSpotForm = () => {
          
          <form className='spot-form-container' onSubmit={handleSubmit}>
 
-
                <ImageUploading
                   value={images}
                   onChange={(imageList) => setImages(imageList)}
@@ -106,13 +110,20 @@ const CreateSpotForm = () => {
                   multiple
                   acceptType={['jpg', 'gif','png','peg']}
                   dataURLKey="data_url"
-                  required
+                  allowNonImageType={false}
+                  onError={handleImage}
                >
-               {({ imageList, onImageUpload, onImageRemoveAll, onImageUpdate, onImageRemove }) => (
+               {({ imageList, onImageUpload, onImageRemoveAll, onImageUpdate, onImageRemove,isDragging, dragProps, errors }) => (
                   <div className='upload-container'>
-                     <div 
-                        className='image-upload-container' onClick={onImageUpload}>Click here to Add Images
+                    <div 
+                        className='image-upload-container' style={isDragging ? { color: "rgb(255, 56, 92)" } : undefined}onClick={onImageUpload} {...dragProps} >Click or Drop here to add an Image
                      </div>
+                     {errors && <div className='image-errors'>
+                        {errors.maxNumber && <span>Number of selected images exceed maxNumber</span>}
+                        {errors.acceptType && <span>Your selected file type is not allow</span>}
+                        {errors.maxFileSize && <span>Selected file size exceed maxFileSize</span>}
+                        {errors.resolution && <span>Selected file is not match your desired resolution</span>}
+                     </div>}
                      {imageList.length >= 1 && (
                      <div className='upload-images'>
                         {imageList.map((image,index) => (
@@ -143,7 +154,7 @@ const CreateSpotForm = () => {
                   name='name'
                   onChange={(e) =>setName(e.target.value)}
                   value={name}
-                  required
+                  // required
                />
             </div>
                <div className='create-spot-form'>
@@ -154,7 +165,7 @@ const CreateSpotForm = () => {
                      name='address'
                      onChange={(e) =>setAddress(e.target.value)}
                      value={address}
-                     required
+                     // required
                   />
                </div>
                <div className='create-spot-city-state-country'>
@@ -167,7 +178,7 @@ const CreateSpotForm = () => {
                         name='city'
                         onChange={(e) =>setCity(e.target.value)}
                         value={city}
-                        required
+                        // required
                      />
                   </div>
 

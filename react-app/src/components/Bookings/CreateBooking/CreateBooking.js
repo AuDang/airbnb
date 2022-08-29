@@ -174,7 +174,7 @@ const CreateBooking = ({reviews}) => {
 
          </form>
             <p className='create-booking-text'>You won't be charged yet</p>
-               <button className='create-booking-button'  disabled={sessionUserId===undefined || sessionUserId===spot.user_id} onClick={handleSubmit}>Reserve</button>
+               <button className='create-booking-button'  disabled={sessionUserId===undefined || sessionUserId===spot?.user_id} onClick={handleSubmit}>Reserve</button>
             {!sessionUserId && ( 
                <div className='not-logged'>*Please login to use this feature*</div>
                )}
