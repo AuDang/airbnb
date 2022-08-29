@@ -150,14 +150,14 @@ const CreateBooking = ({reviews}) => {
       <div className='create-booking-container'>
          <div className='create-booking-top'>
                <div className='create-booking-price'>
-                  ${spot.price} night
+                  ${spot?.price} night
                </div>
                <div className='create-booking-reviews'>
                   <div className='booking-diamond'>
                      <IoDiamond color='purple'/> {roundedAverage} 
                   </div>
                   <div>
-                     {filteredReviews.length} {filteredReviews.length === 1 ? 'Review' : 'Reviews'}
+                     {filteredReviews?.length} {filteredReviews?.length === 1 ? 'Review' : 'Reviews'}
                   </div>
             </div>
          </div>
