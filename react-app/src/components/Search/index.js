@@ -34,7 +34,7 @@ const Search = ({query, setQuery, setSearchResults}) => {
 }
  return (
     <div className='search-results'
-    onClick={e=>e.stopPropagation()}>
+    onMouseDown={e=>e.stopPropagation()}>
       <ul>
         {spotResults.length ? spotResults.map(spot=>
         <li key={`search-card-${spot.id}`}>

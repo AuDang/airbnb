@@ -6,13 +6,15 @@ const SearchInput = () => {
    const [searchResults, setSearchResults] = useState(false)
    const [isBlur, setIsBlur] = useState(false);
 
-   const blurHandler = (e) => {
-      e.preventDefault()
+   const handleBlur = () => {
+      // e.preventDefault()
       setSearchResults(false)
       setQuery('')
    }
+   const onSearchChange = (e) => {
+      setQuery(e.target.value)
+   }
 
-   
    useEffect(() => {
       if (!query.length) return setSearchResults(false)
       setSearchResults(true)
@@ -26,9 +28,9 @@ const SearchInput = () => {
             className='search-input'
             placeholder='Search for spots'
             value={query}
-            onChange={e=> setQuery(e.target.value)}
+            onChange={onSearchChange}
             onClick={e=> e.stopPropagation}
-            onBlur={blurHandler}
+            onBlur={()=> setTimeout(handleBlur,1000)}
             />
             {searchResults && <Search query={query} setQuery={setQuery} setSearchResults={setSearchResults}/>}
          </div>}
