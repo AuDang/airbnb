@@ -5,7 +5,10 @@ align-self: center;
 border:unset;
 background-color: white;
 margin-right:30px;
+padding-left: 1em;
 }
+
+
 .profile-button-icon:hover{
    color:rgba(255, 98, 127, 255);
 }

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAllSpots } from '../../store/spot';
 import './SpotsPage.css'
 import { NavLink } from 'react-router-dom';
-import house from '../../static/house.png'
+import house1 from '../../static/house1.jpg'
 
 
 const SpotsPage = () => {
@@ -26,7 +26,7 @@ const SpotsPage = () => {
          <div className='spotspage-container' key={spot.id}>
             <div className='all-spots-image'> 
                <NavLink exact to={`/spots/${spot.id}`}>
-                  {spot?.images.length < 1? <img className='single-spot-image'src={house}/>:<img className='single-spot-image' alt={`spots #${spot.id}`} src={spot?.images[0]?.image} />}
+                  {spot?.images.length < 1? <img className='single-spot-image'src={house1}/>:<img className='single-spot-image' alt={`spots #${spot.id}`} src={spot?.images[0]?.image} />}
                </NavLink>
             </div>
             <div className='all-spots-info'>

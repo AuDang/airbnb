@@ -29,7 +29,7 @@ const Search = ({query, setQuery, setSearchResults}) => {
   return (
     // <div className='result-name'>
       <span className='match'>{subStringOne}<span className='match'>{match}</span>{subStringTwo}</span>
- 
+
   )
 }
  return (

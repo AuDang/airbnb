@@ -19,6 +19,7 @@ import {
   washer,
   wifi,
   littleStar,} from '../Navicons'
+  import house1 from '../../static/house1.jpg'
 import './SpotDetails.css'
 
 
@@ -28,7 +29,7 @@ const SpotDetails = () => {
    const sessionUser = useSelector(state =>state.session.user)
    // console.log('sessionUser', sessionUser)
    const spot = useSelector(state => state?.spots[id])
-   // console.log('spotOwner', spot)
+   console.log('spotOwner', spot)
    const reviews = Object.values(useSelector(state => state.reviewReducer))
    console.log("reviews", reviews)
    const history = useHistory()
@@ -81,11 +82,14 @@ const SpotDetails = () => {
                   {sessionUser?.id === spot?.user_id && <DeleteSpotModal/>}
                </div>
             </div>
+            {/* {console.log('spotimages', spot.images.length)} */}
+            {spot.images.length < 1? <img className={`spot-detail-image-0`} src={house1}/>: 
          <div className='spot-detail-images'>
             {spot?.images.map(({ image }, idx) => (
                <img className={`spot-detail-image-${idx}`} src={image} key={idx} alt="new" />
-            ))}
+               ))}
          </div>
+            }
 
          <div className='spot-detail-mid'>
             <div className='spot-detail-mid-left'>
@@ -121,7 +125,7 @@ const SpotDetails = () => {
                   </div>
                 </div>
                 <div className="ammeneties-icons">
-                  {washer} <div className="ammeneties-title">Free washer</div>
+                  {washer} <div className="ammeneties-title">Free washer – In unit</div>
                 </div>
                 <div className="ammeneties-icons">
                   {freeTV}{" "}

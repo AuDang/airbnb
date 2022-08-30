@@ -119,7 +119,7 @@ const CreateSpotForm = () => {
                         className='image-upload-container' style={isDragging ? { color: "rgb(255, 56, 92)" } : undefined}onClick={onImageUpload} {...dragProps} >Click or Drop here to add an Image
                      </div>
                      {errors && <div className='image-errors'>
-                        {errors.maxNumber && <span>Number of selected images exceed maxNumber</span>}
+                        {errors.maxNumber && <span>Number of images can't exceed 5</span>}
                         {errors.acceptType && <span>Your selected file type is not allow</span>}
                         {errors.maxFileSize && <span>Selected file size exceed maxFileSize</span>}
                         {errors.resolution && <span>Selected file is not match your desired resolution</span>}
