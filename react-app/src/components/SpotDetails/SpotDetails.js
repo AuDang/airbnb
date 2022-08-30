@@ -57,6 +57,9 @@ const SpotDetails = () => {
 
    console.log('filtered', filteredReviews)
 
+   const mappedReviews = filteredReviews.map((review) => review.user_id)
+   console.log('mapped', mappedReviews)
+
 
    return (
       <div className='spot-details-container'>
@@ -167,9 +170,15 @@ const SpotDetails = () => {
                      {filteredReviews.length} {filteredReviews.length === 1 ? 'Review' : 'Reviews'}
                   </div>
                </div>
+
+               {/* {filteredReviews.map(({review},idx) => ( */}
                <div className='spot-detail-create-review-button'>
-                  {sessionUser?.id===spot?.user_id ? null :sessionUser ? <CreateReviewModal/>: null}
+                  {/* {console.log('sessionUser', sessionUser.id)}
+                  {console.log('mappedUser', mappedReviews.includes(sessionUser.id))} */}
+                  {mappedReviews?.includes(sessionUser?.id)? null : sessionUser?.id===spot?.user_id ? null :sessionUser ? <CreateReviewModal/>: null}
+
                </div>
+               {/* // ))} */}
             </div>
             <div className='show-details-all-reviwews-container'>
                <ShowReview />

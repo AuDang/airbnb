@@ -7,7 +7,6 @@ const SearchInput = () => {
    const [isBlur, setIsBlur] = useState(false);
 
    const handleBlur = () => {
-      // e.preventDefault()
       setSearchResults(false)
       setQuery('')
    }
