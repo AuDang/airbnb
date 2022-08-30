@@ -29,9 +29,9 @@ const SpotDetails = () => {
    const sessionUser = useSelector(state =>state.session.user)
    // console.log('sessionUser', sessionUser)
    const spot = useSelector(state => state?.spots[id])
-   console.log('spotOwner', spot)
+   // console.log('spotOwner', spot)
    const reviews = Object.values(useSelector(state => state.reviewReducer))
-   console.log("reviews", reviews)
+   // console.log("reviews", reviews)
    const history = useHistory()
    const dispatch = useDispatch()
 

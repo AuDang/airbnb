@@ -9,14 +9,14 @@ import { useHistory, useParams } from "react-router-dom";
 const Search = ({query, setQuery, setSearchResults}) => {
     const sessionUser = useSelector(state => state.session.user)
     const spots = useSelector(state=>state.spots)
-    console.log('SearchSpooot', spots)
+    // console.log('SearchSpooot', spots)
     // const spotValue = Object.values(spots).filter(spots => spots.name)
     // console.log('spotValue', spotValue)
 
   const spotResults = Object.values(spots)?.filter(
     spots => spots?.name?.toLowerCase().includes(query?.toLowerCase()))
   
-  console.log('Spotresults', spotResults)
+  // console.log('Spotresults', spotResults)
 
   const formatResult = result => {
   const index = result.toUpperCase().indexOf(query?.toUpperCase());

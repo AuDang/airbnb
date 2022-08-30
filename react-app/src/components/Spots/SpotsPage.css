@@ -6,6 +6,8 @@
    margin:auto;
    width: 80%;
    margin-top:100px;
+   margin-bottom:5em;
+
 }
 .spotspage-container {
    margin:20px;
@@ -22,7 +24,7 @@
    height:350px;
    width:350px; 
    object-fit:cover;
-   border-radius: 10px;
+   border-radius: 10px ;
 }
 .all-spots-info {
    width: 300px;

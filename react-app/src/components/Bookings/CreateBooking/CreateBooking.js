@@ -25,7 +25,7 @@ const CreateBooking = ({reviews}) => {
    // console.log('bookings', bookings[id])
    const spotBookings = bookings?.filter(booking => spot?.id === booking.spot_id)
 
-   console.log('spotbookings', spotBookings)
+   // console.log('spotbookings', spotBookings)
 
    const [guests, setGuests] = useState(1)
    const [startDate, setStartDate] = useState(new Date())
@@ -83,7 +83,7 @@ const CreateBooking = ({reviews}) => {
    useEffect(()=> {
       setStartDate (state[0].startDate)
       setEndDate(state[0].endDate)
-      console.log(disabledDatesArray)
+      // console.log(disabledDatesArray)
    },[state])
 
    // console.log('DateState', state[0])
