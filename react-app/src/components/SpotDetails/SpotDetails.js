@@ -128,7 +128,7 @@ const SpotDetails = () => {
                   </div>
                 </div>
                 <div className="ammeneties-icons">
-                  {washer} <div className="ammeneties-title">Free washer – In unit</div>
+                  {washer} <div className="ammeneties-title">Washer/Dryer – In unit</div>
                 </div>
                 <div className="ammeneties-icons">
                   {freeTV}{" "}
