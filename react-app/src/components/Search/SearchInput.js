@@ -4,7 +4,6 @@ import Search from '.';
 const SearchInput = () => {
    const [query, setQuery] = useState("")
    const [searchResults, setSearchResults] = useState(false)
-   const [isBlur, setIsBlur] = useState(false);
 
    const handleBlur = () => {
       setSearchResults(false)
