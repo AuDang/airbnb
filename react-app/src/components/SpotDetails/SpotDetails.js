@@ -86,9 +86,9 @@ const SpotDetails = () => {
                </div>
             </div>
             {/* {console.log('spotimages', spot.images.length)} */}
-            {spot.images.length < 1? <img className={`spot-detail-image-0`} src={house2}/>: 
+            {spot?.images?.length < 1? <img className={`spot-detail-image-0`} src={house2}/>: 
          <div className='spot-detail-images'>
-            {spot?.images.map(({ image }, idx) => (
+            {spot?.images?.map(({ image }, idx) => (
                <img className={`spot-detail-image-${idx}`} src={image} key={idx} alt="new" />
                ))}
          </div>

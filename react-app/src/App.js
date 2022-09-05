@@ -71,9 +71,9 @@ function App() {
         <Route path='/404-Page-Not-Found'>
           <ErrorPage />
         </Route>
-        <Route>
+        {/* <Route>
           <ErrorPage />
-        </Route>
+        </Route> */}
       </Switch>
       <Footer />
     </BrowserRouter>
