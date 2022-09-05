@@ -19,7 +19,7 @@ import {
   washer,
   wifi,
   littleStar,} from '../Navicons'
-  import house1 from '../../static/house1.jpg'
+  import house2 from '../../static/house2.png'
 import './SpotDetails.css'
 
 
@@ -86,7 +86,7 @@ const SpotDetails = () => {
                </div>
             </div>
             {/* {console.log('spotimages', spot.images.length)} */}
-            {spot.images.length < 1? <img className={`spot-detail-image-0`} src={house1}/>: 
+            {spot.images.length < 1? <img className={`spot-detail-image-0`} src={house2}/>: 
          <div className='spot-detail-images'>
             {spot?.images.map(({ image }, idx) => (
                <img className={`spot-detail-image-${idx}`} src={image} key={idx} alt="new" />
